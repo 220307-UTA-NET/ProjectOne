@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{2CDFC02A-DCC9-4738-B6BC-C2A2D465D8D9}|Default">
+  <MonoDevelop.Ide.ItemProperties.Museum.Logic FirstBuild="True" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.MuseumClient PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MuseumClient/Program.cs">
+    <Files>
+      <File FileName="MuseumClient/Program.cs" Line="15" Column="1" />
+      <File FileName="Museum.Logic/Class1.cs" Line="17" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MuseumClient" expanded="True">
+            <Node name="Museum.Logic" expanded="True" />
+            <Node name="MuseumClient" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

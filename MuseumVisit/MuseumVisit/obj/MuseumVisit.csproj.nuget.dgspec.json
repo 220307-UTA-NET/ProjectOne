@@ -1,0 +1,198 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit/MuseumVisit.csproj": {}
+  },
+  "projects": {
+    "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj",
+        "projectName": "MuseumVisit.BusinessLogic",
+        "projectPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj",
+        "packagesPath": "/Users/francis/.nuget/packages/",
+        "outputPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/francis/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.201/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj",
+        "projectName": "MuseumVisit.DataLogic",
+        "projectPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj",
+        "packagesPath": "/Users/francis/.nuget/packages/",
+        "outputPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/francis/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj": {
+                "projectPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.201/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit/MuseumVisit.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit/MuseumVisit.csproj",
+        "projectName": "MuseumVisit",
+        "projectPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit/MuseumVisit.csproj",
+        "packagesPath": "/Users/francis/.nuget/packages/",
+        "outputPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/francis/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj": {
+                "projectPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj"
+              },
+              "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj": {
+                "projectPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.201/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

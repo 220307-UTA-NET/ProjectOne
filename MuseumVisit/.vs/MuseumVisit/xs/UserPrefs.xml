@@ -1,0 +1,6 @@
+﻿<Properties StartupConfiguration="{21E41F9F-9ABD-4691-BBE2-534FEF5D00A0}|Default">
+  <MonoDevelop.Ide.ItemProperties.MuseumVisit PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.ItemProperties.MuseumVisit.DataLogic FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.MuseumVisit.BusinessLogic FirstBuild="True" />
+  <MultiItemStartupConfigurations />
+</Properties>
