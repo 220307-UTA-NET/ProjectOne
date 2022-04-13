@@ -10,8 +10,8 @@ namespace BettaFishApp.InformationLogic
     {
         // Fields
         public int fact_ID { get; set; }
-        public string? funFact  { get; set; }
-       
+        public string? funFact { get; set; }
+
 
 
         // Constructors
@@ -21,7 +21,7 @@ namespace BettaFishApp.InformationLogic
         {
             this.fact_ID = fact_ID;
             this.funFact = funFact;
-         
+
         }
 
         // Methods

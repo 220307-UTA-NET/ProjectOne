@@ -1,15 +1,11 @@
 ﻿using BettaFishApp.InformationLogic;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace BettaFishApp.DataLogic 
+namespace BettaFishApp.DataLogic
 {
-    public class SQLRepository : IRepository 
+    public class SQLRepository : IRepository
     {
         // Fields
         private readonly string _connectionString;
@@ -30,11 +26,9 @@ namespace BettaFishApp.DataLogic
             using SqlConnection connection = new(_connectionString);
             await connection.OpenAsync();
 
-            string cmdString =
-                @"SELECT * FROM BettaFish.Type;";
+            string cmdString = @"SELECT tail_ID, tailType, description FROM BettaFish.Type;";
 
             using SqlCommand cmd = new(cmdString, connection);
-
             using SqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
@@ -59,18 +53,16 @@ namespace BettaFishApp.DataLogic
             using SqlConnection connection = new(_connectionString);
             await connection.OpenAsync();
 
-            string cmdString =
-                @"SELECT * FROM BettaFish.Facts;";
+            string cmdString = @"SELECT fact_ID, funFact FROM BettaFish.Facts;";
 
             using SqlCommand cmd = new(cmdString, connection);
-
             using SqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
                 int fact_ID = reader.GetInt32(0);
                 string funFact = reader.GetString(1);
-                
+
                 result.Add(new(fact_ID, funFact));
             }
             await connection.CloseAsync();

@@ -2,22 +2,24 @@ CREATE SCHEMA BettaFish; -- new filing cabinet
 GO
 
 CREATE TABLE BettaFish.Type (
-    Tail_ID INT PRIMARY KEY IDENTITY, 
+    tail_ID INT PRIMARY KEY IDENTITY, 
     tailType NVARCHAR (255) NULL,
     description NVARCHAR (4000) NULL 
 );
 
 -- DROP TABLE BettaFish.Type; 
 SELECT * FROM BettaFish.Type;
+SELECT Tail_ID, tailType, description FROM BettaFish.Type;
 -- DELETE FROM BettaFish;
 
 CREATE TABLE BettaFish.Facts (
-    Fact_ID INT PRIMARY KEY IDENTITY, 
+    fact_ID INT PRIMARY KEY IDENTITY, 
     funFact NVARCHAR (4000) NULL, 
 );
 
-DROP TABLE BettaFish.Facts; 
+-- DROP TABLE BettaFish.Facts; 
 SELECT * FROM BettaFish.Facts;
+SELECT Fact_ID, funFact FROM BettaFish.Facts;
 -- DELETE FROM BettaFish.Facts;
 
 
@@ -104,10 +106,4 @@ VALUES(
     ('Their skin contains several layers of pigment, going from red, yellow, black, iridescent (which consists of blue and green), and an outer layer that appears metallic, which changes how the other colors look.'), 
     ('Wild Betta fish tend to be a dull brown and green colour. The will only exhibit the brighter colours mentioned above when they are agitated and will use this as a threat display.'), 
     ('Betta fish living in an aquarium will eat a very varied diet. They can be fed flakes and pellets, as well as live or frozen foods like bloodworm, brine shrimp, and daphnia.'), 
-    ('Betta fish have a special organ, known as the labyrinth organ, that allows them to breathe air at the water’s surface.'), 
-    (''),
-    (''), 
-    (''), 
-    (''), 
-    (''), 
-    ('')
+    ('Betta fish have a special organ, known as the labyrinth organ, that allows them to breathe air at the water’s surface.')
