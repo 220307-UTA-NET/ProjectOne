@@ -2,17 +2,10 @@
 
 namespace BettaFishApp.DataLogic
 {
-    public class IRepository
+    public interface IRepository
     {
-        public Task<IEnumerable<BettaType>> GetAllBettaType(int y, string b, string c)
-        {
-            throw new NotImplementedException();
-        }
-        public Task<IEnumerable<BettaFunFacts>> GetAllBettaFunFacts(int x, string a)
-        {
-            throw new NotImplementedException();
-        }
-
-
+        Task<IEnumerable<BettaType>> GetAllBettaType();
+        Task<IEnumerable<BettaFunFacts>> GetAllBettaFunFacts();
+      
     }
 }

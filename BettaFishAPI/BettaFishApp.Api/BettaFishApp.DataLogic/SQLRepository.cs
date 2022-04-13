@@ -19,23 +19,23 @@ namespace BettaFishApp.DataLogic
         }
 
         // Methods
-        public async Task<IEnumerable<BettaType>> GetAllBettaType(int y, string b, string c)
+        public async Task<IEnumerable<BettaType>> GetAllBettaType()
         {
             List<BettaType> result = new();
 
             using SqlConnection connection = new(_connectionString);
             await connection.OpenAsync();
 
-            string cmdString = @"SELECT tail_ID, tailType, description FROM BettaFish.Type;";
+            string cmdString = @"SELECT * FROM BettaFish.Type;";
 
             using SqlCommand cmd = new(cmdString, connection);
             using SqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
-                int tail_ID = reader.GetInt32(0);
-                string tailType = reader.GetString(1);
-                string description = reader.GetString(2);
+                var tail_ID = reader.GetInt32(0);
+                var tailType = reader.GetString(1);
+                var description = reader.GetString(2);
 
                 result.Add(new(tail_ID, tailType, description));
             }
@@ -45,7 +45,7 @@ namespace BettaFishApp.DataLogic
 
             return result;
         }
-        public async Task<IEnumerable<BettaFunFacts>> GetAllBettaFunFacts(int x, string a)
+        public async Task<IEnumerable<BettaFunFacts>> GetAllBettaFunFacts()
         {
 
             List<BettaFunFacts> result = new();
@@ -53,15 +53,15 @@ namespace BettaFishApp.DataLogic
             using SqlConnection connection = new(_connectionString);
             await connection.OpenAsync();
 
-            string cmdString = @"SELECT fact_ID, funFact FROM BettaFish.Facts;";
+            string cmdString = @"SELECT * FROM BettaFish.Facts;";
 
             using SqlCommand cmd = new(cmdString, connection);
             using SqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
-                int fact_ID = reader.GetInt32(0);
-                string funFact = reader.GetString(1);
+                var fact_ID = reader.GetInt32(0);
+                var funFact = reader.GetString(1);
 
                 result.Add(new(fact_ID, funFact));
             }

@@ -7,9 +7,9 @@ CREATE TABLE BettaFish.Type (
     description NVARCHAR (4000) NULL 
 );
 
--- DROP TABLE BettaFish.Type; 
+DROP TABLE BettaFish.Type; 
 SELECT * FROM BettaFish.Type;
-SELECT Tail_ID, tailType, description FROM BettaFish.Type;
+-- SELECT tailType, description FROM BettaFish.Type WHERE tail_ID = 1
 -- DELETE FROM BettaFish;
 
 CREATE TABLE BettaFish.Facts (
@@ -17,9 +17,10 @@ CREATE TABLE BettaFish.Facts (
     funFact NVARCHAR (4000) NULL, 
 );
 
--- DROP TABLE BettaFish.Facts; 
+DROP TABLE BettaFish.Facts; 
 SELECT * FROM BettaFish.Facts;
-SELECT Fact_ID, funFact FROM BettaFish.Facts;
+-- SELECT Fact_ID, funFact FROM BettaFish.Facts;
+-- SELECT funFact FROM BettaFish.Facts WHERE fact_ID = 4
 -- DELETE FROM BettaFish.Facts;
 
 

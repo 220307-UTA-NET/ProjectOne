@@ -11,11 +11,12 @@
         // Constructors
         public BettaType() { }
 
-        public BettaType(int y, string b, string c)
+        public BettaType(int tail_ID, string tailType, string description)
         {
             this.tail_ID = tail_ID;
             this.tailType = tailType;
             this.description = description;
+          
 
         }
 

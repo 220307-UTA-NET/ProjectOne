@@ -23,12 +23,12 @@ namespace BettaFishApp.Api.Controllers
 
         // Methods
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BettaFunFacts>>> GetAllBettaFunFactsAsyc(int fact_ID, string funFacts)
+        public async Task<ActionResult<IEnumerable<BettaFunFacts>>> GetAllBettaFunFactsAsyc()
         {
             IEnumerable<BettaFunFacts> bettafunfacts;
             try
             {
-                bettafunfacts = await _repository.GetAllBettaFunFacts(fact_ID, funFacts);
+                bettafunfacts = await _repository.GetAllBettaFunFacts();
             }
             catch (SqlException ex)
             {

@@ -17,7 +17,7 @@ namespace BettaFishApp.InformationLogic
         // Constructors
         public BettaFunFacts() { }
 
-        public BettaFunFacts(int x, string a)
+        public BettaFunFacts(int fact_ID, string funFact)
         {
             this.fact_ID = fact_ID;
             this.funFact = funFact;
