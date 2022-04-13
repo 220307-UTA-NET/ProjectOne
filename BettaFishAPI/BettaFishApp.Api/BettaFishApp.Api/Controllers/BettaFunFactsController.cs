@@ -8,14 +8,14 @@ namespace BettaFishApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BettaTypesController : ControllerBase
+    public class BettaFunFactsController : ControllerBase
     {
         // Fields
         private readonly IRepository _repository;
-        private readonly ILogger<BettaTypesController> _logger;
+        private readonly ILogger<BettaFunFactsController> _logger;
 
         // Constructors
-        public BettaTypesController(IRepository repository, ILogger<BettaTypesController> logger)
+        public BettaFunFactsController(IRepository repository, ILogger<BettaFunFactsController> logger)
         {
             this._repository = repository;
             this._logger = logger;
@@ -23,19 +23,19 @@ namespace BettaFishApp.Api.Controllers
 
         // Methods
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BettaType>>> GetAllBettaTypeAsyc()
+        public async Task<ActionResult<IEnumerable<BettaFunFacts>>> GetAllBettaFunFactsAsyc(int ID, string funFacts)
         {
-            IEnumerable<BettaType> bettatypes;
+            IEnumerable<BettaFunFacts> bettafunfacts;
             try
             {
-                bettatypes = await _repository.GetAllBettaType();
+                bettafunfacts = await _repository.GetAllBettaFunFacts(ID, funFacts);
             }
             catch (SqlException ex)
             {
-                _logger.LogError(ex, "SQL error while getting devices.");
+                _logger.LogError(ex, "SQL error while Betta Fun Facts.");
                 return StatusCode(500);
             }
-            return bettatypes.ToList();
+            return bettafunfacts.ToList();
         }
 
     }

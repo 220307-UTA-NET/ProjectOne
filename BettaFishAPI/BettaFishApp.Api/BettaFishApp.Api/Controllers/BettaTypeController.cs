@@ -23,16 +23,16 @@ namespace BettaFishApp.Api.Controllers
 
         // Methods
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BettaType>>> GetDeviceByNameAsync(string id)
+        public async Task<ActionResult<IEnumerable<BettaType>>> GetAllBettaTypeAsyc(int ID, string tailType, string description)
         {
             IEnumerable<BettaType> bettatypes;
             try
             {
-                bettatypes = await _repository.GetBettaType(id);
+                bettatypes = await _repository.GetAllBettaType(ID, tailType, description);
             }
             catch (SqlException ex)
             {
-                _logger.LogError(ex, "SQL error while getting devices named {id}.", id);
+                _logger.LogError(ex, "SQL error while getting Betta Type");
                 return StatusCode(500);
             }
             return bettatypes.ToList();
