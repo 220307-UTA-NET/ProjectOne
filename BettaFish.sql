@@ -42,7 +42,7 @@ SELECT * FROM BettaFish.Facts;
 -- Use VERB NOUN
 
 -- TABLE 1
-INSERT INTO BettaFish.Type (tailType )
+INSERT INTO BettaFish.Type ( tailType )
 VALUES(
     'Veiltail'), ('Crowntail'), ('Combtail'), ('Double Tail'), ('Spadetail'), ('Halfmoon'), ('Over-Halfmoon'), ('Delta'), ('Super Delta'),
     ('Half-Sun'), ('Rosetail'), ('Feathertail '), ('Plakat'), ('Dumbo Ear')
