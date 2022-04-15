@@ -16,8 +16,6 @@
             this.tail_ID = tail_ID;
             this.tailType = tailType;
             this.description = description;
-          
-
         }
 
         // Methods

@@ -28,7 +28,7 @@ namespace BettaFishApp.Api.Controllers
             IEnumerable<BettaFunFacts> bettafunfacts;
             try
             {
-                bettafunfacts = await _repository.GetAllBettaFunFacts();
+                bettafunfacts = await _repository.GetAllBettaFunFactsAsync();
             }
             catch (SqlException ex)
             {

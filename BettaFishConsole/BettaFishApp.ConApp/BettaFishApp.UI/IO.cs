@@ -48,6 +48,9 @@ namespace BettaFishApp.UI
                     case 2:
                         await DisplayGetAllBettaFunFactsAsync();
                         break;
+                    case 3:
+                        await DisplayWebRegistrationAsync();
+                        break;
 
                 }
             } while (loop == true);
@@ -57,11 +60,13 @@ namespace BettaFishApp.UI
         {
             Console.Clear();
             int choice = -1;
+            //Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Welcome to the Betta Fish Information Website!");
             Console.WriteLine("\nPlease select an option to explore:");
             Console.WriteLine("[0] : Exit");
             Console.WriteLine("[1] : Betta Type");
             Console.WriteLine("[2] : Betta Fun Facts");
+            Console.WriteLine("[3] : Register");
 
             string? input = Console.ReadLine();
             Console.Clear();
@@ -141,6 +146,53 @@ namespace BettaFishApp.UI
             Console.ReadLine();
             Console.Clear();
         }
+
+        private async Task DisplayWebRegistrationAsync()
+        {
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "api/Registration");
+            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
+
+
+            using (HttpResponseMessage response = await httpClient.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+
+                if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+                {
+                    throw new ArrayTypeMismatchException();
+                }
+
+                var registrations = await response.Content.ReadFromJsonAsync<List<RegistrationDTO>>();
+
+                if (registrations != null)
+                {
+                    Console.WriteLine("Register with us for up to date information on Bettas");
+                    foreach (var registration in registrations)
+                    {
+                        Console.WriteLine("What's your first name?: " + registration.fName);
+                        Console.ReadLine();
+
+                        Console.WriteLine("What's your last name?: " + registration.lName);
+                        Console.ReadLine();
+
+                        Console.WriteLine("What's your email?: " + registration.email);
+                        Console.ReadLine();
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("You already have an account with us.");
+
+                }
+            }
+            Console.WriteLine("\nYour account has been created. Thank you.");
+            Console.WriteLine("\nPress any key to return to the MAIN MENU. Thank you.");
+            Console.ReadLine();
+            Console.Clear();
+        }
+
+
 
     }
 }

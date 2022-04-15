@@ -13,7 +13,6 @@ namespace BettaFishApp.InformationLogic
         public string? funFact { get; set; }
 
 
-
         // Constructors
         public BettaFunFacts() { }
 

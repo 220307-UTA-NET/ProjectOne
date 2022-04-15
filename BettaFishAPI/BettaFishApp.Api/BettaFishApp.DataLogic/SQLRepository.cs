@@ -19,7 +19,7 @@ namespace BettaFishApp.DataLogic
         }
 
         // Methods
-        public async Task<IEnumerable<BettaType>> GetAllBettaType()
+        public async Task<IEnumerable<BettaType>> GetAllBettaTypeAsync()
         {
             List<BettaType> result = new();
 
@@ -42,10 +42,9 @@ namespace BettaFishApp.DataLogic
             await connection.CloseAsync();
 
             _logger.LogInformation("Executed: GetAllBettaType");
-
             return result;
         }
-        public async Task<IEnumerable<BettaFunFacts>> GetAllBettaFunFacts()
+        public async Task<IEnumerable<BettaFunFacts>> GetAllBettaFunFactsAsync()
         {
 
             List<BettaFunFacts> result = new();
@@ -68,8 +67,31 @@ namespace BettaFishApp.DataLogic
             await connection.CloseAsync();
 
             _logger.LogInformation("Executed: GetAllBettaFunFacts");
-
             return result;
+        }
+
+        public async Task WebRegistration(Registration registration)
+        {
+
+            //List<Registration> result = new();
+
+            _logger.LogInformation(registration.fName);
+            using SqlConnection connection = new(_connectionString);
+            await connection.OpenAsync();
+
+            string cmdString = @"INSERT INTO BettaFish.Registration (fName, lName, email) VALUES (@fName, @lName, @email);";
+            
+
+            using SqlCommand cmd = new(cmdString, connection);
+
+            cmd.Parameters.AddWithValue("@fName", registration.GetfName());
+            cmd.Parameters.AddWithValue("@lName", registration.GetlName());
+            cmd.Parameters.AddWithValue("@email", registration.Getemail());
+            cmd.BeginExecuteNonQuery();
+            await connection.CloseAsync();
+
+            _logger.LogInformation("Executed: Registration is Successful.");
+
         }
 
     }

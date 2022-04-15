@@ -6,7 +6,5 @@ namespace BettaFishDTOs
         public int fact_ID { get; set; }
         public string funFact { get; set; }
 
-
-
     }
 }

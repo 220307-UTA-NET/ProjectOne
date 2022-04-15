@@ -28,7 +28,7 @@ namespace BettaFishApp.Api.Controllers
             IEnumerable<BettaType> bettatypes;
             try
             {
-                bettatypes = await _repository.GetAllBettaType();
+                bettatypes = await _repository.GetAllBettaTypeAsync();
             }
             catch (SqlException ex)
             {
