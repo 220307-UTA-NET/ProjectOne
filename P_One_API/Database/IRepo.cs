@@ -18,5 +18,8 @@ namespace Database
         Task CreatePlayerItemTable(int playerID);
         Task DropPlayerItemTable(int playerID);
         Task UpdateItemQuantity(R_P_I_DTO combo);
+        Task AddToInventory(Player current);
+        Task <List<Item>>GetInventory(int playerID);
+        Task EmptyPlayerInventory(int playerID);
     }
 }

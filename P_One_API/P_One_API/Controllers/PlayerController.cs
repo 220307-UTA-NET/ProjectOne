@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace P_One_API.Controllers
 {
     [ApiController]
-    [Route("player/[controller]")]
+    [Route("[controller]")]
     public class PlayerController : ControllerBase
     {
       
@@ -21,14 +21,10 @@ namespace P_One_API.Controllers
             _repo = repo;
         }
 
-        [HttpGet("/player/previous")]
+        [HttpGet("previous")]
         public async Task<ContentResult> GetPreviousPlayersAsync()
         {
-            List<string> playerinfo = new List<string>();
-            foreach (Player p in await _repo.LastTwoPlayers())
-            {
-                playerinfo.Add(p.PlayerInfo());
-            }
+            List<Player> playerinfo = await _repo.LastTwoPlayers();
 
             string json = JsonSerializer.Serialize(playerinfo);
 
@@ -42,7 +38,7 @@ namespace P_One_API.Controllers
             };
 
         }
-        [HttpGet("/player/current")]
+        [HttpGet("current")]
         public async Task<ContentResult> GetOnePlayerAsync(int playerID)
         {
             var current = await _repo.GetPlayer(playerID);
@@ -56,7 +52,7 @@ namespace P_One_API.Controllers
                 Content = json
             };
         }
-        [HttpGet("/player/current/name")]
+        [HttpGet("current/name")]
         public async Task<ContentResult> GetOnePlayerNameAsync(int playerID)
         {
             var current = await _repo.GetPlayer(playerID);
@@ -69,9 +65,22 @@ namespace P_One_API.Controllers
                 Content = json
             };
         }
+        [HttpGet("current/inventory")]
+        public async Task<ContentResult> GetPlayerInventory(int playerID)
+        {
+            List<Item> inventory = await _repo.GetInventory(playerID);
+            string json = JsonSerializer.Serialize(inventory);
+
+            return new ContentResult()
+            {
+                StatusCode = 200,
+                ContentType = "application/json",
+                Content = json
+            };
+        }
 
 
-        [HttpPut("/player/current/update")]
+        [HttpPut("current/update")]
         public async Task<ContentResult> UpdatePlayerMovesAsync([FromBody] Player current)
         {
 
@@ -83,7 +92,7 @@ namespace P_One_API.Controllers
             };
 
         }
-        [HttpPost("/player/create")]
+        [HttpPost("create")]
         public async Task<ContentResult> AddPlayerAsync([FromBody] string playerName)
         {
             Player player = new Player(playerName);
@@ -97,10 +106,20 @@ namespace P_One_API.Controllers
                 Content = json
             };
         }
-        [HttpPost("/player/create/table")]
+        [HttpPost("create/table")]
         public async Task<ContentResult>MakePlayerItemTable([FromBody] int playerID)
         {
             await _repo.CreatePlayerItemTable(playerID);
+            return new ContentResult()
+            {
+                StatusCode = 200,
+            };
+        }
+        [HttpPost("item/add")]
+        public async Task<ContentResult>AddToPlayerInventory([FromBody] Player current)
+        {
+            await _repo.AddToInventory(current);
+
             return new ContentResult()
             {
                 StatusCode = 200,
@@ -110,7 +129,7 @@ namespace P_One_API.Controllers
 
 
 
-        [HttpDelete("/player/delete/table")]
+        [HttpDelete("delete/table")]
         public async Task<ContentResult>RemovePlayerItemTable(int playerID)
         {
             await _repo.DropPlayerItemTable(playerID);
@@ -120,10 +139,20 @@ namespace P_One_API.Controllers
                 StatusCode = 204
             };
         }
-        [HttpDelete("/player/delete")]
+        [HttpDelete("delete")]
         public async Task<ContentResult> DeletePlayerAsync(int playerID)
         {         
-            string json = await _repo.RemovePlayer(playerID);
+            await _repo.RemovePlayer(playerID);
+
+            return new ContentResult()
+            {
+                StatusCode = 204,
+            };
+        }
+        [HttpDelete("delete/inventory")]
+        public async Task<ContentResult>ClearPlayerInventory(int playerID)
+        {
+            await _repo.EmptyPlayerInventory(playerID);
 
             return new ContentResult()
             {

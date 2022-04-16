@@ -3,10 +3,10 @@ using Logic;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Connection string
-//Argument, Hardcoded, file, user Secrets, environemnt variable
-string connectionString = builder.Configuration["connectionString"];
-//string connectionString = builder.Configuration.GetConnectionString("ProjOneConnection");
+//Connection for localhost testing
+//string connectionString = builder.Configuration["connectionString"];
+//Connection for Deployment to Azure
+string connectionString = builder.Configuration.GetConnectionString("ProjOneConnection");
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -24,11 +24,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseRouting();
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapControllers();
-//});
 
 app.UseHttpsRedirection();
 

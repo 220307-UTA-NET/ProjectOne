@@ -16,14 +16,13 @@ VALUES
 
 
 CREATE TABLE ProjOne.PlayerInventory(
-    PlayerID INT PRIMARY KEY
+    TableCount INT IDENTITY PRIMARY KEY,
+    PlayerID INT
     CONSTRAINT FK_PlayerID_Inventory FOREIGN KEY (PlayerID)
         REFERENCES ProjOne.Player(PlayerID) ON DELETE CASCADE,
-    ItemID1 INT,
-    ItemID2 INT,
-    ItemID3 INT,
-    ItemID4 INT,
-    ItemID5 INT
+    ItemID INT,
+    CONSTRAINT FK_Item_ID_Inventory FOREIGN KEY (ItemID)
+        REFERENCES ProjOne.Items(ItemID) ON DELETE CASCADE, 
 );
 --DROP TABLE ProjOne.PlayerInventory
 
@@ -77,7 +76,7 @@ VALUES
 ('Master Bedroom', 'Barely larger than the previous room, but there is carpet. On second though that should also be burned.',8,11,0),
 ('Master Bathroom', 'The only place to bath requires you to go through a bedroom? Who designed this house>',10,0,0)
 
-SELECT * FROM ProjOne.Player5RoomItems
+--SELECT * FROM ProjOne.Player5RoomItems
 --SELECT FLOOR(RAND()*(b-a+1))+a;
 /*INSERT INTO ProjOne.Player1RoomItems(RoomID, ItemID1, ItemID2, ItemID3)
 VALUES

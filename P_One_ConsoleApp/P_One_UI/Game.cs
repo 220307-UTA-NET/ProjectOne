@@ -74,11 +74,14 @@ namespace P_One_UI
             {
                 if (gRoom == 1)
                 {
+                    await EmptyPlayerInventory(gPlayerID);
                     await UpdatePlayer(new PlayerDTO()
-                    {   
+                    {
+                        playerID = gPlayerID,
                         moves = gMoves,
                         trash = gTrash,
                         load = 0,
+                       
                     });
                     gLoad = 0;
                 }
@@ -101,6 +104,7 @@ namespace P_One_UI
         /// <summary>
         /// checks if the roomID the player tried to move to is an available adjacent room
         /// If it is the player will move to the room, otherwise the player will stay in their current location
+        /// If the Room ID=1 then the player's inventory is emptied and their load=0
         /// </summary>
         /// <param name="currentRoom">Current room DTO the player is in </param>
         /// <param name="newRoom">new roomID # the player is trying to move to</param>
@@ -148,11 +152,21 @@ namespace P_One_UI
             }
             else if (newRoomStr == "I")
             { 
-                Inventory(gPlayerID); 
+                await Inventory(gPlayerID); 
             }
             else if (newRoomStr == "C")
             {
-                await Clean(gPlayerID, currentRoom);
+                if (gLoad > 10)
+                {
+                    Console.Clear();
+                    Console.WriteLine("You can't carry anymore!\nGo dump the trash outside!");
+                    Thread.Sleep(1000);
+                    return gRoom;
+                }
+                else
+                {
+                    await Clean(gPlayerID, currentRoom);
+                }
             }
             else if (Int32.TryParse(newRoomStr, out int newRoom))
             { 
@@ -165,9 +179,8 @@ namespace P_One_UI
         /// </summary>
         public void GameHeader()
         {
-            //ADD total trash
             StringBuilder sb = new StringBuilder();
-            sb.Append($"--  {gPlayerName} TRASH-{gTrash}, LOAD-{gLoad}, MOVES-{gMoves}  --\n");
+            sb.Append($"----------GET TO CLEANING----------\n--  {gPlayerName} TRASH CLEANED-{gTrash}, LOAD-{gLoad} LBS, MOVES-{gMoves}  --\n");
             Console.WriteLine(sb.ToString());
         }
         /// <summary>
@@ -230,7 +243,7 @@ namespace P_One_UI
                     if (r.roomName != null)
                         Console.WriteLine($"\t[{r.roomID}] - The {r.roomName}");
                 }
-                Console.WriteLine("You can't carry anymore!! Go to the Entryway take the trash out of the house!");
+                Console.WriteLine("\nYou can't carry anymore!! Go to the Entryway take the trash out of the house!\n[#] - Room \n[I] - Inventory\n[Q] - Quit.\n");
             }
 
         }
@@ -242,7 +255,7 @@ namespace P_One_UI
         public async Task ListLastTwoPlayer()
         {
             var information = "";
-            HttpResponseMessage response = await client.GetAsync($"player/previous");
+            HttpResponseMessage response = await client.GetAsync($"Player/previous");
             if (response.IsSuccessStatusCode) 
             {
                 information = response.Content.ReadAsStringAsync().Result;
@@ -252,14 +265,14 @@ namespace P_One_UI
                 Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
             }
  
-            List<string> allPlayers = JsonSerializer.Deserialize<List<string>>(information);
+            List<PlayerDTO> allPlayers = JsonSerializer.Deserialize<List<PlayerDTO>>(information);
 
             if (allPlayers != null)
             {
-                foreach (string p in allPlayers)
+                foreach (PlayerDTO p in allPlayers)
                 {
 
-                    Console.WriteLine(p);
+                    Console.WriteLine($"{p.playerName} cleaned {p.trash} piece(s) of trash in {p.moves} moves.");
                 }
             }
             
@@ -272,7 +285,7 @@ namespace P_One_UI
         public async Task<PlayerDTO> GetPlayer(int playerID)
         {
             var information = "";
-            HttpResponseMessage response = await client.GetAsync($"player/current?playerID={playerID}");
+            HttpResponseMessage response = await client.GetAsync($"Player/current?playerID={playerID}");
             if (response.IsSuccessStatusCode)
             {              
                 information = response.Content.ReadAsStringAsync().Result;
@@ -294,7 +307,7 @@ namespace P_One_UI
         {
 
             var information = "";
-            HttpResponseMessage response = await client.DeleteAsync($"player/delete?playerID={playerID}");
+            HttpResponseMessage response = await client.DeleteAsync($"Player/delete?playerID={playerID}");
             if (response.IsSuccessStatusCode)
             {
                 information = response.Content.ReadAsStringAsync().Result;
@@ -315,6 +328,7 @@ namespace P_One_UI
             while (true)
             {
                 newPlayer = Console.ReadLine();
+                Thread.Sleep(1000);
                 if (newPlayer == null || newPlayer == "")
                 { 
                     Console.Clear();
@@ -333,7 +347,7 @@ namespace P_One_UI
         public async Task CreatePlayer(string newPlayer)
         {
             var information = "";
-            HttpResponseMessage response = await client.PostAsJsonAsync($"player/create", newPlayer);
+            HttpResponseMessage response = await client.PostAsJsonAsync($"Player/create", newPlayer);
             if (response.IsSuccessStatusCode)
             {
                 information = response.Content.ReadAsStringAsync().Result;
@@ -351,7 +365,7 @@ namespace P_One_UI
         public async Task UpdatePlayer(PlayerDTO current)
         {
             var information = "";         
-            HttpResponseMessage response = await client.PutAsJsonAsync($"player/current/update", current);
+            HttpResponseMessage response = await client.PutAsJsonAsync($"Player/current/update", current);
             if (response.IsSuccessStatusCode)
             {
                 information = response.Content.ReadAsStringAsync().Result;
@@ -366,11 +380,26 @@ namespace P_One_UI
         /// Player will be able to pick up Trash in rooms to clean them
         /// </summary>
         /// <param name="gPlayerID">unique player id whose items will be updated</param>
-        public void Inventory(int gPlayerID)
+        public async Task Inventory(int gPlayerID)
         {
             Console.Clear();
-            Console.WriteLine("---Inventory---\nYou have no items here.\nPress enter to exit.");
-            Console.ReadLine();
+            Console.WriteLine("---Inventory---\n");
+            List <ItemDTO> inventory = await GetInventory(gPlayerID);
+            if(inventory.Count > 0 )
+            { 
+                foreach (ItemDTO i in inventory)
+                {
+                    Console.WriteLine($"{i.itemName} - {i.itemWeight} lbs\n");
+                }
+                Console.WriteLine("Press enter to exit.");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("You have no items here.\nPress enter to exit.");
+                Console.ReadLine();
+            }           
+            
         }
         /// <summary>
         /// Display items in the Room that are trash and allow the user to attempt to clean
@@ -423,6 +452,11 @@ namespace P_One_UI
                         });
                         gTrash++;
                         gLoad += roomTrash[i-1].itemWeight;
+                        await AddToInventory(new PlayerDTO()
+                        {
+                            playerID = gPlayerID,
+                            itemID = roomTrash[i - 1].itemID,
+                            });
                         await UpdatePlayer(new PlayerDTO()
                         {
                             playerID = gPlayerID,
@@ -447,7 +481,7 @@ namespace P_One_UI
         /// <returns></returns>
         public async Task CreatePlayerTable(int gPlayerID)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync($"player/create/table", gPlayerID);
+            HttpResponseMessage response = await client.PostAsJsonAsync($"Player/create/table", gPlayerID);
             if (response.IsSuccessStatusCode)
             {
                 var information = response.Content.ReadAsStringAsync().Result;
@@ -552,7 +586,7 @@ namespace P_One_UI
         public async Task RemovePlayerItemTable(int gPlayerID)
         {
             var information = "";
-            HttpResponseMessage response = await client.DeleteAsync($"player/delete/table?playerID={gPlayerID}");
+            HttpResponseMessage response = await client.DeleteAsync($"Player/delete/table?playerID={gPlayerID}");
             if (response.IsSuccessStatusCode)
             {
                 information = response.Content.ReadAsStringAsync().Result;
@@ -578,6 +612,49 @@ namespace P_One_UI
                 Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
             }
          
+        }
+        public async Task AddToInventory(PlayerDTO current)
+        {
+              var information = "";
+            HttpResponseMessage response = await client.PostAsJsonAsync($"/Player/item/add", current);
+            if (response.IsSuccessStatusCode)
+            {
+                information = response.Content.ReadAsStringAsync().Result;
+
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+        }
+        public async Task<List<ItemDTO>> GetInventory(int playerID)
+        {          
+            var information = "";
+            HttpResponseMessage response = await client.GetAsync($"Player/current/inventory?playerID={playerID}");
+            if (response.IsSuccessStatusCode)
+            {
+                information = response.Content.ReadAsStringAsync().Result;
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+            List<ItemDTO> playerInventory = JsonSerializer.Deserialize<List<ItemDTO>>(information);
+            return playerInventory;
+        }
+        public async Task EmptyPlayerInventory(int playerID)
+        {
+            var information = "";
+            HttpResponseMessage response = await client.DeleteAsync($"Player/delete/inventory?playerID={playerID}");
+            if (response.IsSuccessStatusCode)
+            {
+                information = response.Content.ReadAsStringAsync().Result;
+
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
         }
     }
 }

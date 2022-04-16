@@ -9,7 +9,7 @@ namespace Logic
         public int trash { get; set; }
         public int load { get; set; }
         public int moves { get; set; }
-        List<Item> playerTrash { get; set; }
+        public int itemID { get; set; }
 
         public Player() { }
 
