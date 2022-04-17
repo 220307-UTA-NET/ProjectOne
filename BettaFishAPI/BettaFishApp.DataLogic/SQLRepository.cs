@@ -1,12 +1,17 @@
-﻿using BettaFishApp.InformationLogic;
+﻿using BettaFishApp.Logic;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BettaFishApp.DataLogic
 {
     public class SQLRepository : IRepository
     {
+
         // Fields
         private readonly string _connectionString;
         private readonly ILogger<SQLRepository> _logger;
@@ -18,7 +23,7 @@ namespace BettaFishApp.DataLogic
             this._logger = logger;
         }
 
-        // Methods
+
         public async Task<IEnumerable<BettaType>> GetAllBettaTypeAsync()
         {
             List<BettaType> result = new();
@@ -26,7 +31,7 @@ namespace BettaFishApp.DataLogic
             using SqlConnection connection = new(_connectionString);
             await connection.OpenAsync();
 
-            string cmdString = @"SELECT * FROM BettaFish.Type;";
+            string cmdString = @"SELECT tail_ID, tailType, description FROM BettaFish.Type;";
 
             using SqlCommand cmd = new(cmdString, connection);
             using SqlDataReader reader = cmd.ExecuteReader();
@@ -70,29 +75,51 @@ namespace BettaFishApp.DataLogic
             return result;
         }
 
-        public async Task WebRegistration(Registration registration)
+        public async Task WebRegistration(BettaRegistration bettaregistration)
         {
 
-            //List<Registration> result = new();
-
-            _logger.LogInformation(registration.fName);
+            _logger.LogInformation(bettaregistration.fName);
             using SqlConnection connection = new(_connectionString);
             await connection.OpenAsync();
 
             string cmdString = @"INSERT INTO BettaFish.Registration (fName, lName, email) VALUES (@fName, @lName, @email);";
-            
+
 
             using SqlCommand cmd = new(cmdString, connection);
 
-            cmd.Parameters.AddWithValue("@fName", registration.GetfName());
-            cmd.Parameters.AddWithValue("@lName", registration.GetlName());
-            cmd.Parameters.AddWithValue("@email", registration.Getemail());
+            cmd.Parameters.AddWithValue("@fName", bettaregistration.GetfName());
+            cmd.Parameters.AddWithValue("@lName", bettaregistration.GetlName());
+            cmd.Parameters.AddWithValue("@email", bettaregistration.Getemail());
             cmd.BeginExecuteNonQuery();
             await connection.CloseAsync();
 
             _logger.LogInformation("Executed: Registration is Successful.");
 
         }
+
+        public async Task GetAllStories(BettaStories bettastories)
+        {
+
+            //_logger.LogInformation(bettaregistration.fName);
+            using SqlConnection connection = new(_connectionString);
+            await connection.OpenAsync();
+
+            string cmdString = @"INSERT INTO BettaFish.Stories (nameOfBetta, story) VALUES (@nameOfBetta, @story);";
+
+
+            using SqlCommand cmd = new(cmdString, connection);
+
+            cmd.Parameters.AddWithValue("@nameOfBetta", bettastories.GetNameOfBetta());
+            cmd.Parameters.AddWithValue("@story", bettastories.GetStory());
+
+            cmd.BeginExecuteNonQuery();
+            await connection.CloseAsync();
+
+            _logger.LogInformation("Executed: Story is successful.");
+
+        }
+
+
 
     }
 }

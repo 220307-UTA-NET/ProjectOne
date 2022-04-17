@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BettaFishApp.InformationLogic
+namespace BettaFishApp.Logic
 {
-    public class Registration
+    public class BettaRegistration
     {
+
         //Fields
         public int registration_ID { get; set; }
         public string? fName { get; set; }
@@ -16,8 +17,8 @@ namespace BettaFishApp.InformationLogic
 
 
         //Constructors
-        public Registration() { }
-        public Registration(int registration_ID, string fName, string lName, string email)
+        public BettaRegistration() { }
+        public BettaRegistration(int registration_ID, string fName, string lName, string email)
         {
             this.registration_ID = registration_ID;
             this.fName = fName;
@@ -32,6 +33,11 @@ namespace BettaFishApp.InformationLogic
         { return this.lName; }
         public string Getemail()
         { return this.email; }
+
+
+
+
+
 
     }
 }

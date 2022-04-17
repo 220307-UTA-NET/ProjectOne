@@ -1,6 +1,7 @@
 CREATE SCHEMA BettaFish; -- new filing cabinet
 GO
 
+--Table 1
 CREATE TABLE BettaFish.Type (
     tail_ID INT PRIMARY KEY IDENTITY, 
     tailType NVARCHAR (255) NULL,
@@ -12,6 +13,8 @@ SELECT * FROM BettaFish.Type;
 -- SELECT tailType, description FROM BettaFish.Type WHERE tail_ID = 1
 -- DELETE FROM BettaFish;
 
+
+-- Table 2
 CREATE TABLE BettaFish.Facts (
     fact_ID INT PRIMARY KEY IDENTITY, 
     funFact NVARCHAR (4000) NULL, 
@@ -23,6 +26,8 @@ SELECT * FROM BettaFish.Facts;
 -- SELECT funFact FROM BettaFish.Facts WHERE fact_ID = 4
 -- DELETE FROM BettaFish.Facts;
 
+
+--Table 3
 CREATE TABLE BettaFish.Registration (
     registration_ID INT PRIMARY KEY IDENTITY, -- creates a unique value that changes with every entry in the table
     fName NVARCHAR (255) NULL,
@@ -30,15 +35,25 @@ CREATE TABLE BettaFish.Registration (
     email NVARCHAR (255) NULL,
 );
 
-
 DROP TABLE BettaFish.Registration;
 SELECT * FROM BettaFish.Registration;
+
+
+-- Table 4
+CREATE TABLE BettaFish.Stories (
+    story_ID INT PRIMARY KEY IDENTITY, -- creates a unique value that changes with every entry in the table
+    story NVARCHAR (2000) NULL,
+);
+
+-- DROP TABLE BettaFish.Registration;
+SELECT * FROM BettaFish.Stories;
+
+
+
 
 /*******************************************************************************
    Create Foreign Keys
 ********************************************************************************/
-
-
 
 
 
@@ -127,3 +142,4 @@ VALUES(
 -- Use VERB NOUN
 
 -- TABLE 3
+INSERT INTO BettaFish.Registration (fName,lName,email) VALUES ('fName', 'lName', 'email');

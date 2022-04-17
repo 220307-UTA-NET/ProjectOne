@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>ced06dc3-6bf2-4667-b936-2a3f66f00bb4</UserSecretsId>
+    <UserSecretsId>d486df29-e18b-4269-a343-9ad20600a4a3</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BettaFishApp.DataLogic\BettaFishApp.DataLogic.csproj" />
-    <ProjectReference Include="..\BettaFishApp.InformationLogic\BettaFishApp.InformationLogic.csproj" />
+    <ProjectReference Include="..\BettaFishApp.Logic\BettaFishApp.Logic.csproj" />
   </ItemGroup>
 
 </Project>

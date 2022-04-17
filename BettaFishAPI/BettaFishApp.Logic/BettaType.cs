@@ -1,4 +1,10 @@
-﻿namespace BettaFishApp.InformationLogic
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BettaFishApp.Logic
 {
     public class BettaType
     {
@@ -18,6 +24,14 @@
             this.description = description;
         }
 
-        // Methods
+        //Methods
+        //public string BettaDescription()
+        //{
+        //    StringBuilder sb = new StringBuilder();
+        //    sb.Append($"[{tail_ID}] - {tailType} \n");
+        //    return sb.ToString();
+        //}
+
+
     }
 }

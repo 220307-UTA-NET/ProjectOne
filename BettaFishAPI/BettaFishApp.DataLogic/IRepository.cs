@@ -1,13 +1,13 @@
-﻿using BettaFishApp.InformationLogic;
-using System.Collections;
+﻿using BettaFishApp.Logic;
 
 namespace BettaFishApp.DataLogic
 {
     public interface IRepository
     {
+
         Task<IEnumerable<BettaType>> GetAllBettaTypeAsync();
         Task<IEnumerable<BettaFunFacts>> GetAllBettaFunFactsAsync();
-        Task WebRegistration(Registration registration);
+        Task WebRegistration(BettaRegistration bettaregistration);
 
     }
 }
