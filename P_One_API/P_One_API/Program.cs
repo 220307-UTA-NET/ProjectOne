@@ -1,5 +1,5 @@
-using Database;
-using Logic;
+using P_One.Database;
+using P_One.Logic;
 
 var builder = WebApplication.CreateBuilder(args);
 

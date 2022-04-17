@@ -1,8 +1,8 @@
 ﻿
-using Logic;
+using P_One.Logic;
 
 
-namespace Database
+namespace P_One.Database
 {
     public interface IRepo
     {

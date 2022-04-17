@@ -1,11 +1,11 @@
 using System.Text.Json;
-using Database;
-using Logic;
+using P_One.Database;
+using P_One.Logic;
 using Microsoft.AspNetCore.Mvc;
 
 
 
-namespace P_One_API.Controllers
+namespace P_One.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -14,6 +14,11 @@ namespace P_One_API.Controllers
       
         private readonly ILogger<PlayerController> _logger;
         private readonly IRepo _repo;
+
+        //public PlayerController(IRepo repo)
+        //{
+        //    _repo = repo;
+        //}
 
         public PlayerController(ILogger<PlayerController> logger, IRepo repo)
         {
@@ -70,6 +75,19 @@ namespace P_One_API.Controllers
         {
             List<Item> inventory = await _repo.GetInventory(playerID);
             string json = JsonSerializer.Serialize(inventory);
+
+            return new ContentResult()
+            {
+                StatusCode = 200,
+                ContentType = "application/json",
+                Content = json
+            };
+        }
+        [HttpGet("current/header")]
+        public async Task<ContentResult> GetPlayerHeaderAsync(int playerID)
+        {
+            Player current = await _repo.GetPlayer(playerID);
+            string json = JsonSerializer.Serialize(current.PlayerHeader());
 
             return new ContentResult()
             {

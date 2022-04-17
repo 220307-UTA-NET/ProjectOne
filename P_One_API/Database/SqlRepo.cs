@@ -1,10 +1,10 @@
 ﻿
 using System.Data.SqlClient;
-using Logic;
+using P_One.Logic;
 using Microsoft.Extensions.Logging;
 
 
-namespace Database
+namespace P_One.Database
 {
     public class SqlRepo : IRepo
     {
@@ -118,8 +118,15 @@ namespace Database
         {
             using SqlConnection connect = new SqlConnection(this._connString);
             await connect.OpenAsync();
+            string loadString = "";
+            if (current.load == -1)
+            { 
+                loadString = $"Load ={current.load+1}"; 
+            }
+            else
+            { loadString = $"Load +={current.load}"; }
 
-            string cmdText = $"UPDATE ProjOne.Player SET Moves={current.moves}, Trash={current.trash}, Load={current.load} WHERE PlayerID={current.playerID};";
+            string cmdText = $"UPDATE ProjOne.Player SET Moves+={current.moves}, Trash+={current.trash}, {loadString} WHERE PlayerID={current.playerID};";
             using SqlCommand cmd = new(cmdText, connect);
             cmd.ExecuteNonQuery();
 

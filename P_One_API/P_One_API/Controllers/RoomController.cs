@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
-using Database;
-using Logic;
+using P_One.Database;
+using P_One.Logic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace P_One_API.Controllers
+namespace P_One.API.Controllers
 {
     [ApiController]
     [Route("room/[controller]")]
@@ -47,14 +47,15 @@ namespace P_One_API.Controllers
             };
         }
         [HttpGet("/room/adjacent")]
-        public async Task<ContentResult> GetAdjRoomsAsync([FromQuery] int[] roomIDs)
+        public async Task<ContentResult> GetAdjRoomsAsync([FromQuery] Room current)
         {
-            List<Room> adjRooms = new List<Room>();
-            foreach (int roomID in roomIDs)
-            {
-                Room adjRoom = await _repo.GetRoom(roomID);
-                adjRooms.Add(adjRoom);
-            }
+
+            Room adjRoom1 = await _repo.GetRoom(current.adjRoom1);
+            Room adjRoom2 = await _repo.GetRoom(current.adjRoom2);
+            Room adjRoom3 = await _repo.GetRoom(current.adjRoom3);
+
+            List<Room> adjRooms = new() { adjRoom1, adjRoom2, adjRoom3 };
+
             string json = JsonSerializer.Serialize(adjRooms);
 
             return new ContentResult()
@@ -64,24 +65,6 @@ namespace P_One_API.Controllers
                 Content = json
             };
         }
-        //public async Task<ContentResult> GetAdjRoomsAsync([FromQuery] Room current)
-        //{
-
-        //    Room adjRoom1 = await _repo.GetRoom(current.adjRoom1);
-        //    Room adjRoom2 = await _repo.GetRoom(current.adjRoom2);
-        //    Room adjRoom3 = await _repo.GetRoom(current.adjRoom3);
-
-        //    List<Room>adjRooms= new() { adjRoom1, adjRoom2, adjRoom3 };
-
-        //    string json = JsonSerializer.Serialize(adjRooms);
-
-        //    return new ContentResult()
-        //    {
-        //        StatusCode = 200,
-        //        ContentType = "application/json",
-        //        Content = json
-        //    };
-        //}
 
 
         [HttpPost("/room/inventory/fill")]

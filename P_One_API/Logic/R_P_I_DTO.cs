@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic
+namespace P_One.Logic
 {
    
     public class R_P_I_DTO
@@ -13,7 +13,7 @@ namespace Logic
         public Room room { get; set; }
         public Player player { get; set; }
 
-
     }
+
     
 }
