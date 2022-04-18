@@ -39,7 +39,7 @@ jobs:
         run:  dotnet build ./Webstore/ --configuration Release -o ${{env.AZURE_WEBAPP_APP_PATH}}
         
     #  - name: run web unit test 
-   #     run: dotnet test ./WebTestapplication/WebTestapplication.csproj
+   #     run: dotnet test ./Webstore/WebTestapplication/WebTestapplication.csproj
       - name: list of folders 
         run:  ls 
         
