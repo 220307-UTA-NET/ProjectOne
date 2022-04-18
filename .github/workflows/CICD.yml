@@ -4,7 +4,7 @@ name: CI
 
 
 env:
-   DOTNET_VERSION: '6.0.X'
+   DOTNET_VERSION: '6.0.x'
    AZURE_WEBAPP_APP_PATH: './Build_output'
 
 
