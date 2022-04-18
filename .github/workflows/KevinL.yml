@@ -32,7 +32,7 @@ jobs:
         dotnet-version: ${{env.DOTNET_VERSION}}
         
       - name: Build the API with dotnet
-        run: dotnet publish ./Project1/ProjectOne/--configuration Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        run: dotnet publish ./ProjectOne/Project1.Api/ --configuration Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
       # Runs a set of commands using the runners shell
       - name: Azure WebApp
