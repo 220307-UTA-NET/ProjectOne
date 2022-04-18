@@ -106,7 +106,7 @@ namespace Project1.DataLogic
             await connection.OpenAsync();
 
             string cmdString =
-                @"INSERT INTO Account (bankAccountBalance ,bankUserId) values (@bankAccountBalance, @bankUserId);";
+                @"INSERT INTO Account (bankAccountBalance ,bankUserId) VALUES (@bankAccountBalance, @bankUserId);";
 
             using SqlCommand cmd = new(cmdString, connection);
 
@@ -119,14 +119,80 @@ namespace Project1.DataLogic
 
         }
 
-        public Task UpdateUser(User bankUser)
+        public async Task UpdateUser(User bankUser)
         {
-            throw new NotImplementedException();
+            using SqlConnection connection = new(_connectionString);
+            await connection.OpenAsync();
+
+            string cmdString =
+                @"UPDATE Users SET (bankUserFirstName,bankUserLastName,bankUserUsername,bankUserPassword) WHERE (@bankUserFirstName, @bankUserLastName, @bankUserUsername, @bankUserPassword);";
+
+            using SqlCommand cmd = new(cmdString, connection);
+
+            cmd.Parameters.AddWithValue("@bankUserFirstName", bankUser.GetbankUserFirstName());
+            cmd.Parameters.AddWithValue("@bankUserLastName", bankUser.GetbankUserLastName());
+            cmd.Parameters.AddWithValue("@bankUserUsername", bankUser.GetbankUserUsername());
+            cmd.Parameters.AddWithValue("@bankUserPassword", bankUser.GetbankUserPassword());
+            cmd.BeginExecuteNonQuery();
+            await connection.CloseAsync();
+
+            logger.LogInformation("New user registered!");
         }
 
-        public Task UpdateAccount(Account bankAccount)
+        public async Task UpdateAccount(Account bankAccount)
         {
-            throw new NotImplementedException();
+            using SqlConnection connection = new(_connectionString);
+            await connection.OpenAsync();
+
+            string cmdString =
+                @"UPDATE Account SET (bankAccountBalance ,bankUserId) SET (@bankAccountBalance, @bankUserId) WHERE (bankAccountId);";
+
+            using SqlCommand cmd = new(cmdString, connection);
+
+            cmd.Parameters.AddWithValue("@bankAccountBalance", bankAccount.GetbankAccountBalance());
+            cmd.Parameters.AddWithValue("@bankUserId", bankAccount.GetbankUserId());
+            cmd.BeginExecuteNonQuery();
+            await connection.CloseAsync();
+
+            logger.LogInformation("Bank Account Updated");
+        }
+
+        public async Task DeleteUser(User bankUser)
+        {
+            using SqlConnection connection = new(_connectionString);
+            await connection.OpenAsync();
+
+            string cmdString =
+                @"DELETE FROM Users (bankUserFirstName,bankUserLastName,bankUserUsername,bankUserPassword) WHERE (@bankUserFirstName, @bankUserLastName, @bankUserUsername, @bankUserPassword);";
+
+            using SqlCommand cmd = new(cmdString, connection);
+
+            cmd.Parameters.AddWithValue("@bankUserFirstName", bankUser.GetbankUserFirstName());
+            cmd.Parameters.AddWithValue("@bankUserLastName", bankUser.GetbankUserLastName());
+            cmd.Parameters.AddWithValue("@bankUserUsername", bankUser.GetbankUserUsername());
+            cmd.Parameters.AddWithValue("@bankUserPassword", bankUser.GetbankUserPassword());
+            cmd.BeginExecuteNonQuery();
+            await connection.CloseAsync();
+
+            logger.LogInformation("User deleted!");
+        }
+
+        public async Task DeleteAccount(Account bankAccount)
+        {
+            using SqlConnection connection = new(_connectionString);
+            await connection.OpenAsync();
+
+            string cmdString =
+                @"DELETE FROM Account (bankAccountBalance ,bankUserId) WHERE (@bankAccountBalance, @bankUserId);";
+
+            using SqlCommand cmd = new(cmdString, connection);
+
+            cmd.Parameters.AddWithValue("@bankAccountBalance", bankAccount.GetbankAccountBalance());
+            cmd.Parameters.AddWithValue("@bankUserId", bankAccount.GetbankUserId());
+            cmd.BeginExecuteNonQuery();
+            await connection.CloseAsync();
+
+            logger.LogInformation("Account Deleted");
         }
     }
 }

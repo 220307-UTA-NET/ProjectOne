@@ -4,6 +4,7 @@ using Project1.Model;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Http;
 using System.Web;
+using System.Text.Json;
 
 namespace Project1.Api.Controllers
 {
@@ -21,21 +22,35 @@ namespace Project1.Api.Controllers
         }
 
         [HttpGet("/getallusers")]
-        public async Task<ActionResult<IEnumerable<User>>> GetAllUserAsync()
-        {
-            IEnumerable<User> bankUsers;
-            try
-            {
-                bankUsers = await _repository.GetAllUsers();
-            }
-            catch (SqlException ex)
-            {
-                _logger.LogError(ex, "Login Failed");
-                return StatusCode(500);
+        /* public async Task<ActionResult<IEnumerable<User>>> GetAllUserAsync()
+         {
+             IEnumerable<User> bankUsers;
+             try
+             {
+                 bankUsers = await _repository.GetAllUsers();
+             }
+             catch (SqlException ex)
+             {
+                 _logger.LogError(ex, "Login Failed");
+                 return StatusCode(500);
 
-            }
-            return bankUsers.ToList();
+             }
+             return bankUsers.ToList();
+         }*/
+        public async Task<ContentResult> GetAllUserAsync()
+        {
+            IEnumerable<User> current = await _repository.GetAllUsers();
+            string json = JsonSerializer.Serialize(current);
+            _logger.LogInformation("Get all users");
+
+            return new ContentResult()
+            {
+                StatusCode = 200,
+                ContentType = "application/json",
+                Content = json
+            };
         }
+
 
         [HttpPost("/registeruser")]
         public async Task<IActionResult> RegisterUserAsync(User bankUser)
@@ -71,7 +86,22 @@ namespace Project1.Api.Controllers
             }
         }
 
+        [HttpDelete("/updateuser")]
+        public async Task<IActionResult> DeleteUserAsync(User bankUser)
+        {
+            //IEnumerable<User> bankUsers;
+            try
+            {
+                await _repository.DeleteUser(bankUser);
+                return StatusCode(200);
+            }
+            catch (SqlException ex)
+            {
+                _logger.LogError(ex, "Failed to delete a user");
+                return StatusCode(500);
 
+            }
+        }
 
     }
 }

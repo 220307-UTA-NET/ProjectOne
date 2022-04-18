@@ -1,6 +1,7 @@
 ﻿using System.Net.Mime;
 using System.Net.Http.Json;
 using Project1.DTOs;
+using System.Text.Json;
 
 namespace Project1.UI
 {
@@ -13,7 +14,7 @@ namespace Project1.UI
 
         //Constructors
 
-        public IO (Uri uri)
+        public IO(Uri uri)
         {
             this.uri = uri;
         }
@@ -31,7 +32,7 @@ namespace Project1.UI
                 int choice = MainMenu();
                 switch (choice)
                 {
-                    
+
                     case 0:
                         Console.WriteLine("Thank you for using Kevin Lee's Bank. Please come again.");
                         loop = false; break;
@@ -39,8 +40,26 @@ namespace Project1.UI
                         await findingInformation();
                         break;
                     case 2:
-                        await Register();
+                       await RegisterUser(new UserDTO() {bankUserFirstName = "Luke", bankUserLastName  = "Skywalker", bankUserUsername  = "Jedi", bankUserPassword  = "Knight"});
                         break;
+
+                    case 3:
+                        await NewAccount(new AccountDTO() { bankAccountBalance = 5000, bankUserId = 5});
+                        break;
+
+                    case 4:
+                        await UpdateUser(new UserDTO() { bankUserFirstName = "Luke", bankUserLastName = "Skywalker", bankUserUsername = "Jedi", bankUserPassword = "Knight" });
+                        break;
+
+                    case 5:
+                        await UpdateAccount(new AccountDTO() { bankAccountBalance = 5000, bankUserId = 5 });
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+                        break;
+
+
                     default:
                         Console.WriteLine("Invalid input! Please type the valid input!");
                         Console.WriteLine("Press any key to continue.");
@@ -56,16 +75,21 @@ namespace Project1.UI
             Console.WriteLine("Please select the option of your choice");
             Console.WriteLine("[0] - Exit");
             Console.WriteLine("[1] - Finding information");
-            Console.WriteLine("[2] - Register");
+            Console.WriteLine("[2] - Register User");
+            Console.WriteLine("[3] - Make New Account");
+            Console.WriteLine("[4] - Update User");
+            Console.WriteLine("[5] - Update Account");
+            Console.WriteLine("[6] - Delete User");
+            Console.WriteLine("[7] - Delete Account");
             string? input = Console.ReadLine();
 
             if (!int.TryParse(input, out choice))
             { choice = -1; }
             return choice;
-        }     
+        }
 
         private async Task findingInformation()
-        {           
+        {
             Console.WriteLine("Select a number which information you want to see.");
             bool searchComplete = false;
 
@@ -81,14 +105,15 @@ namespace Project1.UI
                 if (!int.TryParse(findingSectionInput, out findingSectionChoice))
                 { findingSectionChoice = -1; }
 
-                switch(findingSectionChoice)
+                switch (findingSectionChoice)
                 {
                     case 0:
                         MainMenu();
+                        searchComplete = true;
                         break;
 
                     case 1:
-                        await DisplayAllUsersAsync();
+                        DisplayAllUsersAsync();
                         break;
 
                     case 2:
@@ -100,56 +125,140 @@ namespace Project1.UI
                         break;
                 }
 
-            } while (!searchComplete);            
+            } while (!searchComplete);
         }
 
-        private async Task Register()
+        private async Task RegisterUser(UserDTO User)
         {
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "/registeruser");
-            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
-
-            using (HttpResponseMessage response = await httpClient.SendAsync(request))
+            var information = "";
+            HttpResponseMessage response = httpClient.PostAsJsonAsync(uri.ToString() + "registeruser", User).Result;
+            if (response.IsSuccessStatusCode)
             {
-
+                information = response.Content.ReadAsStringAsync().Result;
+                Console.WriteLine("New user successfully registered");
             }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+            //var users = JsonSerializer.Deserialize<List<UserDTO>>(information);
 
+
+            //if (users != null)
+            //{
+            //    Console.WriteLine("Here are the list of Bank Users: ");
+            //    foreach (var user in users)
+            //    {
+            //        Console.WriteLine("First Name: " + user.bankUserFirstName);
+            //        Console.WriteLine("Last Name: " + user.bankUserLastName);
+            //        Console.WriteLine("Username: " + user.bankUserUsername);
+            //        Console.WriteLine("Password: " + user.bankUserPassword);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Sorry, the user does not exist in our system");
+            //}
+
+            //Console.WriteLine("\nPress any key to continue");
+            //Console.ReadLine();
 
 
         }
 
-        private async Task DisplayAllUsersAsync()
+        private async Task NewAccount(AccountDTO Account)
         {
-            
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "getallusers");
-            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
-
-            using (HttpResponseMessage response = await httpClient.SendAsync(request))
+            var information = "";
+            HttpResponseMessage response = httpClient.PostAsJsonAsync(uri.ToString() + "newaccount", Account).Result;
+            if (response.IsSuccessStatusCode)
             {
-                response.EnsureSuccessStatusCode();
-               
-                if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+                information = response.Content.ReadAsStringAsync().Result;
+                Console.WriteLine("New account successfully registered");
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+        }
+
+        private async Task UpdateUser(UserDTO User)
+        {
+            var information = "";
+            HttpResponseMessage response = httpClient.PutAsJsonAsync(uri.ToString() + "updateuser", User).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                information = response.Content.ReadAsStringAsync().Result;
+                Console.WriteLine("User Updated Successful");
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+        }
+
+        private async Task UpdateAccount(AccountDTO Account)
+        {
+            var information = "";
+            HttpResponseMessage response = httpClient.PutAsJsonAsync(uri.ToString() + "updateaccount", Account).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                information = response.Content.ReadAsStringAsync().Result;
+                Console.WriteLine("Account Updated Successful");
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+        }
+
+
+
+        private void DisplayAllUsersAsync()
+        {
+
+            /* HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "getallusers");
+             request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
+
+             using (HttpResponseMessage response = await httpClient.SendAsync(request))
+             {
+                 response.EnsureSuccessStatusCode();
+
+                 if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+                 {
+                     throw new ArrayTypeMismatchException();
+                 }
+
+                 var users = await response.Content.ReadFromJsonAsync<List<UserDTO>>();*/
+
+            var information = "";
+            HttpResponseMessage response = httpClient.GetAsync(uri.ToString() + "getallusers").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                information = response.Content.ReadAsStringAsync().Result;
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+            var users = JsonSerializer.Deserialize<List<UserDTO>>(information);
+
+
+            if (users != null)
+            {
+                Console.WriteLine("Here are the list of Bank Users: ");
+                foreach (var user in users)
                 {
-                    throw new ArrayTypeMismatchException();
-                }
-                
-                var users = await response.Content.ReadFromJsonAsync<List<UserDTO>>();
-               
-                if (users != null)
-                {
-                    Console.WriteLine("Users: ");
-                    foreach (var user in users)
-                    {
-                        Console.WriteLine("First Name: " + user.bankUserFirstName);
-                        Console.WriteLine("Last Name: " + user.bankUserLastName);
-                        Console.WriteLine("Username: " + user.bankUserUsername);
-                        Console.WriteLine("Password: " + user.bankUserPassword);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Sorry, this user does not exist in our system");
+                    Console.WriteLine("First Name: " + user.bankUserFirstName);
+                    Console.WriteLine("Last Name: " + user.bankUserLastName);
+                    Console.WriteLine("Username: " + user.bankUserUsername);
+                    Console.WriteLine("Password: " + user.bankUserPassword);
                 }
             }
+            else
+            {
+                Console.WriteLine("Sorry, the user does not exist in our system");
+            }
+
             Console.WriteLine("\nPress any key to continue");
             Console.ReadLine();
         }
@@ -158,38 +267,50 @@ namespace Project1.UI
         private async Task DisplayAllAccountsAsync()
         {
 
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "getallaccounts");
-            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
+            /* HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "getallaccounts");
+             request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
 
-            using (HttpResponseMessage response = await httpClient.SendAsync(request))
+             using (HttpResponseMessage response = await httpClient.SendAsync(request))
+             {
+
+                 response.EnsureSuccessStatusCode();
+
+                 if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+                 {
+                     throw new ArrayTypeMismatchException();
+                 }
+
+                 var accounts = await response.Content.ReadFromJsonAsync<List<AccountDTO>>();*/
+
+            var information = "";
+            HttpResponseMessage response = httpClient.GetAsync(uri.ToString() + "getallaccounts").Result;
+            if (response.IsSuccessStatusCode)
             {
+                information = response.Content.ReadAsStringAsync().Result;
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+            var accounts = JsonSerializer.Deserialize<List<AccountDTO>>(information);
 
-                response.EnsureSuccessStatusCode();
-
-                if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+            if (accounts != null)
+            {
+                Console.WriteLine("Here are the list of Bank Accounts: ");
+                foreach (var account in accounts)
                 {
-                    throw new ArrayTypeMismatchException();
-                }
-
-                var accounts = await response.Content.ReadFromJsonAsync<List<AccountDTO>>();
-
-                if (accounts != null)
-                {
-                    Console.WriteLine("Account: ");
-                    foreach (var account in accounts)
-                    {
-                        Console.WriteLine("UserId: "+ account.bankUserId);
-                        Console.WriteLine("Balance: " + account.bankAccountBalance);                        
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Sorry, the account does not exist in our system");
+                    Console.WriteLine("UserId: " + account.bankUserId);
+                    Console.WriteLine("Balance: " + account.bankAccountBalance);
                 }
             }
+            else
+            {
+                Console.WriteLine("Sorry, the account does not exist in our system");
+            }
+
             Console.WriteLine("\nPress any key to continue");
             Console.ReadLine();
         }
-
     }
+
 }

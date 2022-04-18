@@ -16,12 +16,5 @@ namespace Project1.DTOs
         //public AccountType bankAccountType { get; set; }
         //public AccountStatus bankAccountStatus { get; set; }
 
-        public AccountDTO(int bankAccountId, decimal bankAccountBalance, int bankUserId) 
-        {
-            this.bankAccountId = bankAccountId;
-            this.bankAccountBalance = bankAccountBalance;
-            this.bankUserId = bankUserId;
-        }
-        
     }  
 }

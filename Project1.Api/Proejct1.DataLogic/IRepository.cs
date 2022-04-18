@@ -15,8 +15,7 @@ namespace Project1.DataLogic
         Task RegisterAccount(Account bankAccount);
         Task UpdateUser(User bankUser);
         Task UpdateAccount(Account bankAccount);
-
-
-
+        Task DeleteUser(User bankUser);
+        Task DeleteAccount(Account bankAccount);
     }
 }

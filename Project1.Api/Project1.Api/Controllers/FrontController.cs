@@ -2,6 +2,7 @@
 using Project1.DataLogic;
 using Project1.Model;
 using System.Data.SqlClient;
+using System.Text.Json;
 using System.Web;
 
 namespace Project1.Api.Controllers
@@ -22,7 +23,7 @@ namespace Project1.Api.Controllers
         }
 
         [HttpGet("/getallaccounts")]
-        public async Task<ActionResult<IEnumerable<Account>>> GetAllAccountAsync()
+        /*public async Task<ActionResult<IEnumerable<Account>>> GetAllAccountAsync()
         {
             IEnumerable<Account> bankAccounts;
             try
@@ -36,6 +37,19 @@ namespace Project1.Api.Controllers
 
             }
             return bankAccounts.ToList();
+        }*/
+        public async Task<ContentResult> GetAllAccountAsync()
+        {
+            IEnumerable<Account> current = await _repository.GetAllAccounts();
+            string json = JsonSerializer.Serialize(current);
+            _logger.LogInformation("Get all accounts");
+
+            return new ContentResult()
+            {
+                StatusCode = 200,
+                ContentType = "application/json",
+                Content = json
+            };
         }
 
         [HttpPost("/newaccount")]
@@ -70,5 +84,22 @@ namespace Project1.Api.Controllers
 
             }
         }
+
+        [HttpDelete("/deleteaccount")]
+        public async Task<IActionResult> DeleteAccountAsync(Account bankAccount)
+        {
+            try
+            {
+                await _repository.DeleteAccount(bankAccount);
+                return StatusCode(200);
+            }
+            catch (SqlException ex)
+            {
+                _logger.LogError(ex, "Failed to delete an account");
+                return StatusCode(500);
+
+            }
+        }
+
     }    
 }
