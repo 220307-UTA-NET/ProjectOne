@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project1.Model", "Project1.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project1.DataLogic", "Proejct1.DataLogic\Project1.DataLogic.csproj", "{4B3CDE93-E06C-4C50-B77A-6435C242D7B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project1.ApiTest", "Project1.ApiTest\Project1.ApiTest.csproj", "{535031A6-7A72-419A-83B0-8E13B1BD8F95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4B3CDE93-E06C-4C50-B77A-6435C242D7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B3CDE93-E06C-4C50-B77A-6435C242D7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B3CDE93-E06C-4C50-B77A-6435C242D7B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{535031A6-7A72-419A-83B0-8E13B1BD8F95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{535031A6-7A72-419A-83B0-8E13B1BD8F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{535031A6-7A72-419A-83B0-8E13B1BD8F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{535031A6-7A72-419A-83B0-8E13B1BD8F95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -30,6 +30,8 @@ SELECT * FROM Account;
 
 INSERT INTO Account values(10000.00, 1);
 
+UPDATE Account SET bankAccountBalance = 6000 WHERE bankUserId = 5;
+
 CREATE TABLE AccountType(
 bankAccountTypeId INT PRIMARY KEY IDENTITY,
 bankAccountType NVARCHAR(25) NOT NULL

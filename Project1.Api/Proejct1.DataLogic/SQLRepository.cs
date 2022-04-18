@@ -124,19 +124,26 @@ namespace Project1.DataLogic
             using SqlConnection connection = new(_connectionString);
             await connection.OpenAsync();
 
-            string cmdString =
-                @"UPDATE Users SET (bankUserFirstName,bankUserLastName,bankUserUsername,bankUserPassword) WHERE (@bankUserFirstName, @bankUserLastName, @bankUserUsername, @bankUserPassword);";
+            string cmdString1 = @"UPDATE Users SET bankUserFirstName = (@bankUserFirstName) WHERE bankUserUsername = (@bankUserUsername);";
+            string cmdString2 = @"UPDATE Users SET bankUserLastName = (@bankUserLastName) WHERE bankUserUsername = (@bankUserUsername);";
+            string cmdString3 = @"UPDATE Users SET bankUserPassword = (@bankUserPassword) WHERE bankUserUsername = (@bankUserUsername);";
 
-            using SqlCommand cmd = new(cmdString, connection);
+            using SqlCommand cmd1 = new(cmdString1, connection);
+            cmd1.Parameters.AddWithValue("@bankUserFirstName", bankUser.GetbankUserFirstName());
+            cmd1.Parameters.AddWithValue("@bankUserUsername", bankUser.GetbankUserUsername());
+            cmd1.ExecuteNonQuery();
+            using SqlCommand cmd2 = new(cmdString2, connection);
+            cmd2.Parameters.AddWithValue("@bankUserLastName", bankUser.GetbankUserLastName());
+            cmd2.Parameters.AddWithValue("@bankUserUsername", bankUser.GetbankUserUsername());
+            cmd2.ExecuteNonQuery();
+            using SqlCommand cmd3 = new(cmdString3, connection);
+            cmd3.Parameters.AddWithValue("@bankUserUsername", bankUser.GetbankUserUsername());
+            cmd3.Parameters.AddWithValue("@bankUserPassword", bankUser.GetbankUserPassword());
+            cmd3.ExecuteNonQuery();
 
-            cmd.Parameters.AddWithValue("@bankUserFirstName", bankUser.GetbankUserFirstName());
-            cmd.Parameters.AddWithValue("@bankUserLastName", bankUser.GetbankUserLastName());
-            cmd.Parameters.AddWithValue("@bankUserUsername", bankUser.GetbankUserUsername());
-            cmd.Parameters.AddWithValue("@bankUserPassword", bankUser.GetbankUserPassword());
-            cmd.BeginExecuteNonQuery();
             await connection.CloseAsync();
 
-            logger.LogInformation("New user registered!");
+            logger.LogInformation("Bank User Updated!");
         }
 
         public async Task UpdateAccount(Account bankAccount)
@@ -145,13 +152,13 @@ namespace Project1.DataLogic
             await connection.OpenAsync();
 
             string cmdString =
-                @"UPDATE Account SET (bankAccountBalance ,bankUserId) SET (@bankAccountBalance, @bankUserId) WHERE (bankAccountId);";
+                @"UPDATE Account SET bankAccountBalance = (@bankAccountBalance) WHERE bankUserId = (@bankUserId);";
 
             using SqlCommand cmd = new(cmdString, connection);
 
             cmd.Parameters.AddWithValue("@bankAccountBalance", bankAccount.GetbankAccountBalance());
             cmd.Parameters.AddWithValue("@bankUserId", bankAccount.GetbankUserId());
-            cmd.BeginExecuteNonQuery();
+            cmd.ExecuteNonQuery();
             await connection.CloseAsync();
 
             logger.LogInformation("Bank Account Updated");
@@ -183,11 +190,11 @@ namespace Project1.DataLogic
             await connection.OpenAsync();
 
             string cmdString =
-                @"DELETE FROM Account (bankAccountBalance ,bankUserId) WHERE (@bankAccountBalance, @bankUserId);";
+                @"DELETE FROM Account (bankUserId) WHERE (@bankUserId);";
 
             using SqlCommand cmd = new(cmdString, connection);
 
-            cmd.Parameters.AddWithValue("@bankAccountBalance", bankAccount.GetbankAccountBalance());
+            //cmd.Parameters.AddWithValue("@bankAccountBalance", bankAccount.GetbankAccountBalance());
             cmd.Parameters.AddWithValue("@bankUserId", bankAccount.GetbankUserId());
             cmd.BeginExecuteNonQuery();
             await connection.CloseAsync();

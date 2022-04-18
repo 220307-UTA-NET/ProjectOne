@@ -86,7 +86,7 @@ namespace Project1.Api.Controllers
             }
         }
 
-        [HttpDelete("/updateuser")]
+        [HttpDelete("/deleteuser")]
         public async Task<IActionResult> DeleteUserAsync(User bankUser)
         {
             //IEnumerable<User> bankUsers;
