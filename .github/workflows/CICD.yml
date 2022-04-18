@@ -40,7 +40,7 @@ jobs:
         
       - name: run web unit test 
         run: dotnet test ./Webstore/WebTestapplication/WebTestapplication.csproj
-      - name: list of folders 
-        run:  ls 
-        
+     
+      - name: run console unit test 
+        run: dotnet test ./storeconsole/ConsoleTest/ConsoleTest.csproj
          
