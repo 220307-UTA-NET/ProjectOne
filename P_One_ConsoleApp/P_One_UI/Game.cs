@@ -7,14 +7,10 @@ namespace P_One_UI
 {
     public class Game
     {
+        //What did I break
         private HttpClient client { get; set; }
-        private string? gPlayerName { get; set; }
         private int gRoom { get; set; }
         private int gPlayerID { get; set; }
-        private int gTrash { get; set; }
-        private int gLoad { get; set; }
-        private int gMoves { get; set; }
-
         public Game(HttpClient client)
         {
             this.client = client;
@@ -43,8 +39,7 @@ namespace P_One_UI
             else
             {
                 await CreatePlayer(input);
-                PlayerDTO current = await GetPlayer(gPlayerID);
-                SetCurrentPlayerStats(current);
+                SetCurrentPlayerStats(await GetPlayer(gPlayerID));
                 await CreatePlayerTable(gPlayerID);
                 Console.Clear();
                 await EnterHouse();
@@ -76,24 +71,15 @@ namespace P_One_UI
                 {
                     await EmptyPlayerInventory(gPlayerID);
                     await UpdatePlayer(new PlayerDTO()
-                    {
-                        playerID = gPlayerID,
-                        moves = gMoves,
-                        trash = gTrash,
-                        load = 0,
-                       
-                    });
-                    gLoad = 0;
+                                        {
+                                            playerID = gPlayerID,
+                                            load = -1,                      
+                                        });
                 }
                 Console.Clear();
-                GameHeader();
+                await GameHeader(gPlayerID);
+                FormatRoomDescription();
                 RoomDTO currentRoom = await GetRoom(gRoom);
-                int[] roomIDs = new int[] { currentRoom.adjRoom1, currentRoom.adjRoom2, currentRoom.adjRoom3 };
-                List<RoomDTO> otherRooms = await GetRooms(roomIDs);
-
-                List<ItemDTO> roomTrash = await GetRoomInv(gRoom, gPlayerID);
-                FormatRoomDescription(currentRoom, otherRooms, roomTrash);
-
                 gRoom = await ChoiceMenu(currentRoom);           
             } 
             await RemovePlayerItemTable(gPlayerID);
@@ -114,18 +100,15 @@ namespace P_One_UI
             List<int> adjRooms = new List<int> { currentRoom.adjRoom1, currentRoom.adjRoom2, currentRoom.adjRoom3 };
             foreach (int i in adjRooms)
             {
-                if (i == newRoom && i != 0)
+                if (i == newRoom && i != 0 && i !=currentRoom.roomID)
                 {
                     gRoom = i;
-                    gMoves++;
-
 
                     await UpdatePlayer(new PlayerDTO()
                     {
                         playerID = gPlayerID,
-                        moves = gMoves,
-                        trash = gTrash,
-                        load = gLoad,
+                        moves = 1,
+                        //load = ,
                     });
                     break;
 
@@ -156,7 +139,8 @@ namespace P_One_UI
             }
             else if (newRoomStr == "C")
             {
-                if (gLoad > 10)
+                PlayerDTO current = await GetPlayer (gPlayerID);    
+                if (current.load > 10)
                 {
                     Console.Clear();
                     Console.WriteLine("You can't carry anymore!\nGo dump the trash outside!");
@@ -177,23 +161,28 @@ namespace P_One_UI
         /// <summary>
         /// Formats Player details and directions to be displayed as a game header
         /// </summary>
-        public void GameHeader()
+        public async Task GameHeader(int playerID)
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append($"----------GET TO CLEANING----------\n--  {gPlayerName} TRASH CLEANED-{gTrash}, LOAD-{gLoad} LBS, MOVES-{gMoves}  --\n");
-            Console.WriteLine(sb.ToString());
+            var information = "";
+            HttpResponseMessage response = await client.GetAsync($"Player/current/header?playerID={playerID}");
+            if (response.IsSuccessStatusCode)
+            {
+                information = response.Content.ReadAsStringAsync().Result;
+            }
+            else
+            {
+                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+            }
+            string header = JsonSerializer.Deserialize<string>(information);
+            Console.WriteLine(header);
         }
         /// <summary>
-        /// Sets in-game variables for Game Header from the current player that is created at the start of the game
+        /// Sets playerID for newly created player
         /// </summary>
-        /// <param name="current"></param>
+        /// <param name="current">player DTO that is current</param>
         public void SetCurrentPlayerStats(PlayerDTO current)
         {
             gPlayerID = current.playerID;
-            gPlayerName = current.playerName;
-            gTrash = current.trash;
-            gLoad = current.load;
-            gMoves = current.moves;
         }
         /// <summary>
         /// Formats the information displayed to the play upon entry to a new room
@@ -201,10 +190,14 @@ namespace P_One_UI
         /// <param name="currentRoom">current room the player is inside of</param>
         /// <param name="otherRooms">the adjacent rooms the player can immediately travel to</param>
         /// <param name="roomTrash">Items (0-3) inside of each room</param>
-        public void FormatRoomDescription(RoomDTO currentRoom, List<RoomDTO> otherRooms, List<ItemDTO> roomTrash)
+        public async void FormatRoomDescription()
         {
             int doors = 0;
-            if (gLoad < 11)
+            PlayerDTO current = await GetPlayer(gPlayerID);
+            RoomDTO currentRoom = await GetRoom(gRoom);
+            List<RoomDTO> otherRooms = await GetRooms(currentRoom);
+            List<ItemDTO> roomTrash = await GetRoomInv(gRoom, gPlayerID);
+            if (current.load<10)
             {
                 Console.WriteLine($"You stand in the {currentRoom.roomName}.\n{currentRoom.roomDescription}");
                 if (roomTrash.Count() == 0)
@@ -450,8 +443,7 @@ namespace P_One_UI
                             item=new ItemDTO() {itemID=roomTrash[i-1].itemID},
                             room=new RoomDTO() {roomID=roomID},
                         });
-                        gTrash++;
-                        gLoad += roomTrash[i-1].itemWeight;
+                        //gLoad += roomTrash[i-1].itemWeight;
                         await AddToInventory(new PlayerDTO()
                         {
                             playerID = gPlayerID,
@@ -460,9 +452,8 @@ namespace P_One_UI
                         await UpdatePlayer(new PlayerDTO()
                         {
                             playerID = gPlayerID,
-                            trash = gTrash,
-                            load = gLoad,
-                            moves=gMoves,
+                            trash = 1,
+                            load = roomTrash[i - 1].itemWeight,                           
                         });
                     }
                 }
@@ -537,12 +528,11 @@ namespace P_One_UI
         /// </summary>
         /// <param name="adjRoomIDs">room IDs for the adjacent  rooms</param>
         /// <returns></returns>
-        public async Task<List<RoomDTO>> GetRooms(int[]adjRoomIDs)
+        public async Task<List<RoomDTO>> GetRooms(RoomDTO room/*int[]adjRoomIDs*/)
         {
             var information = "";
-            //string json = JsonSerializer.Serialize(current);
-            //var c = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.GetAsync($"room/adjacent?roomIDs={adjRoomIDs[0]}&roomIDs={adjRoomIDs[1]}&roomIDs={adjRoomIDs[2]}");
+            //string json = JsonSerializer.Serialize(room);
+            HttpResponseMessage response = await client.GetAsync($"room/adjacent?roomID={room.roomID}&roomName={room.roomName}&roomDescription={room.roomDescription}&adjRoom1={room.adjRoom1}&adjRoom2={room.adjRoom2}&adjRoom3={room.adjRoom3}");
             if (response.IsSuccessStatusCode)
             {
                 information = response.Content.ReadAsStringAsync().Result;
@@ -597,6 +587,11 @@ namespace P_One_UI
                 Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
             }
         }
+        /// <summary>
+        /// Removes items from the player table if they are successfully cleaned by the player
+        /// </summary>
+        /// <param name="combo">DTO combo of Room, Item, and player</param>
+        /// <returns></returns>
         public async Task RemoveTrash(R_P_I_DTO combo)
         {
             //int[] trash = new int[] {gPlayerID, itemID, roomID};
@@ -613,6 +608,11 @@ namespace P_One_UI
             }
          
         }
+        /// <summary>
+        /// Adds the piece of trash removed from the room to the player's inventory
+        /// </summary>
+        /// <param name="current">the player who will have the trash added to their inventory</param>
+        /// <returns></returns>
         public async Task AddToInventory(PlayerDTO current)
         {
               var information = "";
@@ -627,6 +627,11 @@ namespace P_One_UI
                 Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
             }
         }
+        /// <summary>
+        /// Fetches the inventory of the current player so it can be viewed
+        /// </summary>
+        /// <param name="playerID">ID of the player who is viewing their inventory</param>
+        /// <returns></returns>
         public async Task<List<ItemDTO>> GetInventory(int playerID)
         {          
             var information = "";
@@ -642,6 +647,11 @@ namespace P_One_UI
             List<ItemDTO> playerInventory = JsonSerializer.Deserialize<List<ItemDTO>>(information);
             return playerInventory;
         }
+        /// <summary>
+        /// Clears the Player's inventory whenever they return to roomID=1
+        /// </summary>
+        /// <param name="playerID"></param>
+        /// <returns></returns>
         public async Task EmptyPlayerInventory(int playerID)
         {
             var information = "";

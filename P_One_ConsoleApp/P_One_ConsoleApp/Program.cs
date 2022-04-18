@@ -11,7 +11,7 @@ namespace P_One_ConsoleApp
             //localhost for testing
             //client.BaseAddress = new Uri("https://localhost:7083/");
             //URI for deployment to Azure
-            client.BaseAddress = new Uri("https://dgagneprojone.azurewebsites.net/");
+            client.BaseAddress = new Uri("https://projectonedang.azurewebsites.net/");
             Game game = new Game(client);
             await game.StartGame();
             
