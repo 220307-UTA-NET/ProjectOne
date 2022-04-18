@@ -27,10 +27,17 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world!
+        users: actions/setup-dotnet@v1
+        with:
+        dotnet-version: ${{env.DOTNET_VERSION}}
+        
+      - name: Build the API with dotnet
+        run: dotnet publish ./Project1/ProjectOne/--configuration Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Azure WebApp
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
