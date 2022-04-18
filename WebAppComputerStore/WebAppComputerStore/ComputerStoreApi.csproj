@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>a761aeb0-9430-4af3-a7a8-3c3db2bc0bcc</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ComputerStoreApp.BusinessLogic\ComputerStoreApp.BusinessLogic.csproj" />
+    <ProjectReference Include="..\ComputerStoreApp.DataLogic\ComputerStoreApp.DataLogic.csproj" />
+  </ItemGroup>
+
+</Project>
