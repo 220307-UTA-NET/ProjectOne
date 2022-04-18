@@ -1,0 +1,12 @@
+/Users/francis/revature/MusuemLog/MuseumConsole/Museum.UI/bin/Debug/net6.0/Museum.UI.deps.json
+/Users/francis/revature/MusuemLog/MuseumConsole/Museum.UI/bin/Debug/net6.0/Museum.UI.dll
+/Users/francis/revature/MusuemLog/MuseumConsole/Museum.UI/bin/Debug/net6.0/Museum.UI.pdb
+/Users/francis/revature/MusuemLog/MuseumConsole/Museum.UI/obj/Debug/net6.0/Museum.UI.csproj.AssemblyReference.cache
+/Users/francis/revature/MusuemLog/MuseumConsole/Museum.UI/obj/Debug/net6.0/Museum.UI.GeneratedMSBuildEditorConfig.editorconfig
+/Users/francis/revature/MusuemLog/MuseumConsole/Museum.UI/obj/Debug/net6.0/Museum.UI.AssemblyInfoInputs.cache
+/Users/francis/revature/MusuemLog/MuseumConsole/Museum.UI/obj/Debug/net6.0/Museum.UI.AssemblyInfo.cs
+/Users/francis/revature/MusuemLog/MuseumConsole/Museum.UI/obj/Debug/net6.0/Museum.UI.csproj.CoreCompileInputs.cache
+/Users/francis/revature/MusuemLog/MuseumConsole/Museum.UI/obj/Debug/net6.0/Museum.UI.dll
+/Users/francis/revature/MusuemLog/MuseumConsole/Museum.UI/obj/Debug/net6.0/refint/Museum.UI.dll
+/Users/francis/revature/MusuemLog/MuseumConsole/Museum.UI/obj/Debug/net6.0/Museum.UI.pdb
+/Users/francis/revature/MusuemLog/MuseumConsole/Museum.UI/obj/Debug/net6.0/ref/Museum.UI.dll

@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{DA1F23F0-6F7A-4447-A075-F315B8F80416}|Default">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.MuseumConsole PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MuseumConsole/Program.cs">
+    <Files>
+      <File FileName="MuseumConsole/Program.cs" Line="21" Column="1" />
+      <File FileName="Museum.UI/DTOs/PersonDTO.cs" Line="13" Column="1" />
+      <File FileName="Museum.UI/IO.cs" Line="182" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MuseumConsole" expanded="True">
+            <Node name="Museum.UI" expanded="True">
+              <Node name="DTOs" expanded="True" />
+            </Node>
+            <Node name="MuseumConsole" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>

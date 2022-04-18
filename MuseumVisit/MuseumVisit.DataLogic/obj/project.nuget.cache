@@ -1,9 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "tpbJtT0902Fth1XirizXEENQu3FoJe1eI2OWmKnYXWwcoUM1o25SKSKJCMmtDtJ8aBGsjTbWsn6NHL+1nNDMVg==",
+  "dgSpecHash": "2/U+SbdmmhiM5GAm9KFftbNp9CxeRgb4vQi+uQPqn5pLWvbE38WAfRNGzZFYymGtX18xBfJomGWgnjsiY77aAQ==",
   "success": true,
   "projectFilePath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj",
   "expectedPackageFiles": [
+    "/Users/francis/.nuget/packages/microsoft.entityframeworkcore/6.0.4/microsoft.entityframeworkcore.6.0.4.nupkg.sha512",
+    "/Users/francis/.nuget/packages/microsoft.entityframeworkcore.abstractions/6.0.4/microsoft.entityframeworkcore.abstractions.6.0.4.nupkg.sha512",
+    "/Users/francis/.nuget/packages/microsoft.entityframeworkcore.analyzers/6.0.4/microsoft.entityframeworkcore.analyzers.6.0.4.nupkg.sha512",
+    "/Users/francis/.nuget/packages/microsoft.extensions.caching.abstractions/6.0.0/microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
+    "/Users/francis/.nuget/packages/microsoft.extensions.caching.memory/6.0.1/microsoft.extensions.caching.memory.6.0.1.nupkg.sha512",
     "/Users/francis/.nuget/packages/microsoft.extensions.dependencyinjection/6.0.0/microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
     "/Users/francis/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "/Users/francis/.nuget/packages/microsoft.extensions.logging/6.0.0/microsoft.extensions.logging.6.0.0.nupkg.sha512",
@@ -16,6 +21,7 @@
     "/Users/francis/.nuget/packages/runtime.win-arm64.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "/Users/francis/.nuget/packages/runtime.win-x64.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "/Users/francis/.nuget/packages/runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "/Users/francis/.nuget/packages/system.collections.immutable/6.0.0/system.collections.immutable.6.0.0.nupkg.sha512",
     "/Users/francis/.nuget/packages/system.data.sqlclient/4.8.3/system.data.sqlclient.4.8.3.nupkg.sha512",
     "/Users/francis/.nuget/packages/system.diagnostics.diagnosticsource/6.0.0/system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "/Users/francis/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
