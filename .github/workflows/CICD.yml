@@ -38,4 +38,7 @@ jobs:
       - name: build with DotNet 
         run:  dotnet build ./Webstore/ --configuration Release -o ${{env.AZURE_WEBAPP_APP_PATH}}
         
+      - name: run web unit test 
+        run: dotnet test ./WebTestapplication 
+        
          
