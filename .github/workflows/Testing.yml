@@ -4,6 +4,7 @@ on:
   push:
     branches:
       -DanG
+  workflow_dispatch:
 
 jobs:
   build:
