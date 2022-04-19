@@ -47,11 +47,11 @@ jobs:
       - name: add files for commit
         run: git add . ./
         
-      - name: set account 
-        run:  git config --global user.email "cubideschristian8@gmail.com"
-              git config --global user.name "cubidesrojas"
-              git commit -am "Auto commit"
-              git push
+    #  - name: set account 
+    #    run:  git config --global user.email "cubideschristian8@gmail.com"
+    #          git config --global user.name "cubidesrojas"
+    #          git commit -am "Auto commit"
+    #          git push
 
      
         
