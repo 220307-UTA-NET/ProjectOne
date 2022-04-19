@@ -12,10 +12,10 @@ namespace WebAppComputerStore.Controller
     {
         // Fields
         private readonly IRepository _repository;
-        private readonly ILogger<Computer_Make_Controller> _logger;
+        private readonly ILogger<Computer_Makes_Controller> _logger;
 
         //Constructors
-        public Computer_Makes_Controller(IRepository repository, ILogger<Computer_Make_Controller> logger)
+        public Computer_Makes_Controller(IRepository repository, ILogger<Computer_Makes_Controller> logger)
         {
             this._repository = repository;
             this._logger = logger;
