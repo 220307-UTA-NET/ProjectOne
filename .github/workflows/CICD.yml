@@ -47,9 +47,9 @@ jobs:
       - name: add files for commit
         run: git add . ./
         
-#- name: set account 
-#        run:  git config --system user.email "cubideschristian8@gmail.com"
-#              git config --system user.name "cubidesrojas"
+      - name: set account 
+        run:  Omit --global to set the identity only in this repository.
+
         
       - name: commit files 
         run: git commit -m "Auto commit"
