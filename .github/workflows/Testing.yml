@@ -2,8 +2,8 @@ name: .NET Core
 
 on:
   push:
-  branches:
-    -DanG
+    branches:
+      -DanG
 
 jobs:
   build:
