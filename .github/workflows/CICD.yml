@@ -48,7 +48,7 @@ jobs:
         run: git add . ./
         
       - name: set account 
-        run:  Omit --global to set the identity only in this repository.
+        run:  Omit --global 
 
         
       - name: commit files 
