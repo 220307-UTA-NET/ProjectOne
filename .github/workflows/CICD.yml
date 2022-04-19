@@ -48,8 +48,8 @@ jobs:
         run: git add . ./
         
       - name: set account 
-        run:  git config --global user.email "cubideschristian8@gmail.com"
-              git config --global user.name "cubidesrojas"
+        run:  git config --system user.email "cubideschristian8@gmail.com"
+              git config --system user.name "cubidesrojas"
         
       - name: commit files 
         run: git commit -m "Auto commit"
