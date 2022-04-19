@@ -14,7 +14,7 @@ namespace P_One_ConsoleApp
             client.BaseAddress = new Uri("https://projectonedang.azurewebsites.net/");
             Game game = new Game(client);
             await game.StartGame();
-            
+            //Force container test
         }
     }
 }

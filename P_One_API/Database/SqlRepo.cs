@@ -66,8 +66,9 @@ namespace P_One.Database
             return $"{deletedPlayer} deleted.";
 
         }
-        public async Task<string> NewPlayer(Player player)
+        public async Task<string> NewPlayer(string playerName)
         {
+            Player player = new Player(playerName);
             using SqlConnection connect = new SqlConnection(this._connString);
             await connect.OpenAsync();
 
@@ -78,8 +79,9 @@ namespace P_One.Database
             cmd.ExecuteNonQuery();
             await connect.CloseAsync();
 
-            _logger.LogInformation($"Executed: NewPlayer Name: {player.GetName()}");
-            return $"New Player {player.GetName()} added!";
+            _logger.LogInformation($"Executed: NewPlayer Name: {playerName}");
+           
+            return $"New Player {playerName} added!";
 
         }
         public async Task<Player> GetPlayer(int playerID)

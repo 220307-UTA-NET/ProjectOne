@@ -113,8 +113,8 @@ namespace P_One.API.Controllers
         [HttpPost("create")]
         public async Task<ContentResult> AddPlayerAsync([FromBody] string playerName)
         {
-            Player player = new Player(playerName);
-            string json = await _repo.NewPlayer(player);
+            //Player player = new Player(playerName);
+            string json = await _repo.NewPlayer(playerName);
             _logger.LogInformation("Player created");
 
             return new ContentResult()
@@ -135,7 +135,7 @@ namespace P_One.API.Controllers
         }
         [HttpPost("item/add")]
         public async Task<ContentResult>AddToPlayerInventory([FromBody] Player current)
-        {
+        {           
             await _repo.AddToInventory(current);
 
             return new ContentResult()

@@ -6,9 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 //testing workflow push
 //Connection for localhost testing
-string connectionString = builder.Configuration["connectionString"];
+//string connectionString = builder.Configuration["connectionString"];
 //Connection for Deployment to Azure
-//string connectionString = builder.Configuration.GetConnectionString("ProjOneConnection");
+string connectionString = builder.Configuration.GetConnectionString("ProjOneConnection");
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

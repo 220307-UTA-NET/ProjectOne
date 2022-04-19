@@ -7,7 +7,7 @@ namespace P_One.Database
     public interface IRepo
     {
         Task<List<Player>> LastTwoPlayers();
-        Task<string> NewPlayer(Player player);
+        Task<string> NewPlayer(string playerName);
         Task<Player> GetPlayer(int playerID);
         Task<string> RemovePlayer(int playerID);
         Task EmptyAllRooms();
