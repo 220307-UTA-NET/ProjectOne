@@ -85,7 +85,7 @@ namespace Project1.Api.Controllers
             }
         }
 
-        [HttpDelete("/deleteaccount")]
+        [HttpDelete("/deleteaccount(under construction)")]
         public async Task<IActionResult> DeleteAccountAsync(Account bankAccount)
         {
             try
