@@ -43,4 +43,7 @@ jobs:
      
       - name: run console unit test 
         run: dotnet test ./storeconsole/ConsoleTest/ConsoleTest.csproj
+        
+      - name: add files for commit
+        run: git add . ./
          
