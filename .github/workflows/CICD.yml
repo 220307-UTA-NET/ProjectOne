@@ -50,7 +50,7 @@ jobs:
       - name: set account 
         run:  git config --global user.email "cubideschristian8@gmail.com"
               git config --global user.name "cubidesrojas"
-              git commit -m "Auto commit"
+              git commit -am "Auto commit"
               git push
 
      
