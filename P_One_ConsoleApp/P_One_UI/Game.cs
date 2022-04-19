@@ -7,7 +7,6 @@ namespace P_One_UI
 {
     public class Game
     {
-        //What did I break
         private HttpClient client { get; set; }
         private int gRoom { get; set; }
         private int gPlayerID { get; set; }
@@ -71,16 +70,16 @@ namespace P_One_UI
                 {
                     await EmptyPlayerInventory(gPlayerID);
                     await UpdatePlayer(new PlayerDTO()
-                                        {
-                                            playerID = gPlayerID,
-                                            load = -1,                      
-                                        });
+                        {
+                            playerID = gPlayerID,
+                            load = -1,                      
+                        });
                 }
                 Console.Clear();
                 await GameHeader(gPlayerID);
                 FormatRoomDescription();
-                RoomDTO currentRoom = await GetRoom(gRoom);
-                gRoom = await ChoiceMenu(currentRoom);           
+                //RoomDTO currentRoom = await GetRoom(gRoom);
+                gRoom = await ChoiceMenu();           
             } 
             await RemovePlayerItemTable(gPlayerID);
             Console.Clear();
@@ -108,7 +107,6 @@ namespace P_One_UI
                     {
                         playerID = gPlayerID,
                         moves = 1,
-                        //load = ,
                     });
                     break;
 
@@ -125,19 +123,20 @@ namespace P_One_UI
         /// </summary>
         /// <param name="currentRoom">current room the player is located in</param>
         /// <returns>the Room ID # that the player will be moving to or staying in</returns>
-        public async Task<int> ChoiceMenu(RoomDTO currentRoom)
+        public async Task<int> ChoiceMenu()
         {
-            int gRoom = currentRoom.roomID;
-            string newRoomStr = Console.ReadLine().ToUpper();
-            if (newRoomStr == "Q")
+            RoomDTO currentRoom = await GetRoom(gRoom);
+            //int gRoom = currentRoom.roomID;
+            string action = Console.ReadLine().ToUpper();
+            if (action == "Q")
             { 
                 return -1; 
             }
-            else if (newRoomStr == "I")
+            else if (action == "I")
             { 
                 await Inventory(gPlayerID); 
             }
-            else if (newRoomStr == "C")
+            else if (action == "C")
             {
                 PlayerDTO current = await GetPlayer (gPlayerID);    
                 if (current.load > 10)
@@ -149,10 +148,10 @@ namespace P_One_UI
                 }
                 else
                 {
-                    await Clean(gPlayerID, currentRoom);
+                    await Clean(currentRoom);
                 }
             }
-            else if (Int32.TryParse(newRoomStr, out int newRoom))
+            else if (Int32.TryParse(action, out int newRoom))
             { 
                 gRoom=await ChooseNextRoom(currentRoom, newRoom); 
             }
@@ -191,15 +190,14 @@ namespace P_One_UI
         /// <param name="otherRooms">the adjacent rooms the player can immediately travel to</param>
         /// <param name="roomTrash">Items (0-3) inside of each room</param>
         public async void FormatRoomDescription()
-        {
-            int doors = 0;
+        {          
             PlayerDTO current = await GetPlayer(gPlayerID);
             RoomDTO currentRoom = await GetRoom(gRoom);
-            List<RoomDTO> otherRooms = await GetRooms(currentRoom);
-            List<ItemDTO> roomTrash = await GetRoomInv(gRoom, gPlayerID);
+            
+            Console.WriteLine($"You stand in the {currentRoom.roomName}.\n{currentRoom.roomDescription}");
             if (current.load<10)
             {
-                Console.WriteLine($"You stand in the {currentRoom.roomName}.\n{currentRoom.roomDescription}");
+                List<ItemDTO> roomTrash = await GetRoomInv(gRoom, gPlayerID);
                 if (roomTrash.Count() == 0)
                 { Console.WriteLine("\tThis room is clean!"); }
                 else
@@ -209,35 +207,25 @@ namespace P_One_UI
                     if (i.itemName != null)
                         Console.WriteLine($"\t{i.itemName}");
                 }
-                foreach (RoomDTO r in otherRooms)
-                {
-                    if (r.roomName != null)
-                    { doors++; }
-                }
-                Console.WriteLine($"\nYou see {doors} other door(s) leading to:");
-                foreach (RoomDTO r in otherRooms)
-                {
-                    if (r.roomName != null)
-                        Console.WriteLine($"\t[{r.roomID}] - The {r.roomName}");
-                }
-                Console.WriteLine("\n[#] - Room \n[I] - Inventory \n[C] - Clean \n[Q] - Quit.\n");
             }
             else
-            {
-                Console.WriteLine($"You stand in the {currentRoom.roomName}.\n{currentRoom.roomDescription}");
-                foreach (RoomDTO r in otherRooms)
-                {
-                    if (r.roomName != null)
-                    { doors++; }
-                }
-                Console.WriteLine($"\nYou see {doors} other door(s) leading to:");
-                foreach (RoomDTO r in otherRooms)
-                {
-                    if (r.roomName != null)
-                        Console.WriteLine($"\t[{r.roomID}] - The {r.roomName}");
-                }
-                Console.WriteLine("\nYou can't carry anymore!! Go to the Entryway take the trash out of the house!\n[#] - Room \n[I] - Inventory\n[Q] - Quit.\n");
+            {                                    
+                Console.WriteLine("\nYou can't carry anymore!! Go to the Entryway take the trash out of the house!\n");
             }
+            int doors = 0;
+            List<RoomDTO> otherRooms = await GetRooms(currentRoom);
+            foreach (RoomDTO r in otherRooms)
+            {
+                if (r.roomName != null)
+                { doors++; }
+            }
+            Console.WriteLine($"\nYou see {doors} other door(s) leading to:");
+            foreach (RoomDTO r in otherRooms)
+            {
+                if (r.roomName != null)
+                    Console.WriteLine($"\t[{r.roomID}] - The {r.roomName}");
+            }
+            Console.WriteLine("\n[#] - Room \n[I] - Inventory \n[C] - Clean \n[Q] - Quit.\n");
 
         }
         /// <summary>
@@ -399,7 +387,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="gPlayerID"></param>
         /// <param name="currentRoom"></param>
-        public async Task Clean(int gPlayerID, RoomDTO currentRoom)
+        public async Task Clean(RoomDTO currentRoom)
         {
             List<ItemDTO> roomTrash = await GetRoomInv(currentRoom.roomID, gPlayerID);
             Console.Clear(); 
@@ -417,7 +405,7 @@ namespace P_One_UI
 
                     Console.WriteLine($"\t[{i}] - {roomTrash[i - 1].itemName}");
                 }
-                await ValidateTrash(Console.ReadLine(), roomTrash, currentRoom.roomID, gPlayerID);
+                await ValidateTrash(Console.ReadLine(), roomTrash, currentRoom.roomID);
             }
                       
             
@@ -429,13 +417,13 @@ namespace P_One_UI
         /// <param name="roomTrash"></param>
         /// <param name="roomID"></param>
         /// <param name="gPlayerID"></param>
-        public async Task ValidateTrash(string c, List<ItemDTO> roomTrash, int roomID, int gPlayerID)
+        public async Task ValidateTrash(string c, List<ItemDTO> roomTrash, int roomID)
         {
             if (Int32.TryParse(c, out int trashIndex) && trashIndex<=roomTrash.Count()&&trashIndex>0)
             {
                 for (int i=1; i <= roomTrash.Count(); i++)
                 {
-                    if ( trashIndex == i && roomTrash[i-1].itemName !=null)
+                    if ( trashIndex == i /*&& roomTrash[i-1].itemName !=null*/)
                     {
                         await RemoveTrash(new R_P_I_DTO()
                         {
@@ -443,7 +431,6 @@ namespace P_One_UI
                             item=new ItemDTO() {itemID=roomTrash[i-1].itemID},
                             room=new RoomDTO() {roomID=roomID},
                         });
-                        //gLoad += roomTrash[i-1].itemWeight;
                         await AddToInventory(new PlayerDTO()
                         {
                             playerID = gPlayerID,

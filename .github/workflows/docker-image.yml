@@ -1,0 +1,30 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ DanG ]
+  pull_request:
+    branches: [ DanG ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Build the Docker image
+      run: docker build ./P_One_ConsoleApp --tag dangapp:$(date +%Y%m%d%H)
+      
+    - name: Tag the image
+      run: docker tag dangapp:$(date +%Y%m%d%H) ${{secrets.DOCKER_USERNAME}}/projectoneapp:dangapp
+      
+    - name: Docker Push
+      run: docker push ${{secrets.DOCKER_USERNAME}}/projectoneapp:dangapp

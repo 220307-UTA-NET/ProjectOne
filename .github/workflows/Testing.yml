@@ -1,0 +1,35 @@
+name: .NET Core
+
+on:
+  push:
+  branches:
+    -DanG
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout  
+      uses: actions/checkout@v1
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Build
+      run: dotnet build ./P_One_API/P_One_API.sln --configuration Release -o ./Test
+
+    - name: Test
+      run: dotnet test ./P_One_API/P_One_Tests/P_One.Tests.csproj --logger "trx;LogFileName=test-results.trx" || true
+
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: DotNET Tests
+        path: "**/test-results.trx"                            
+        reporter: dotnet-trx
+        fail-on-error: true
