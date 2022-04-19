@@ -8,34 +8,34 @@ namespace LibraryApp.Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class MembersController : ControllerBase
+    public class BooksController : ControllerBase
     {
         //Fields
         private readonly IRepository _repository;
-        private readonly ILogger<MembersController> _logger;
+        private readonly ILogger<BooksController> _logger;
 
         //Constructors
-        public MembersController(IRepository repository, ILogger<MembersController> logger)
+        public BooksController(IRepository repository, ILogger<BooksController> logger)
         {
             this._repository = repository;
             this._logger = logger;
         }
 
         //Methods
-        [HttpGet("/allmembers")]
-        public async Task<ActionResult<IEnumerable<Member>>> LookUpAllMemberInfoAsync()
+        [HttpGet("/allbooks")]
+        public async Task<ActionResult<IEnumerable<Book>>> LookUpAllBooksAsync()
         {
-            IEnumerable<Member> members;
+            IEnumerable<Book> books;
             try
             {
-                members = await _repository.LookUpAllMemberInfo();
+                books = await _repository.GetAllBooks();
             }
             catch (SqlException ex)
             {
                 _logger.LogError(ex, "SQL communication error.");
                 return StatusCode(500);
             }
-            return members.ToList();
+            return books.ToList();
         }
     }
 }

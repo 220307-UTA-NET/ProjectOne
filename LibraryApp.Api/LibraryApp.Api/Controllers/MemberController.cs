@@ -8,27 +8,28 @@ namespace LibraryApp.Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class MembersController : ControllerBase
+    public class MemberController : ControllerBase
     {
+
         //Fields
         private readonly IRepository _repository;
         private readonly ILogger<MembersController> _logger;
 
         //Constructors
-        public MembersController(IRepository repository, ILogger<MembersController> logger)
+        public MemberController(IRepository repository, ILogger<MembersController> logger)
         {
             this._repository = repository;
             this._logger = logger;
         }
 
-        //Methods
-        [HttpGet("/allmembers")]
-        public async Task<ActionResult<IEnumerable<Member>>> LookUpAllMemberInfoAsync()
+        // Methods
+        [HttpGet("/amember")]
+        public async Task<ActionResult<IEnumerable<Member>>> GetMemberInfoByNameAsync(string fName, string lName)
         {
             IEnumerable<Member> members;
             try
             {
-                members = await _repository.LookUpAllMemberInfo();
+                members = await _repository.GetMemberInfoByName(fName, lName);
             }
             catch (SqlException ex)
             {
@@ -36,6 +37,6 @@ namespace LibraryApp.Api.Controllers
                 return StatusCode(500);
             }
             return members.ToList();
-        }
+        }    
     }
 }

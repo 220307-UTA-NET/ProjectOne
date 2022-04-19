@@ -3,8 +3,8 @@
     internal class MembersDTO
     {
         public int memberID { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public int phone { get; set; }
+        public string fName { get; set; }
+        public string lName { get; set; }
+        public string phone { get; set; }
     }
 }

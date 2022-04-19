@@ -12,15 +12,17 @@ namespace LibraryApp.BusinessLogias
         public int BookID { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
-        public bool InOut { get; set; }
+        public decimal Price { get; set; }
+        public int InOut { get; set; }
 
         //Constructors
         public Book() { }
-        public Book(int bookID, string title, string author, bool inOut)
+        public Book(int bookID, string title, string author, decimal price, int inOut)
         {
             this.BookID = bookID;
             this.Title = title;
             this.Author = author;
+            this.Price = price;
             this.InOut = inOut;
         }
     }

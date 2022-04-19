@@ -10,9 +10,9 @@ namespace LibraryApp.Runner
         //MEthods
         static async Task Main(string[] args)
         {
-            Uri uri = new Uri("https://localhost:7110");
+            Uri uri = new Uri("https://localhost:7110/");
             IO io = new IO(uri);
-            await io.StartAsync();
+            await io.BeginAsync();
         }
     }
 }

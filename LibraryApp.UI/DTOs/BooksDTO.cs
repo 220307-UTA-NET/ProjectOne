@@ -5,7 +5,7 @@
         public int bookID { get; set; }
         public string title { get; set; }
         public string author { get; set; } 
-        public int price { get; set; }
-        public bool inStock { get; set; }
+        public decimal price { get; set; }
+        public int inOut { get; set; }
     }
 }
