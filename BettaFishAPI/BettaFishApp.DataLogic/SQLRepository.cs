@@ -23,7 +23,6 @@ namespace BettaFishApp.DataLogic
             this._logger = logger;
         }
 
-
         public async Task<IEnumerable<BettaType>> GetAllBettaTypeAsync()
         {
             List<BettaType> result = new();
@@ -46,9 +45,64 @@ namespace BettaFishApp.DataLogic
             }
             await connection.CloseAsync();
 
-            _logger.LogInformation("Executed: GetAllBettaType");
+            _logger.LogInformation("Executed: Get All Betta Type");
             return result;
         }
+
+        public async Task<List<BettaType>> GetBettaDescriptionAsync()
+        {
+
+            List<BettaType> bettadescription = new List<BettaType>();
+            using SqlConnection connection = new SqlConnection(this._connectionString);
+            await connection.OpenAsync();
+
+            string cmdString = @"SELECT * FROM BettaFish.Type;";
+
+            using SqlCommand cmd = new(cmdString, connection);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var tail_ID = reader.GetInt32(0);
+                var tailType = reader.GetString(1);
+                var description = reader.GetString(2);
+
+                bettadescription.Add(new(tail_ID, tailType, description));
+            }
+            await connection.CloseAsync();
+
+            _logger.LogInformation("Executed: Get Betta Description");
+            return bettadescription;
+
+        }
+
+        public async Task<List<BettaStories>> GetAllBettaFanStoriesAsync()
+        {
+
+            List<BettaStories> bettafanstories = new List<BettaStories>();
+            using SqlConnection connection = new SqlConnection(this._connectionString);
+            await connection.OpenAsync();
+
+            string cmdString = @"SELECT * FROM BettaFish.Stories";
+
+            using SqlCommand cmd = new(cmdString, connection);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var story_ID = reader.GetInt32(0);
+                var nameOfBetta = reader.GetString(1);
+                var story = reader.GetString(2);
+
+                bettafanstories.Add(new(story_ID, nameOfBetta, story));
+            }
+            await connection.CloseAsync();
+
+            _logger.LogInformation("Executed: Get Betta Fan Stories");
+            return bettafanstories;
+
+        }
+
         public async Task<IEnumerable<BettaFunFacts>> GetAllBettaFunFactsAsync()
         {
 
@@ -71,14 +125,68 @@ namespace BettaFishApp.DataLogic
             }
             await connection.CloseAsync();
 
-            _logger.LogInformation("Executed: GetAllBettaFunFacts");
+            _logger.LogInformation("Executed: Get All Betta Fun Facts");
             return result;
+        }
+
+        public async Task<List<BettaRegistration>> GetAllWebRegistrationAsync()
+        {
+            List<BettaRegistration> viewregistration = new List<BettaRegistration>();
+            using SqlConnection connection = new SqlConnection(this._connectionString);
+            await connection.OpenAsync();
+
+            string cmdString = @"SELECT * FROM BettaFish.Registration";
+
+            using SqlCommand cmd = new(cmdString, connection);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var registration_ID = reader.GetInt32(0);
+                var fName = reader.GetString(1);
+                var lName = reader.GetString(2);
+                var email = reader.GetString(2);
+
+
+                viewregistration.Add(new(registration_ID, lName, fName, email));
+            }
+            await connection.CloseAsync();
+
+            _logger.LogInformation("Executed: View Registration is Successful");
+            return viewregistration;
+
+        }
+
+        public async Task<List<BettaStoreLocation>> GetAllStoreLocationAsync()
+        {
+            List<BettaStoreLocation> storelocation = new List<BettaStoreLocation>();
+            using SqlConnection connection = new SqlConnection(this._connectionString);
+            await connection.OpenAsync();
+
+            string cmdString = @"SELECT * FROM BettaFish.Stores";
+
+            using SqlCommand cmd = new(cmdString, connection);
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var store_ID = reader.GetInt32(0);
+                var storeName = reader.GetString(1);
+                var storeAddress = reader.GetString(2);
+
+                storelocation.Add(new(store_ID, storeName, storeAddress));
+            }
+            await connection.CloseAsync();
+
+            _logger.LogInformation("Executed: Get All Store Location is Successful");
+            return storelocation;
+
         }
 
         public async Task WebRegistration(BettaRegistration bettaregistration)
         {
 
-            _logger.LogInformation(bettaregistration.fName);
+           
             using SqlConnection connection = new(_connectionString);
             await connection.OpenAsync();
 
@@ -97,10 +205,9 @@ namespace BettaFishApp.DataLogic
 
         }
 
-        public async Task GetAllStories(BettaStories bettastories)
+        public async Task GetBettaStories(BettaStories bettastories)
         {
 
-            //_logger.LogInformation(bettaregistration.fName);
             using SqlConnection connection = new(_connectionString);
             await connection.OpenAsync();
 
@@ -115,11 +222,11 @@ namespace BettaFishApp.DataLogic
             cmd.BeginExecuteNonQuery();
             await connection.CloseAsync();
 
-            _logger.LogInformation("Executed: Story is successful.");
+            _logger.LogInformation("Executed: Story is created.");
 
         }
 
 
-
     }
+    
 }

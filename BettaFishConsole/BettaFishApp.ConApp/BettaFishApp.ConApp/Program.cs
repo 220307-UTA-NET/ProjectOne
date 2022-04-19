@@ -11,12 +11,15 @@ namespace BettaFishApp.ConApp
         static async Task Main(string[] args)
         {
 
-            Uri uri = new Uri("https://localhost:7094/");
+            
+            Uri uri = new Uri("https://bettafishinformation.azurewebsites.net");
+            
+
             BettaFishIO bettaFishIO = new BettaFishIO(uri);
             await bettaFishIO.BeginAsync();
-            Console.WriteLine("Thank you for visting!");
 
-
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("THANK YOU FOR VISTING!");
 
         }
     }

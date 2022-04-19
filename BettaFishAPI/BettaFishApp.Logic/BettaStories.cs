@@ -31,7 +31,5 @@ namespace BettaFishApp.Logic
         public string GetStory()
         { return this.story; }
        
-
-
     }
 }

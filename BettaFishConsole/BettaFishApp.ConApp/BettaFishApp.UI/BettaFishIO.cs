@@ -15,12 +15,13 @@ namespace BettaFishApp.UI
     {
         // Fields
         private readonly Uri uri;
-        private int bTailID { get; set; }
-        private string? bDescription { get; set; }
+
 
 
         public static readonly HttpClient httpClient = new HttpClient();
-       
+
+
+
 
         // Constructors
         public BettaFishIO(Uri uri)
@@ -32,7 +33,6 @@ namespace BettaFishApp.UI
         // Methods
         public async Task BeginAsync()
         {
-            Console.WriteLine("Welcome to the Betta Fish Information Website!");
             bool loop = true;
 
             do
@@ -50,15 +50,34 @@ namespace BettaFishApp.UI
                     case 1:
                         await DisplayGetAllBettaTypeAsync();
                         break;
-
                     case 2:
-                        await DisplayGetAllBettaFunFactsAsync();
+                        await DisplayBettaDescriptionAsync();
                         break;
                     case 3:
-                        RegistrationDTO bettaregistration = GetUserInput();
-                        await DisplayWebRegistrationAsync(bettaregistration);
-
+                        await DisplayGetAllBettaFunFactsAsync();
                         break;
+                    case 4:
+                        BettaStoriesDTO bettastories = GetUserInput2();
+                        await GetBettaStoriesAsync(bettastories);
+                        break;
+                    case 5:
+                        await DisplayBettaFanStoryAsync();
+                        break;
+                    case 6:
+                        RegistrationDTO bettaregistration = GetUserInput();
+                        await GetWebRegistrationAsync(bettaregistration);
+                        break;
+                    case 7:
+                        await DisplayBettaFanAsync();
+                        break;
+                    case 8:
+                        await DisplayBettaStores();
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid input. Please try again.");
+                        break;
+
 
                 }
             } while (loop == true);
@@ -68,13 +87,22 @@ namespace BettaFishApp.UI
         {
             Console.Clear();
             int choice = -1;
-            //Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Welcome to the Betta Fish Information Website!");
-            Console.WriteLine("Please select an option to explore:");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\nWelcome to the Betta Fish Fan Website!");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Please select an OPTION to explore:");
+
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("[0] : Exit");
             Console.WriteLine("[1] : Betta Type");
-            Console.WriteLine("[2] : Betta Fun Facts");
-            Console.WriteLine("[3] : Register With Us");
+            Console.WriteLine("[2] : Betta Descriptions");
+            Console.WriteLine("[3] : Betta Fun Facts");
+            Console.WriteLine("[4] : Share Your Betta Story");
+            Console.WriteLine("[5] : View Your Betta Stories");
+            Console.WriteLine("[6] : Register With Us");
+            Console.WriteLine("[7] : View Betta Fan");
+            Console.WriteLine("[8] : Store Locations");
 
 
             string? input = Console.ReadLine();
@@ -87,7 +115,7 @@ namespace BettaFishApp.UI
 
         private async Task DisplayGetAllBettaTypeAsync()
         {
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "betta/type");
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "betta/get/type");
             request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
 
 
@@ -104,13 +132,15 @@ namespace BettaFishApp.UI
 
                 if (bettatypes != null)
                 {
+
+                    Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine("BETTA TYPES");
                     foreach (var bettatype in bettatypes)
                     {
-                        Console.WriteLine("\nType-" + bettatype.tail_ID + bettatype.tailType );
-              
-                    }
 
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("Type" + " : "  + bettatype.tailType);
+                    }
                 }
                 else
                 {
@@ -119,21 +149,55 @@ namespace BettaFishApp.UI
 
             }
 
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nPress any KEY to return to the MAIN MENU. Thank you..");
             Console.ReadLine();
             Console.Clear();
         }
 
-        //left off here
-        public void GetBettaDesciption(BettaTypeDTO bettatype)
+        private async Task DisplayBettaDescriptionAsync()
         {
-            bTailID = bettatype.tail_ID;
-            bDescription = bettatype.description;
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "betta/get/description");
+            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
+
+
+            using (HttpResponseMessage response = await httpClient.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+
+                if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+                {
+                    throw new ArrayTypeMismatchException();
+                }
+
+                var bettadescriptions = await response.Content.ReadFromJsonAsync<List<BettaTypeDTO>>();
+
+                if (bettadescriptions != null)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("BETTA DESCRIPTION");
+                    foreach (var bettadescription in bettadescriptions)
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("\nType--" + bettadescription.tailType + "--" + bettadescription.description);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No Betta Type Information Found.");
+                }
+
+            }
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nPress any KEY to return to the MAIN MENU. Thank you..");
+            Console.ReadLine();
+            Console.Clear();
         }
 
         private async Task DisplayGetAllBettaFunFactsAsync()
         {
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "betta/funfacts");
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "betta/get/funfacts");
             request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
 
 
@@ -150,16 +214,42 @@ namespace BettaFishApp.UI
 
                 if (bettafunfacts != null)
                 {
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("BETTA FUN FACTS");
                     foreach (var bettafunfact in bettafunfacts)
                     {
-                        Console.WriteLine("Fun Fact: " + bettafunfact.funFact);
+
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("\nFun Fact: " + bettafunfact.funFact);
                     }
-                  
+
                 }
                 else
                 {
                     Console.WriteLine("No Betta Fun Fact Found.");
+                }
+            }
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nPress any key to return to the MAIN MENU. Thank you.");
+            Console.ReadLine();
+            Console.Clear();
+        }
+
+        private async Task GetBettaStoriesAsync(BettaStoriesDTO bettastories)
+        {
+
+            using (HttpResponseMessage response = await httpClient.PostAsJsonAsync(uri.ToString() + "betta/stories", bettastories))
+            {
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Your story was successfully posted.");
+                }
+                else
+                {
+                    Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
                 }
             }
 
@@ -168,8 +258,50 @@ namespace BettaFishApp.UI
             Console.Clear();
         }
 
+        private async Task DisplayBettaFanStoryAsync()
+        {
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "betta/view/fanstories");
+            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
 
-        private async Task DisplayWebRegistrationAsync(RegistrationDTO bettaregistration)
+
+            using (HttpResponseMessage response = await httpClient.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+
+                if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+                {
+                    throw new ArrayTypeMismatchException();
+                }
+
+                var bettafanstories = await response.Content.ReadFromJsonAsync<List<BettaStoriesDTO>>();
+
+                if (bettafanstories != null)
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("BETTA STORIES");
+                    foreach (var bettafanstorie in bettafanstories)
+                    {
+
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("\nFan Story:" + "[" + bettafanstorie.story_ID + "]" + "\nName of Betta:" 
+                            + "[" + bettafanstorie.nameOfBetta + "]" +  ":" + bettafanstorie.story);
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("No Betta Fun Fact Found.");
+                }
+            }
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nPress any key to return to the MAIN MENU. Thank you.");
+            Console.ReadLine();
+            Console.Clear();
+
+        }
+
+        private async Task GetWebRegistrationAsync(RegistrationDTO bettaregistration)
         {
         
             using (HttpResponseMessage response = await httpClient.PostAsJsonAsync(uri.ToString() + "betta/registration", bettaregistration))
@@ -177,7 +309,8 @@ namespace BettaFishApp.UI
               
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine("Successfully Posted.");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nYour registration was successful.");
                 }
                 else
                 {
@@ -190,22 +323,130 @@ namespace BettaFishApp.UI
             Console.Clear();
         }   
 
+        private async Task DisplayBettaFanAsync()
+        {
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "betta/view/registration");
+            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
+
+
+            using (HttpResponseMessage response = await httpClient.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+
+                if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+                {
+                    throw new ArrayTypeMismatchException();
+                }
+
+                var viewregistrations = await response.Content.ReadFromJsonAsync<List<RegistrationDTO>>();
+
+                if (viewregistrations != null)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine("BETTA FAN");
+                    foreach (var viewregistration in viewregistrations)
+                    {
+
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("\nFan:" + "[" + viewregistration.registration_ID + "]" + "Name of Fan:" + viewregistration.lName + 
+                            "" + viewregistration.fName);
+
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("No Betta Fun Fact Found.");
+                }
+            }
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nPress any key to return to the MAIN MENU. Thank you.");
+            Console.ReadLine();
+            Console.Clear();
+
+        }
+
+        private async Task DisplayBettaStores()
+        {
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "betta/get/storelocation");
+            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
+
+
+            using (HttpResponseMessage response = await httpClient.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+
+                if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+                {
+                    throw new ArrayTypeMismatchException();
+                }
+
+                var storelocations = await response.Content.ReadFromJsonAsync<List<BettaStoreLocationDTO>>();
+
+                if (storelocations != null)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("BETTA STORE LOCATIONS");
+                    foreach (var storelocation in storelocations)
+                    {
+
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("\nStore:" + "[" + storelocation.store_ID + "]" + "\nName of Store:"
+                            + "[" +  storelocation.storeName + "]" + " " + storelocation.storeAddress);
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("No Betta Fun Fact Found.");
+                }
+            }
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nPress any key to return to the MAIN MENU. Thank you.");
+            Console.ReadLine();
+            Console.Clear();
+
+
+        }
+
         public RegistrationDTO GetUserInput()
         {
             RegistrationDTO bettaregistration = new();
 
-            Console.WriteLine("What is your first name?");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("BETTA FAN REGISTRATION");
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("\nWhat is your first name?");
             bettaregistration.fName = Console.ReadLine();
 
-            Console.WriteLine("What is your last name?");
+            Console.WriteLine("\nWhat is your last name?");
             bettaregistration.lName = Console.ReadLine();
 
-            Console.WriteLine("What is your email?");
+            Console.WriteLine("\nWhat is your email?");
             bettaregistration.email = Console.ReadLine();
 
             return bettaregistration;
 
         }
+
+        public BettaStoriesDTO GetUserInput2()
+        {
+            BettaStoriesDTO bettastories = new();
+
+            Console.WriteLine("What is your Betta's name?");
+            bettastories.nameOfBetta = Console.ReadLine();
+
+            Console.WriteLine("\nPlease share your story?");
+            bettastories.story = Console.ReadLine();
+
+            return bettastories;
+        }
+
+
 
     }
     

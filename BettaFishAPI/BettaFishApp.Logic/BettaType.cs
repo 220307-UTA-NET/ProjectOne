@@ -25,13 +25,6 @@ namespace BettaFishApp.Logic
         }
 
         //Methods
-        //public string BettaDescription()
-        //{
-        //    StringBuilder sb = new StringBuilder();
-        //    sb.Append($"[{tail_ID}] - {tailType} \n");
-        //    return sb.ToString();
-        //}
-
-
+        
     }
 }

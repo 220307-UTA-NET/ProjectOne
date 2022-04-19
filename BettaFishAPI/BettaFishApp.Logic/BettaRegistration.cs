@@ -34,10 +34,5 @@ namespace BettaFishApp.Logic
         public string Getemail()
         { return this.email; }
 
-
-
-
-
-
     }
 }

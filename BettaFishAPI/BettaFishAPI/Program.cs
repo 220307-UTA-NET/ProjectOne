@@ -3,7 +3,9 @@ using BettaFishApp.DataLogic;
 var builder = WebApplication.CreateBuilder(args);
 
 //Connection String
-string connectionString = builder.Configuration["connectionString"];
+//string connectionString = builder.Configuration["connectionString"];
+string connectionString = builder.Configuration.GetConnectionString("RPS-DB-Connection");
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

@@ -10,9 +10,12 @@ CREATE TABLE BettaFish.Type (
 
 -- DROP TABLE BettaFish.Type; 
 SELECT * FROM BettaFish.Type;
--- SELECT tailType, description FROM BettaFish.Type WHERE tail_ID = 1
 -- DELETE FROM BettaFish;
-
+SELECT tail_ID,  tailType FROM BettaFish.Type
+SELECT TOP 1 * FROM BettaFish.Type ORDER BY tail_ID 
+SELECT * FROM BettaFish.Type WHERE tail_ID = 0
+SELECT tail_ID FROM BettaFish.Type
+SELECT TOP 14 * FROM BettaFish.Type ORDER BY tail_ID
 
 -- Table 2
 CREATE TABLE BettaFish.Facts (
@@ -25,6 +28,7 @@ SELECT * FROM BettaFish.Facts;
 -- SELECT Fact_ID, funFact FROM BettaFish.Facts;
 -- SELECT funFact FROM BettaFish.Facts WHERE fact_ID = 4
 -- DELETE FROM BettaFish.Facts;
+
 
 
 --Table 3
@@ -42,21 +46,31 @@ SELECT * FROM BettaFish.Registration;
 -- Table 4
 CREATE TABLE BettaFish.Stories (
     story_ID INT PRIMARY KEY IDENTITY, -- creates a unique value that changes with every entry in the table
-    story NVARCHAR (2000) NULL,
+    nameOfBetta NVARCHAR (255) NULL,
+    story NVARCHAR (3000) NULL,
 );
 
--- DROP TABLE BettaFish.Registration;
+--DROP TABLE BettaFish.Stories;
 SELECT * FROM BettaFish.Stories;
 
+-- Table 5
+CREATE TABLE BettaFish.Stores (
+    store_ID INT PRIMARY KEY IDENTITY, -- creates a unique value that changes with every entry in the table
+    storeName NVARCHAR (255) NULL,
+    storeAddress NVARCHAR (255) NULL,
+);
 
+-- DROP TABLE BettaFish.Stores;
+SELECT * FROM BettaFish.Stores;
 
 
 /*******************************************************************************
    Create Foreign Keys
 ********************************************************************************/
-
-
-
+-- link the table EternalFlowStore.Location to referenece EternalFlowStore.Customers through Location_ID with Customer_ID
+--ALTER TABLE BettaFish.Registration
+    --ADD CONSTRAINT FK__Location__Location_ID FOREIGN KEY ( Location_ID )
+        --REFERENCES EternalFlowStore.Customers (Customer_ID)
 
 
 /*******************************************************************************
@@ -135,7 +149,7 @@ VALUES(
     ('Betta fish have a special organ, known as the labyrinth organ, that allows them to breathe air at the water’s surface.')
 
 /*******************************************************************************
-   Populate Table 
+   Populate Table 3
 ********************************************************************************/
 -- Using DML NOW
 -- INSERT, UPDATE, DELETE, TRUNCATE data in my tables
@@ -143,3 +157,32 @@ VALUES(
 
 -- TABLE 3
 INSERT INTO BettaFish.Registration (fName,lName,email) VALUES ('fName', 'lName', 'email');
+
+/*******************************************************************************
+   Populate Table 4
+********************************************************************************/
+-- Using DML NOW
+-- INSERT, UPDATE, DELETE, TRUNCATE data in my tables
+-- Use VERB NOUN
+
+
+/*******************************************************************************
+   Populate Table 5
+********************************************************************************/
+-- Using DML NOW
+-- INSERT, UPDATE, DELETE, TRUNCATE data in my tables
+-- Use VERB NOUN
+
+-- TABLE 5
+INSERT INTO BettaFish.Stores (storeName)
+VALUES(
+     'PetSmart'), ('Petco'), ('Betta Madness'), ('Aqualand Aquarium Center'), ('Tamed Waters'), ('Sonnen Pet Shop'), ('Quality Aquatics Shop')
+
+
+UPDATE BettaFish.Stores SET storeAddress = '2304 Bedok Reservoir Road Bedok Industrial Park, Ontario CA 94232' WHERE store_ID = 1;
+UPDATE BettaFish.Stores SET storeAddress = '1675 Parkway Street, Rochester, MN 55904' WHERE store_ID = 2;
+UPDATE BettaFish.Stores SET storeAddress = '4414 Denver Avenue, Bridge City, TX 85423' WHERE store_ID = 3;
+UPDATE BettaFish.Stores SET storeAddress = '1149 Canis Heights Drive, Rapid City, IL 65321' WHERE store_ID = 4;
+UPDATE BettaFish.Stores SET storeAddress = '3859 Patterson Road, Woodland Hills CA 91337' WHERE store_ID = 5;
+UPDATE BettaFish.Stores SET storeAddress = '1623 Bailey Drive, Milwaukee WI 32422' WHERE store_ID = 6;
+UPDATE BettaFish.Stores SET storeAddress = '3463 Weekley Street, Miami FL 56942' WHERE store_ID = 7;
