@@ -59,7 +59,7 @@ jobs:
         uses: Azure/webapps-deploy@v2
         with:
            app-name: christianspizza
-           publish-profile: ${{secret.pizzas}}
+           publish-profile: ${{secrets.pizzas}}
            package: ${{env.AZURE_WEBAPP_APP_PATH}}
     
         
