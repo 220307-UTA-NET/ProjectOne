@@ -3,6 +3,8 @@ name: Docker Image CI
 on:
   push:
     branches: [ DanG ]
+    paths: 
+      - 'P_One_ConsoleApp/**/**'
   pull_request:
     branches: [ DanG ]
 
