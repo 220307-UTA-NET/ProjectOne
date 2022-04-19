@@ -179,7 +179,7 @@ namespace EmployeeApp.DataLogic
             return result;  // Return the list filled with the new Employee
         }
 
-        public async Task<IEnumerable<Employee>> UpdateEmployeeAsync(Employee emp)
+        public async Task<IEnumerable<Employee>> UpdateEmployeeAsync(int Id, Employee emp)
         {
             // Empty List to save the result
             List<Employee> result = new();
@@ -188,17 +188,24 @@ namespace EmployeeApp.DataLogic
             using SqlConnection connection = new(_connectionString);
             await connection.OpenAsync();   // Open the connection
 
-            // SQL Command to UPDATE an Employee's department and title
+            // SQL Command to UPDATE an Employee's information
             string cmdString =
-                "UPDATE p1.Employee SET Department = @Department, Title = @Title WHERE Id = @Id;";
+                @"UPDATE p1.Employee 
+                SET FirstName = @FirstName, LastName = @LastName, BirthDate = @BirthDate, BranchId = @BranchId, Department = @Department, Title = @Title, HiredDate = @HiredDate 
+                WHERE Id = @Id;";
 
             // Use SqlCommand to store the SQL command/query and use the connection
             using SqlCommand cmd = new(cmdString, connection);
 
             // Parameters.AddWithValue
+            cmd.Parameters.AddWithValue("@FirstName", emp.FirstName);
+            cmd.Parameters.AddWithValue("@LastName", emp.LastName);
+            cmd.Parameters.AddWithValue("@BirthDate", emp.BirthDate);
+            cmd.Parameters.AddWithValue("@BranchId", emp.BranchId);
             cmd.Parameters.AddWithValue("@Department", emp.Department);
             cmd.Parameters.AddWithValue("@Title", emp.Title);
-            cmd.Parameters.AddWithValue("@Id", emp.Id);
+            cmd.Parameters.AddWithValue("@HiredDate", emp.HiredDate);
+            cmd.Parameters.AddWithValue("@Id", Id);
 
             // Execute the SQL Command
             cmd.ExecuteNonQuery();
@@ -209,6 +216,8 @@ namespace EmployeeApp.DataLogic
 
             // SqlCommand to store the new query using the same connection
             using SqlCommand cmd2= new(cmdString2, connection);
+
+            cmd2.Parameters.AddWithValue("@Id", Id);
 
             // Use SqlDataReader to read the stream of data
             using SqlDataReader reader = cmd2.ExecuteReader();
@@ -288,6 +297,42 @@ namespace EmployeeApp.DataLogic
             _logger.LogInformation("Executed: DeleteEmployeeAsync()");  // Logging
 
             return result;
+        }
+
+        public async Task<IEnumerable<Location>> GetLocationsAsync()
+        {
+            // Create an empty List to save all Employees
+            List<Location> result = new();
+
+            // Create connection to the SQL Server database
+            using SqlConnection connection = new(_connectionString);
+            await connection.OpenAsync();   // Open the connection
+
+            // Return control to user while the operation is being performed
+            // SQL command/query to SELECT all Employees
+            string cmdString =
+                "SELECT * FROM p1.Location;";
+
+            // Use SqlCommand to store the SQL command/query
+            using SqlCommand cmd = new(cmdString, connection);
+
+            // Use SqlDataReader to read the stream of data (rows) from the SQL Server database
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            // While there is more row(s) to read
+            while (reader.Read())
+            {
+                var Id = reader.GetInt32(0);
+                var City = reader.GetString(1);
+                var State = reader.GetString(2);
+                var Country = reader.GetString(3);
+                result.Add(new(Id, City, State, Country));
+            }
+            await connection.CloseAsync();  // Close the connection
+
+            _logger.LogInformation("Executed: GetAllEmployeesAsync()");   // Create a log information
+
+            return result;  // Return the list filled with all Locations
         }
     }
 }
