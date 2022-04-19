@@ -23,7 +23,7 @@ namespace WebAppComputerStore.Controller
 
         // Methods 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Computer_Make>>> GetAllComputer_MakesAsync()
+        public async Task<ActionResult<IEnumerable<Computer_Make>>> GetAllComputer()
         {
             IEnumerable<Computer_Make> Computer_makes;
             try
@@ -41,23 +41,36 @@ namespace WebAppComputerStore.Controller
         }
 
         // GET api/<StoreController>/5
-      /*  [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }*/
+        /*  [HttpGet("{id}")]
+          public string Get(int id)
+          {
+              return "value";
+          }*/
 
-        // POST api/<StoreController>
-      /*  [HttpPost]
-        public void Post([FromBody] string value)
+      //  POST api/<StoreController>
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<Computer_Make>>> AddToComputer()
         {
+            IEnumerable<Computer_Make> AddComputer;
+            try
+            {
+                AddComputer = await _repository.AddComputer();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "SQL Error while adding Computer.");
+                return StatusCode(500);
+
+            }
+            return AddComputer.ToList();
+
         }
-*/
+
         // PUT api/<StoreController>/5
-      /*  [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }*/
+        /*  [HttpPut("{id}")]
+          public void Put(int id, [FromBody] string value)
+          {
+          }*/
 
         // DELETE api/<StoreController>/5
         /*[HttpDelete("{id}")]

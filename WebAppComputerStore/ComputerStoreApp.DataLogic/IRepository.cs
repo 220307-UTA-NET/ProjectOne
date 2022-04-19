@@ -6,6 +6,8 @@ namespace ComputerStoreApp.DataLogic
     {
         Task<IEnumerable<Computer_Make>> GetAllComputers();
         
-        Task<IEnumerable<Computer_Make>> GetComputer(string Name);
+        //Task<IEnumerable<Computer_Make>> GetComputer(string Name);
+
+        Task<IEnumerable<Computer_Make>> AddComputer();
     }
 }
