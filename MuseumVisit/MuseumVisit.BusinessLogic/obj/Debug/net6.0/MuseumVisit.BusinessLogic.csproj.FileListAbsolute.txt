@@ -10,3 +10,15 @@
 /Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/Debug/net6.0/refint/MuseumVisit.BusinessLogic.dll
 /Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/Debug/net6.0/MuseumVisit.BusinessLogic.pdb
 /Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/Debug/net6.0/ref/MuseumVisit.BusinessLogic.dll
+/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/bin/Debug/net6.0/MuseumVisit.BusinessLogic.deps.json
+/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/bin/Debug/net6.0/MuseumVisit.BusinessLogic.dll
+/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/bin/Debug/net6.0/MuseumVisit.BusinessLogic.pdb
+/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/Debug/net6.0/MuseumVisit.BusinessLogic.csproj.AssemblyReference.cache
+/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/Debug/net6.0/MuseumVisit.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/Debug/net6.0/MuseumVisit.BusinessLogic.AssemblyInfoInputs.cache
+/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/Debug/net6.0/MuseumVisit.BusinessLogic.AssemblyInfo.cs
+/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/Debug/net6.0/MuseumVisit.BusinessLogic.csproj.CoreCompileInputs.cache
+/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/Debug/net6.0/MuseumVisit.BusinessLogic.dll
+/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/Debug/net6.0/refint/MuseumVisit.BusinessLogic.dll
+/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/Debug/net6.0/MuseumVisit.BusinessLogic.pdb
+/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/Debug/net6.0/ref/MuseumVisit.BusinessLogic.dll

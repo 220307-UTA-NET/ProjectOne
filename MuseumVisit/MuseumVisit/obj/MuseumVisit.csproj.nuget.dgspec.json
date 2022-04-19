@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit/MuseumVisit.csproj": {}
+    "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit/MuseumVisit.csproj": {}
   },
   "projects": {
-    "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj": {
+    "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj",
+        "projectUniqueName": "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj",
         "projectName": "MuseumVisit.BusinessLogic",
-        "projectPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj",
+        "projectPath": "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj",
         "packagesPath": "/Users/francis/.nuget/packages/",
-        "outputPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/",
+        "outputPath": "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/francis/.nuget/NuGet/NuGet.Config"
@@ -58,18 +58,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj": {
+    "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj",
+        "projectUniqueName": "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj",
         "projectName": "MuseumVisit.DataLogic",
-        "projectPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj",
+        "projectPath": "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj",
         "packagesPath": "/Users/francis/.nuget/packages/",
-        "outputPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/obj/",
+        "outputPath": "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/francis/.nuget/NuGet/NuGet.Config"
@@ -84,8 +84,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj": {
-                "projectPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj"
+              "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj": {
+                "projectPath": "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj"
               }
             }
           }
@@ -124,18 +124,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit/MuseumVisit.csproj": {
+    "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit/MuseumVisit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit/MuseumVisit.csproj",
+        "projectUniqueName": "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit/MuseumVisit.csproj",
         "projectName": "MuseumVisit",
-        "projectPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit/MuseumVisit.csproj",
+        "projectPath": "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit/MuseumVisit.csproj",
         "packagesPath": "/Users/francis/.nuget/packages/",
-        "outputPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit/obj/",
+        "outputPath": "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/francis/.nuget/NuGet/NuGet.Config"
@@ -150,11 +150,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj": {
-                "projectPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj"
+              "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj": {
+                "projectPath": "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.BusinessLogic/MuseumVisit.BusinessLogic.csproj"
               },
-              "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj": {
-                "projectPath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj"
+              "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj": {
+                "projectPath": "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit.DataLogic/MuseumVisit.DataLogic.csproj"
               }
             }
           }
@@ -212,7 +212,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
         }
       }
     }

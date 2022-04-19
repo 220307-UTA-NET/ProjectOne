@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bx808ViTVGHgKUTPl3J06ootevklrWTxM9zCHSrj7NH6X7ELUw8RzIzbwmCKHREHYLl1fqCqlr8SXinPWx6vtw==",
+  "dgSpecHash": "l3PXwJBy0UaYrur5R/GKBY3f8dmTxUES7+0471XNyekoqeOXLZuBBIGB1X3qMYu90XJ8JDv6pATA7miSr4JCQA==",
   "success": true,
-  "projectFilePath": "/Users/francis/revature/MusuemLog/MuseumVisit/MuseumVisit/MuseumVisit.csproj",
+  "projectFilePath": "/Users/francis/revature/projectone/ProjectOne/MusuemLog/MuseumVisit/MuseumVisit/MuseumVisit.csproj",
   "expectedPackageFiles": [
     "/Users/francis/.nuget/packages/azure.core/1.20.0/azure.core.1.20.0.nupkg.sha512",
     "/Users/francis/.nuget/packages/azure.data.appconfiguration/1.2.0/azure.data.appconfiguration.1.2.0.nupkg.sha512",

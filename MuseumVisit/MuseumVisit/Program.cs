@@ -7,10 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 // for work at home 
-// var connectionString = builder.Configuration.GetConnectionString("AppConfig");
+var connectionString = builder.Configuration.GetConnectionString("AppConfig");
 
 //for deployment
-var connectionString = builder.Configuration.GetConnectionString("RPS-DB-Connection");
+//var connectionString = builder.Configuration.GetConnectionString("RPS-DB-Connection");
 
 //builder.Host.ConfigureAppConfiguration(builder =>
 //{
