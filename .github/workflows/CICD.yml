@@ -53,7 +53,15 @@ jobs:
               git config --global user.name "cubidesrojas"
               git commit -am ./ "Auto commit"
               git push ./
+      - name: build with DotNet 
+        run:  dotnet publish ./Webstore/ --configuration Release -o ${{env.AZURE_WEBAPP_APP_PATH}}
+      - name: Azure WebApp
+        uses: Azure/webapps-deploy@v2
+        with:
+           app-name: christianspizza
 
-     
+           publish-profile: ${{secret.pizzas}}
+           package: ${{env.AZURE_WEBAPP_APP_PATH}}
+    
         
          
