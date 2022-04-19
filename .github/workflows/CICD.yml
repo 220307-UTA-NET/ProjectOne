@@ -46,4 +46,10 @@ jobs:
         
       - name: add files for commit
         run: git add . ./
+        
+      - name: commit files 
+        run: git commit -m "Auto commit"
+        
+      - name: push files 
+        run: git push
          
