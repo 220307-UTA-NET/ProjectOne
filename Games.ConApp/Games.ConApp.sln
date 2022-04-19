@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1700.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Games.ConApp", "Games.ConApp\Games.ConApp.csproj", "{695E21A0-C9C2-43B2-A531-63F05E35D539}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{695E21A0-C9C2-43B2-A531-63F05E35D539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{695E21A0-C9C2-43B2-A531-63F05E35D539}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{695E21A0-C9C2-43B2-A531-63F05E35D539}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{695E21A0-C9C2-43B2-A531-63F05E35D539}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14E1BA37-7359-4CD2-BBB4-68A2FC6B7D4F}
+	EndGlobalSection
+EndGlobal
