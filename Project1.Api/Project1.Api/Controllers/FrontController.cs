@@ -14,9 +14,9 @@ namespace Project1.Api.Controllers
     public class FrontController : ControllerBase
     {
         private readonly IRepository _repository;
-        private readonly ILogger<LoginController> _logger;
+        private readonly ILogger<FrontController> _logger;
 
-        public FrontController(IRepository repository, ILogger<LoginController> logger)
+        public FrontController(IRepository repository, ILogger<FrontController> logger)
         {
             this._repository = repository;
             this._logger = logger;

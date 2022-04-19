@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Proejct1.DataLogic\Project1.DataLogic.csproj" />
+    <ProjectReference Include="..\Project1.Api\Project1.Api.csproj" />
     <ProjectReference Include="..\Project1.Model\Project1.Model.csproj" />
   </ItemGroup>
 

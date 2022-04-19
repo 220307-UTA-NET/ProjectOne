@@ -21,10 +21,11 @@ RUN dotnet build
 # The SDK is a LARGE package to include, and is only really necessary for the "build" step.
 # Running the project can be done with a more limited environment.
 
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 
+WORKDIR /App
 
-
-# COPY --from=build ./App/Project1Docker/bin/Release/net6.0/publish/ ./
+COPY --from=build /App/P_One_ConsoleApp/bin/Debug/net6.0/ ./ 
 
 # The ENTRYPOINT statement/command specifies the command that is run when the container is started.
 ENTRYPOINT ["dotnet", "./Project1Docker/bin/Debug/net6.0/Project1Docker.dll"]

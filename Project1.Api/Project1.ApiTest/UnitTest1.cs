@@ -6,49 +6,83 @@ using System.Linq;
 using Project1.DataLogic;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace Project1.ApiTest
 {
     public class UnitTest1
     {
+
         [Fact]
-        public void GetAllUsersTest()
+        public void UserRegisterationTest()
         {
-            /*var userRegister = new User();
-            var bankUser = new User();
+            //Arrange
+            User test = new User();
 
-            Mock<IRepository> mockRepo = new();
-            Mock<ILogger<API.Controllers.LoginController>> mocklog = new();
-            User user1 = new User();
-            string bankUserUsername = "Libra";
-            mockRepo.Setup(Xunit => Xunit.GetAllUsers(bankUserUsername)).ReturnsAsync();
-            var loginController = new API.Controllers.LoginController(mocklog.Object, mockRepo.Object);
+            //Act
+            string actual = test.GetbankUserUsername();
 
-            var accountService = new User(bankUser.Object, null);
-
-            IEnumerable<User> actualResult = new List<User>() {user1};
-
-            Assert.Equal(1, result.Count());*/
+            //Assert
+            string expected = "Gemini";
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void GetAllAccountsTest()
+        public async Task UserRegisterationTest_ValidUser()
         {
-           /*var accountRegister = new Account();
-            var bankAccount = new Account();
-
+            //Arrange
             Mock<IRepository> mockRepo = new();
-            Mock<ILogger<API.Controllers.LoginController>> mocklog = new();
-            Account account1 = new Account();
-            int bankUserId = 1;
-            mockRepo.Setup(Xunit => Xunit.GetAllAccounts(bankUserId)).ReturnsAsync();
-            var loginController = new API.Controllers.FrontController(mocklog.Object, mockRepo.Object);
+            User test = new User(6,"June","Lee","Gemini","Pearl");
+            List <User> newUser = new List<User>();
+            newUser.Add(test);
 
-            var accountService = new Account(bankUser.Object, null);
+            string json = JsonSerializer.Serialize(newUser);
+            Mock<ILogger<Project1.Api.Controllers.LoginController>> mocklog = new();
 
-            IEnumerable<Account> actualResult = new List<Account>() { account1 };
+            mockRepo.Setup(x => x.GetAllUsers()).ReturnsAsync(newUser);
+            var userList = new Project1.Api.Controllers.LoginController(mockRepo.Object, mocklog.Object);
 
-            Assert.Equal(1, result.Count());*/
+            //Act
+            var newUserTest = await userList.GetAllUserAsync();
+
+            //Assert
+            Assert.Equal(json, newUserTest.Content);
+        }
+
+        [Fact]
+        public void AccountRegisterationTest()
+        {
+            //Arrange
+           Account test = new Account();
+
+            //Act
+            int actual = test.GetbankUserId();
+
+            //Assert
+            int expected = 4;
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public async Task AccountRegisterationTest_ValidAccount()
+        {
+            //Arrange
+            Mock<IRepository> mockRepo = new();
+            Account test = new Account(6, 13000, 6);
+            List<Account> newAccount = new List<Account>();
+            newAccount.Add(test);
+
+            string json = JsonSerializer.Serialize(newAccount);
+            Mock<ILogger<Project1.Api.Controllers.FrontController>> mocklog = new();
+
+            mockRepo.Setup(x => x.GetAllAccounts()).ReturnsAsync(newAccount);
+            var accountList = new Project1.Api.Controllers.FrontController(mockRepo.Object, mocklog.Object);
+
+            //Act
+            var newAccountTest = await accountList.GetAllAccountAsync();
+
+            //Assert
+            Assert.Equal(json, newAccountTest.Content);
         }
     }      
 }
