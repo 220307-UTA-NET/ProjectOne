@@ -18,6 +18,6 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Build
-      run: dotnet build ./MuseumVisit/MuseumVisit.sln --no-restore -o ./Test
+      run: dotnet build ./MuseumVisit/MuseumVisit.sln --configuration Release -o ./Test
     - name: Test
       run: dotnet test ./MuseumVisit/Museum.Test/Museum.Test.csproj --no-build --verbosity normal
