@@ -5,9 +5,9 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryApp.Api", "LibraryApp.Api.csproj", "{E32A325A-6320-4D55-8DEC-7C8443B42F82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryApp.BusinessLogias", "..\LibraryApp.BusinessLogias\LibraryApp.BusinessLogias.csproj", "{1CB7413A-B0C6-4930-9A11-55070BAB08F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryApp.BusinessLogias", "..\LibraryApp.BusinessLogias\LibraryApp.BusinessLogias.csproj", "{1CB7413A-B0C6-4930-9A11-55070BAB08F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryApp.DataLogias", "..\LibraryApp.DataLogias\LibraryApp.DataLogias.csproj", "{9BF43631-686D-47CF-B2CB-0783DD89AD41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryApp.DataLogias", "..\LibraryApp.DataLogias\LibraryApp.DataLogias.csproj", "{9BF43631-686D-47CF-B2CB-0783DD89AD41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

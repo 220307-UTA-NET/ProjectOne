@@ -10,7 +10,8 @@ namespace LibraryApp.Runner
         //MEthods
         static async Task Main(string[] args)
         {
-            Uri uri = new Uri("https://localhost:7110/");
+            //Uri uri = new Uri("https://localhost:7110/");
+            Uri uri = new Uri("https://p1api.azurewebsites.net");
             IO io = new IO(uri);
             await io.BeginAsync();
         }

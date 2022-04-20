@@ -8,14 +8,14 @@ namespace LibraryApp.Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class BooksController : ControllerBase
+    public class BookController : ControllerBase
     {
         //Fields
         private readonly IRepository _repository;
-        private readonly ILogger<BooksController> _logger;
+        private readonly ILogger<BookController> _logger;
 
         //Constructors
-        public BooksController(IRepository repository, ILogger<BooksController> logger)
+        public BookController(IRepository repository, ILogger<BookController> logger)
         {
             this._repository = repository;
             this._logger = logger;

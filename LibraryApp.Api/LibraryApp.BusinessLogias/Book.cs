@@ -17,6 +17,13 @@ namespace LibraryApp.BusinessLogias
 
         //Constructors
         public Book() { }
+        public Book(string title, string author, decimal price, int inOut)
+        {
+            this.Title = title;
+            this.Author = author;
+            this.Price = price;
+            this.InOut = inOut;
+        }
         public Book(int bookID, string title, string author, decimal price, int inOut)
         {
             this.BookID = bookID;

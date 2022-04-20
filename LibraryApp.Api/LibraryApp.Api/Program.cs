@@ -4,9 +4,8 @@ using Microsoft.Extensions.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 //Connection String
-//var connectionString = "Server = tcp:firstpoint.database.windows.net,1433; Initial Catalog = databaseprime; Persist Security Info=False; User ID = tryggve220307; Password =; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
-//var connectionString = builder.Configuration.GetConnectionString("connectionString");
-var connectionString = builder.Configuration["connectionString"];
+var connectionString = builder.Configuration.GetConnectionString("connectionString");
+//var connectionString = builder.Configuration["connectionString"];
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
