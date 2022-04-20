@@ -37,7 +37,7 @@ CREATE TABLE BankManagementSystem.Customer(
 INSERT INTO BankManagementsystem.Customer(IsVerified, FirstName,LastName,CustAddress, DOB)
 VALUES('2','Hamid','Hamedi','Address2', '1989-06-06')
 
-UPDATE BankManagementSystem.Customer set CustAddress =  'customer.custAddress' WHERE CustomerID = 2
+--UPDATE BankManagementSystem.Customer set CustAddress =  'customer.custAddress' WHERE CustomerID = 2
 
 SELECt *
 FROM BankManagementsystem.Customer
@@ -123,7 +123,7 @@ VALUES('Employee1F', 'Employee2L')
 Drop table if exists BankManagementSystem.AccountTransaction;
 
 CREATE TABLE BankManagementSystem.AccountTransaction(
-TransId         BigINT NOT NULL Identity (1,1),
+TransId         BIGINT NOT NULL Identity (1,1),
 TransDate       DATETime NOT NULL,
 AccountID       INT NOT NULL,-- FOREIGN KEY REFERENCES BankManagementSystem.Account(AccountID),
 TransTypeID     INT NOT NULL,
@@ -139,4 +139,4 @@ Constraint FK_Transaction_TransactionType FOREIGN key (TransTypeID) references B
 SELECt *
 FROM BankManagementsystem.AccountTransaction
 INSERT INTO BankManagementSystem.AccountTransaction(TransId,TransDate,AccountID,TransTypeID,DebitAmount,CreditAmount,Balance)
-VALUES(1,'2022-03-04', 1 ,2, '200', '200',0)
+VALUES(9,'2022-04-20 22:30:43.237', 2 ,2, 10, 10,0)

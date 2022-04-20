@@ -13,7 +13,7 @@ SET @toAccount      = 223
 Set @TransType      = 2
 set @amount         = 425
 
-EXECUTE @RC = [].[SpTransferMoney] 
+EXECUTE @RC = [BankManagementSystem].[SpTransferMoney] 
    @FromAccount
   ,@toAccount
   ,@amount

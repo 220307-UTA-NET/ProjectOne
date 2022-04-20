@@ -8,7 +8,7 @@ namespace DemoApp.BusinessLogic
 		private int accountNumber { get; set; }
 		private int customerId { get; set; }
 
-		private string? accountType { get; set; }
+		private int accountType { get; set; } // 1: checking, 2:saving
 
 		private  DateTime OpenningDate { get; set; }
 		private	 DateTime LastTransactionDate { get; set;}
@@ -23,7 +23,7 @@ namespace DemoApp.BusinessLogic
 
 		public Account() { }
 
-		public Account(int accountId, int accountNumber, int customerId, string? accountType, DateTime OpenningDate, DateTime LastTransactionDate, int Status, decimal accountBalance)
+		public Account(int accountId, int accountNumber, int customerId, int accountType, DateTime OpenningDate, DateTime LastTransactionDate, int Status, decimal accountBalance)
 		{
 			this.accountId = accountId;
 			this.accountNumber = accountNumber;
@@ -74,12 +74,12 @@ namespace DemoApp.BusinessLogic
 		}
 
 
-		public string GetAccountType()
+		public int GetAccountType()
         {
 			return this.accountType;
         }
 
-		public string SetAccountType(string accountType)
+		public int SetAccountType(int accountType)
         {
 			return this.accountType = accountType;
         }

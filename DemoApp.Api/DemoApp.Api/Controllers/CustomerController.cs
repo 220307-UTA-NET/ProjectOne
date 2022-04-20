@@ -97,12 +97,32 @@ namespace DemoApp.Api.Controllers
             }
             catch (SqlException ex)
             {
-                _logger.LogError(ex, " RUpdating Address was Failed" + customer);
+                _logger.LogError(ex, " Updating Address Was Failed" + customer);
                 return StatusCode(500);
 
 
             }
 
+        }
+
+        //Delete Method
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCustomerAsync(int CustomerId)
+        {
+           
+            try
+            {
+                 await _repository.DeleteCustomer(CustomerId);
+                return StatusCode(200);
+            }
+            catch (SqlException ex)
+            {
+                _logger.LogError(ex, "SQL error while deleting the customer.");
+                return StatusCode(500);
+            }
+            
+            
         }
 
 

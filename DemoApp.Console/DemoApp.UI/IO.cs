@@ -36,10 +36,9 @@ namespace DemoApp.UI
                     case 0:
                         loop = false; break;
                     case 1:
-                        string CustomerInfo = Console.ReadLine();
-                        DisplayCustomerInfo(CustomerInfo);
+                        await DisplayallCustomers();
                         break;
-               
+
 
 
                 }
@@ -93,50 +92,62 @@ namespace DemoApp.UI
 
         //}
 
-        private async Task RegisterNewAccount(AccountDTO Account)
+        private async Task DisplayallCustomers()
         {
 
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri.ToString() + "Cutomers");
+            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
+            using (HttpResponseMessage response = await httpClient.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+
+                if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+                {
+                    throw new ArrayTypeMismatchException();
+                }
+
+                var customers = await response.Content.ReadFromJsonAsync<List<CustomerDTO>>();
+
+                if (customers != null)
+                {
+                    Console.WriteLine("Customers: ");
+                    foreach (var customer in customers)
+                    {
+                        Console.WriteLine("customer First Name: " + customer.custFirstName);
+                        Console.WriteLine("Customer Last Name: " + customer.custLastName);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No customer found.");
+
+                }
+            }
+            Console.WriteLine("\nPress any key to continue.");
+            Console.ReadLine();
+            Console.Clear();
 
         }
 
-        private async Task UpdateAccountInfo(AccountDTO account)
-        {
+        //private async Task UpdateAccountInfo(AccountDTO account){ }
 
+        //private async Task DeleteAccount(AccountDTO account){ }
 
-        }
+        //private async Task UpdateCustomerInfo(CustomerDTO customer) { }
 
-        private async Task DeleteAccount(AccountDTO account)
-        {
-
-        }
-
-
-        //Customer Methods
-        private async Task UpdateCustomerInfo(CustomerDTO customer)
-        {
-
-        }
-
-        
-
-        private async Task DeleteCustomer(CustomerDTO customer)
-        {
-
-        }
-
-        
-
+        //private async Task DeleteCustomer(CustomerDTO customer){ }
         
         private int MainMenu()
         {
             int choice = -1;
             Console.WriteLine("Please select the option of your choice:");
             Console.WriteLine("[0] - Exit");
-            Console.WriteLine("[1] - Finding Your Account Information ");
-            Console.WriteLine("[2] - Register a New Account");
-            Console.WriteLine("[3] - Update your personal information");
-            Console.WriteLine("[4] - Transfer Money between your accounts");
+            Console.WriteLine("[1] - Get All Customers ");
+            Console.WriteLine("[2] - Get a Customer's Info");
+            Console.WriteLine("[3] - Update your address");
+            //Console.WriteLine("[4] - Transfer Money between your accounts");
             string? input = Console.ReadLine();
+            Console.Clear();
 
             if (!int.TryParse(input, out choice))
             { choice = -1; }

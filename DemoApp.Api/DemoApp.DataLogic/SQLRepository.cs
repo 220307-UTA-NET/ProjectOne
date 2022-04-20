@@ -24,7 +24,9 @@ namespace DemoApp.DataLogic
 
         // Methods
 
-        // Customer methods
+        // -----------Customer methods -------------------
+
+        //GetAllCustomers
         public async Task<List<Customer>> GetAllCustomers()
         {
             List<Customer> result = new List<Customer>();
@@ -69,6 +71,8 @@ namespace DemoApp.DataLogic
 
             return result;
         }
+
+        //GetCustomer
         public async Task<List<Customer>> GetCustomer(string input)
         {
             Console.WriteLine(input);
@@ -155,8 +159,139 @@ namespace DemoApp.DataLogic
 
         }
 
+        //Delete Customer
+        public async Task DeleteCustomer(int CustomerId)
+        {
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync();
 
-        // Employee Methods 
+            string cmdString =
+            $"DELETE FROM BankManagementSystem.Customer WHERE CustomerID = {CustomerId};";
+
+            using SqlCommand cmd = new SqlCommand(cmdString, connection);
+            cmd.ExecuteNonQuery();
+            await connection.CloseAsync();
+
+            _logger.LogInformation("Executed: Updated Customer Address");
+
+        }
+        
+
+        // ------------Transactions Methods--------------------
+        
+        public async Task<List<Transaction>> GetAllTransactions()
+        {
+            List<Transaction> result = new List<Transaction>();
+
+            using SqlConnection connection = new(_connectionString);
+            await connection.OpenAsync();
+
+            string cmdString = "SELECT * FROM BankManagementSystem.AccountTransaction";
+
+            using SqlCommand cmd = new(cmdString, connection);
+
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                long transId = reader.GetInt64(0);
+                DateTime transDate = reader.GetDateTime(1);
+
+                int accountId = reader.GetInt32(2);
+                int transTypeId = reader.GetInt32(3);
+                decimal debitAmount = reader.GetDecimal(4);
+                decimal creditAmount = reader.GetDecimal(5);
+                decimal  balance = reader.GetDecimal(6);
+               
+                
+                result.Add(new Transaction());
+            }
+            await connection.CloseAsync();
+
+            _logger.LogInformation("Executed: GetAllTransactionss");
+
+            return result;
+        }
+
+
+
+
+        //public async Task<List<Transaction>> GetTransaction(int input)
+        //{
+        //    List<Transaction> result = new List<Transaction>();
+
+        //    using SqlConnection connection = new(_connectionString);
+        //    await connection.OpenAsync();
+
+        //    string cmdString =
+        //        $"SELECT * FROM BankManagementSystem.AccountTransaction WHERE TransId = {input}";
+            
+
+        //    using SqlCommand cmd = new(cmdString, connection);
+
+        //    using SqlDataReader reader = cmd.ExecuteReader();
+        //    while (reader.Read())
+        //    {
+        //        long transId = reader.GetInt64(0);
+        //        DateTime transDate = reader.GetDateTime(1);
+
+        //        int  accountId = reader.GetInt32(2);
+        //        int transTypeId = reader.GetInt32(3);
+        //        decimal debitAmount = reader.GetDecimal(4);
+        //        decimal creditAmount = reader.GetDecimal(5);
+        //        decimal balance = reader.GetDecimal(6);
+
+
+        //        result.Add(new Transaction(transId, transDate, accountId, transTypeId, debitAmount, creditAmount, balance));
+        //    }
+        //    await connection.CloseAsync();
+
+        //    _logger.LogInformation("Executed: GetTransaction");
+
+        //    return result;
+        //}
+
+        //---------------Account Methods------------------------
+
+        //public async Task<List<Account>> GetAccount(int input)
+        //{
+        //    Console.WriteLine();
+        //    List<Account> result = new List<Account>();
+
+        //    using SqlConnection connection = new(_connectionString);
+        //    await connection.OpenAsync();
+
+        //    string cmdString =
+        //        $"SELECT * FROM BankManagementSystem.Account WHERE AccountNumber = {input}";
+        //    Console.WriteLine(cmdString);
+
+
+        //    using SqlCommand cmd = new(cmdString, connection);
+
+        //    using SqlDataReader reader = cmd.ExecuteReader();
+        //    while (reader.Read())
+        //    {
+        //        int accountId = reader.GetInt32(0);
+        //        int accountNumber = reader.GetInt32(1);
+        //        int customerId = reader.GetInt32(2);
+        //        int accountType = reader.GetInt32(3);
+        //        DateTime OpenningDate = reader.GetDateTime(4);
+        //        DateTime LastTransactionDate = reader.GetDateTime(5);
+        //        int Status = reader.GetInt32(6);
+        //        decimal accountBalance = reader.GetDecimal(7);
+
+        //        result.Add(new Account(accountId,accountNumber, customerId,accountType,OpenningDate,LastTransactionDate, Status, accountBalance));
+        //    }
+        //    await connection.CloseAsync();
+
+        //    _logger.LogInformation("Executed: GetAccount");
+
+        //    return result;
+        //}
+
+
+        // ------------Employee Methods------------------
+        // GetAllEmployees 
         public async Task<List<Employee>> GetAllEmployees()
         {
             List<Employee> result = new List<Employee>();
@@ -175,7 +310,7 @@ namespace DemoApp.DataLogic
                 int empId = reader.GetInt32(0);
                 string empFirstName = reader.GetString(1);
                 string empLastName = reader.GetString(2);
-              
+
                 result.Add(new Employee(empId, empFirstName, empLastName));
             }
             await connection.CloseAsync();
@@ -186,7 +321,7 @@ namespace DemoApp.DataLogic
         }
 
 
-
+        //Get an Employee
         public async Task<List<Employee>> GetEmployee(string input)
         {
             List<Employee> result = new List<Employee>();
@@ -205,7 +340,7 @@ namespace DemoApp.DataLogic
                 int empId = reader.GetInt32(0);
                 string empFirstName = reader.GetString(1);
                 string empLastName = reader.GetString(2);
-              
+
                 result.Add(new Employee(empId, empFirstName, empLastName));
             }
             await connection.CloseAsync();
@@ -215,77 +350,8 @@ namespace DemoApp.DataLogic
             return result;
         }
 
+       
 
-        // Transactions Methods 
-        public async Task<List<Transaction>> GetAllTransactions()
-        {
-            List<Transaction> result = new List<Transaction>();
-
-            using SqlConnection connection = new(_connectionString);
-            await connection.OpenAsync();
-
-            string cmdString = "SELECT * FROM Transaction";
-
-            using SqlCommand cmd = new(cmdString, connection);
-
-            using SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                int transId = reader.GetInt32(0);
-                DateTime transDate = reader.GetDateTime(1);
-
-                int accountId = reader.GetInt32(3);
-                int transTypeId = reader.GetInt32(32);
-                decimal debitAmount = reader.GetDecimal(4);
-                decimal creditAmount = reader.GetDecimal(5);
-                decimal  balance = reader.GetDecimal(6);
-               
-                
-                result.Add(new Transaction());
-            }
-            await connection.CloseAsync();
-
-            _logger.LogInformation("Executed: GetAllTransactionss");
-
-            return result;
-        }
-
-
-        //public async Task<List<Transaction>> GetTransaction(string input)
-        //{
-        //    List<Transaction> result = new List<Transaction>();
-
-        //    using SqlConnection connection = new(_connectionString);
-        //    await connection.OpenAsync();
-
-        //    string cmdString =
-        //        $"SELECT * FROM Transction WHERE AccountId = '{input}'";
-
-
-        //    using SqlCommand cmd = new(cmdString, connection);
-
-        //    using SqlDataReader reader = cmd.ExecuteReader();
-        //    while (reader.Read())
-        //    {
-        //        int transId = reader.GetInt32(0);
-        //        DateTime transDate = reader.GetDateTime(1);
-
-        //        int accountId = reader.GetInt32(3);
-        //        int transTypeId = reader.GetInt32(32);
-        //        decimal debitAmount = reader.GetDecimal(4);
-        //        decimal creditAmount = reader.GetDecimal(5);
-        //        decimal balance = reader.GetDecimal(6);
-
-
-        //        result.Add(new Transaction(transId, transDate,accountId, transTypeId, debitAmount,creditAmount,balance));
-        //    }
-        //    await connection.CloseAsync();
-
-        //    _logger.LogInformation("Executed: GetProduct");
-
-        //    return result;
-        //}
-
+       
     }
 }

@@ -3,7 +3,7 @@ namespace DemoApp.DTOs
 {
 	public class TransactionDTO
 	{
-        public int transId { get; set; }
+        public long transId { get; set; }
         public DateTime transDate { get; set; }
         public int accountId { get; set; }
         public int transTypeId { get; set; }

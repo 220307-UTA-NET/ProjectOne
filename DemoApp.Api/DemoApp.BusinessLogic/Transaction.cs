@@ -5,7 +5,7 @@
 
         //Fields:
 
-        public int transId { get; set; }
+        public long transId { get; set; }
         public DateTime transDate { get; set; }
         public int accountId { get; set; }
         public int transTypeId { get; set; }
@@ -21,7 +21,7 @@
         //Constructors
 
         public Transaction() { }
-        public Transaction(int transId, DateTime transDate, int accountId, int transTypeId,  decimal debitAmount, decimal creditAmount, decimal balance)
+        public Transaction(long transId, DateTime transDate, int accountId, int transTypeId,  decimal debitAmount, decimal creditAmount, decimal balance)
         {
             this.transId = transId;
             this.transDate = transDate;
@@ -32,12 +32,12 @@
       
         }
 
-        public int getTransactionId()
+        public long getTransactionId()
         {
             return this.transId;
         }
 
-        public int setTransactionId(int transId)
+        public long setTransactionId(long transId)
         {
             return this.transId = transId;
         }
