@@ -7,16 +7,13 @@
 
         public int transId { get; set; }
         public DateTime transDate { get; set; }
-        public string? transType { get; set; }
+        public int accountId { get; set; }
+        public int transTypeId { get; set; }
 
-        public int? custSenderId { get; set; }
-        public int? custSenderAccountId { get; set; }
-        
-        public int? custReceiverId { get; set; }
-        public int? custReceiverAccountId { get; set; }
-        
-      
-        public decimal amount { get; set; }
+        public decimal debitAmount { get; set;}
+        public decimal creditAmount { get; set; }
+    
+        public decimal balance { get; set; }
        
 
 
@@ -24,15 +21,14 @@
         //Constructors
 
         public Transaction() { }
-        public Transaction(int transId, DateTime transDate,string transType, int custSenderId, int custSenderAccountId, int custReceiverId,int custReceiverAccountId, decimal amount)
+        public Transaction(int transId, DateTime transDate, int accountId, int transTypeId,  decimal debitAmount, decimal creditAmount, decimal balance)
         {
             this.transId = transId;
             this.transDate = transDate;
-            this.custSenderId = custSenderId;
-            this.custSenderAccountId = custSenderAccountId;
-            this.custReceiverId = custReceiverId;
-            this.custReceiverAccountId = custReceiverAccountId;
-            this.amount = amount;
+            this.transTypeId = transTypeId;
+            this.debitAmount = debitAmount;
+            this.creditAmount = creditAmount;
+            this.balance = balance;
       
         }
 
@@ -56,17 +52,37 @@
             return this.transDate = transDate;
         }
 
-        public decimal getTransactionAmount()
+        public decimal getTransactionCreditAmount()
         {
-            return this.amount;
+            return this.creditAmount;
         }
 
-        public decimal setTransactionAmount(decimal amount)
+        public decimal setTransactionCreditAmount(decimal creditAmount)
         {
-            return this.amount = amount;
+            return this.creditAmount = creditAmount;
         }
 
-        
+        public decimal getTransactionDebitAmount()
+        {
+            return this.debitAmount;
+        }
 
+        public decimal setTransactionDebitAmount(decimal creditAmount)
+        {
+            return this.debitAmount = creditAmount;
+        }
+
+
+        public decimal GetTransactionBalance()
+        {
+            return this.balance;
+
+        }
+
+        public decimal SetTransActionBalance(decimal balance)
+        {
+            return this.balance = balance;
+
+        }
     }
 }

@@ -1,0 +1,108 @@
+
+Drop procedure if exists BankManagementSystem.SpTransferMoney
+GO
+
+Create procedure BankManagementSystem.SpTransferMoney(
+    @FromAccount    Int,
+    @toAccount      Int,
+    @amount         Numeric(18,2),
+    @TransType      int,
+    @transID1       BIGINT out,
+    @transID2       BIGINT out
+)
+AS
+Begin
+
+Declare @currentBalance numeric(18, 2),
+        @FromAccountID  int = 0,
+        @ToAccountID    int = 0,
+        @FromStatus     int,
+        @ToStatus       int,
+        @FromBalance    numeric(18, 2),
+        @ToBalance      numeric(18, 2),
+        @Now            DATETIME
+
+Begin TRANSACTION
+
+If  @FromAccount    is NULL or
+    @toAccount      is NULL or
+    @amount         is NULL or
+    @TransType      is NULL
+    goto error1
+
+
+Select  @FromAccountID = AccountID,
+        @FromStatus = [status],
+        @FromBalance = Balance
+FROM    BankManagementSystem.Account
+WHERE   AccountNumber = @FromAccount
+
+If Coalesce(@FromAccountID, 0) = 0
+    goto error1;
+
+if @FromStatus = 2
+    goto error1;
+
+if @FromBalance < @amount
+    goto error1;
+
+Select  @ToAccountID = AccountID,
+        @ToStatus = [status],
+        @ToBalance = Balance
+FROM    BankManagementSystem.Account
+WHERE   AccountNumber = @ToAccount
+
+If Coalesce(@ToAccountID, 0) = 0
+    goto error1;
+
+if @ToStatus = 2
+    goto error1;
+
+Set @Now = GETDATE()
+
+Insert into BankManagementSystem.AccountTransaction([TransDate],[AccountID],[TransTypeID],[DebitAmount],[CreditAmount],[Balance])
+Values(@Now, @FromAccountID, @TransType, @amount, 0.0, @FromBalance - @amount)
+
+if @@error <> 0
+    goto error1;
+Set @transID1 = @@identity
+
+Insert into BankManagementSystem.AccountTransaction([TransDate],[AccountID],[TransTypeID],[DebitAmount],[CreditAmount],[Balance])
+Values(@Now, @ToAccountID, @TransType, 0.0, @amount, @ToBalance + @amount)
+
+if @@error <> 0
+    goto error1;
+
+Set @transID2 = @@identity
+
+UPDATE  BankManagementSystem.Account
+Set     Balance = @FromBalance - @amount,
+        LastTransactionDate = @Now
+WHERE   AccountID = @FromAccountID
+
+if @@error <> 0
+    goto error1;
+
+UPDATE  BankManagementSystem.Account
+Set     Balance = @ToBalance + @amount,
+        LastTransactionDate = @Now
+WHERE   AccountID = @ToAccountID
+
+if @@error <> 0
+    goto error1;
+
+
+
+Commit TRANSACTION
+Return 0
+
+error1:
+    Rollback TRANSACTION
+    Set @TransID1 = -1
+    Set @TransID2 = -1
+    return -1
+End
+GO
+
+
+

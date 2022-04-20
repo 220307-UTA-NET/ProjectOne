@@ -6,14 +6,14 @@
         public int empId { get; set; }
         public string empFirstName { get; set; }
         public string empLastName { get; set; }
-       
+
 
         public Employee(int id, string empFirstNamee, string empLastName)
         {
             this.empId = empId;
             this.empFirstName = empFirstName;
             this.empLastName = empLastName;
-           
+
         }
 
         public int getEmployeeId()
@@ -23,7 +23,7 @@
 
         public int setEmployeeId(int empId)
         {
-            return this.empId= empId;
+            return this.empId = empId;
         }
 
 
@@ -37,7 +37,7 @@
             return this.empLastName = empLastName;
         }
 
-        
+
 
 
     }

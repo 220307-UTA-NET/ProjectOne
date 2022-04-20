@@ -1,16 +1,17 @@
 ﻿using System;
-namespace DemoApp.UI.DTOs
+namespace DemoApp.DTOs
 {
-	public class Account
+	public class AccountDTO
 	{
 		private int accountId { get; set; }
+		private int accountNumber { get; set; }
 		private int customerId { get; set; }
 		private string? accountType { get; set; }
-		private int accountNumber { get; set; }
+		private DateTime OpenningDate { get; set; }
+		private DateTime LastTransactionDate { get; set; }
+		private int Status; // 1 for active , 2 for closed
 		private decimal accountBalance { get; set; }
-		private decimal initialDeposit { get; set; }
-		private decimal interest { get; set; }
-		
+
 	}
 }
 

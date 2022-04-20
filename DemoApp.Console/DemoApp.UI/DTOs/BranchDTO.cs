@@ -1,7 +1,7 @@
 ﻿using System;
-namespace DemoApp.UI.DTOs
+namespace DemoApp.DTOs
 {
-	public class Branch
+	public class BranchDTO
 	{
 		public string? branchCode { get; set; }
 		public string? branchName { get; set; }

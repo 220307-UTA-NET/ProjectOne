@@ -33,6 +33,8 @@ namespace DemoApp.DataLogic
             await connection.OpenAsync();
 
             string cmdString = "SELECT * FROM BankManagementSystem.Customer";
+             
+
 
             using SqlCommand cmd = new(cmdString, connection);
 
@@ -41,24 +43,25 @@ namespace DemoApp.DataLogic
             while (reader.Read())
             { 
                 int CustomerId = reader.GetInt32(0);
-                string custFirstName = reader.GetString(1);
-                string custLastName = reader.GetString(2);
-                string custAddress = reader.GetString(3);
+                int IsVerified = reader.GetInt32(1);
+                string custFirstName = reader.GetString(2);
+                string custLastName = reader.GetString(3);
+                string custAddress = reader.GetString(4);
+                //string DOB = reader.GetString(5);
+                string DOB = null;
 
-                string? DOB = null;
-
-                if (reader.IsDBNull(4))
+                if (reader.IsDBNull(5))
                 {
                     DOB = "No orders found";
                 }
                 else
                 {
-                    DOB = reader.GetString(4);
+                    DOB = reader.GetString(5);
                 };
 
 
 
-                result.Add(new Customer(CustomerId, custFirstName, custLastName,custAddress, DOB));
+                result.Add(new Customer(CustomerId, IsVerified, custFirstName, custLastName,custAddress, DOB));
             }
             await connection.CloseAsync();
 
@@ -76,6 +79,7 @@ namespace DemoApp.DataLogic
 
             string cmdString =
                 $"SELECT * FROM BankManagementSystem.Customer WHERE (FirstName = '{input}') OR (LastName = '{input}')";
+            Console.WriteLine(cmdString);
 
 
             using SqlCommand cmd = new(cmdString, connection);
@@ -84,22 +88,23 @@ namespace DemoApp.DataLogic
             while (reader.Read())
             {
                 int CustomerId = reader.GetInt32(0);
-                string custFirstName = reader.GetString(1);
-                string custLastName = reader.GetString(2);
-                string custAddress = reader.GetString(3);
+                int IsVerified = reader.GetInt32(1);
+                string custFirstName = reader.GetString(2);
+                string custLastName = reader.GetString(3);
+                string custAddress = reader.GetString(4);
 
-                string? DOB = null;
+                string DOB = null;
 
-                if (reader.IsDBNull(4))
+                if (reader.IsDBNull(5))
                 {
-                     DOB = "No orders found";
+                    DOB = "No orders found";
                 }
                 else
                 {
-                     DOB = reader.GetString(4);
+                    DOB = reader.GetString(5);
                 };
 
-                result.Add(new Customer(CustomerId, custFirstName, custLastName, custAddress, DOB));
+                result.Add(new Customer(CustomerId, IsVerified, custFirstName, custLastName, custAddress, DOB));
             }
             await connection.CloseAsync();
 
@@ -108,14 +113,16 @@ namespace DemoApp.DataLogic
             return result;
         }
 
+        //Add Customer
         public async Task AddCustomer(Customer customer)
         {
+            Console.WriteLine(customer.custFirstName);
 
             using SqlConnection connection = new SqlConnection(_connectionString);
             await connection.OpenAsync();
 
             string cmdString =
-                $"Insert Into Customer (FirstName, LastName, Address, DOB) VALUES ({customer.custFirstName}, {customer.custLastName}, {customer.custAddress}, {customer.dob}) ";
+                $"Insert Into BankManagementSystem.Customer (IsVerified,FirstName, LastName, CustAddress, DOB) VALUES ({customer.IsVerified},'{customer.custFirstName}', '{customer.custLastName}', '{customer.custAddress}', '{customer.dob}') ";
 
 
             using SqlCommand cmd = new SqlCommand(cmdString, connection);
@@ -126,7 +133,28 @@ namespace DemoApp.DataLogic
 
         }
 
-        
+
+
+        //UpdateCustomer
+        public async Task UpdateCustomerAddress(Customer customer)
+        {
+            Console.WriteLine(customer.custFirstName);
+
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync();
+
+            string cmdString =
+              //  $"Insert Into BankManagementSystem.Customer (CustAddress) VALUES ('{customer.custAddress}') Where CustomerID = {customer.custId}";
+            $"UPDATE BankManagementSystem.Customer set CustAddress = '{customer.custAddress}' WHERE CustomerID = {customer.custId}";
+
+            using SqlCommand cmd = new SqlCommand(cmdString, connection);
+            cmd.ExecuteNonQuery();
+            await connection.CloseAsync();
+
+            _logger.LogInformation("Executed: Updated Customer Address");
+
+        }
+
 
         // Employee Methods 
         public async Task<List<Employee>> GetAllEmployees()
@@ -166,7 +194,7 @@ namespace DemoApp.DataLogic
             using SqlConnection connection = new(_connectionString);
             await connection.OpenAsync();
 
-            string cmdString = $"SELECT * FROM Employee WHERE username = '{input}'";
+            string cmdString = $"SELECT * FROM Employee WHERE (EmlFirstName = '{input}') OR (EmlLastName = '{input}')";
 
             using SqlCommand cmd = new(cmdString, connection);
 
@@ -206,19 +234,24 @@ namespace DemoApp.DataLogic
             {
                 int transId = reader.GetInt32(0);
                 DateTime transDate = reader.GetDateTime(1);
+
+                int accountId = reader.GetInt32(3);
+                int transTypeId = reader.GetInt32(32);
+                decimal debitAmount = reader.GetDecimal(4);
+                decimal creditAmount = reader.GetDecimal(5);
+                decimal  balance = reader.GetDecimal(6);
                
-                int amount = reader.GetInt32(2);
-                decimal price = reader.GetDecimal(3);
-                string description = reader.GetString(4);
                 
                 result.Add(new Transaction());
             }
             await connection.CloseAsync();
 
-            _logger.LogInformation("Executed: GetAllProducts");
+            _logger.LogInformation("Executed: GetAllTransactionss");
 
             return result;
         }
+
+
         //public async Task<List<Transaction>> GetTransaction(string input)
         //{
         //    List<Transaction> result = new List<Transaction>();
@@ -227,7 +260,7 @@ namespace DemoApp.DataLogic
         //    await connection.OpenAsync();
 
         //    string cmdString =
-        //        $"SELECT * FROM Product WHERE (name = '{input}') OR (location_id = {Int32.Parse(input)})";
+        //        $"SELECT * FROM Transction WHERE AccountId = '{input}'";
 
 
         //    using SqlCommand cmd = new(cmdString, connection);
@@ -235,13 +268,17 @@ namespace DemoApp.DataLogic
         //    using SqlDataReader reader = cmd.ExecuteReader();
         //    while (reader.Read())
         //    {
-        //        int id = reader.GetInt32(0);
-        //        string name = reader.GetString(1);
-        //        int amount = reader.GetInt32(2);
-        //        decimal price = reader.GetDecimal(3);
-            
-               
-        //        result.Add(new Transaction(id, name));
+        //        int transId = reader.GetInt32(0);
+        //        DateTime transDate = reader.GetDateTime(1);
+
+        //        int accountId = reader.GetInt32(3);
+        //        int transTypeId = reader.GetInt32(32);
+        //        decimal debitAmount = reader.GetDecimal(4);
+        //        decimal creditAmount = reader.GetDecimal(5);
+        //        decimal balance = reader.GetDecimal(6);
+
+
+        //        result.Add(new Transaction(transId, transDate,accountId, transTypeId, debitAmount,creditAmount,balance));
         //    }
         //    await connection.CloseAsync();
 

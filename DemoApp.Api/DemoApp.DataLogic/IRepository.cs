@@ -10,7 +10,7 @@ namespace DemoApp.DataLogic
         Task<List<Customer>> GetAllCustomers();
         Task<List<Customer>> GetCustomer(string input);
         Task AddCustomer(Customer customer);
-
+        Task UpdateCustomerAddress(Customer customer);
         //Task<Branch> GetBranch(int id);
         //Task<List<Branch>> GetAllLocations();
         

@@ -5,28 +5,42 @@ namespace DemoApp.BusinessLogic
 	{
 		//Fields
 		private int accountId { get; set; }
-		private int customerId { get; set; }
-		private string? accountType { get; set; }
 		private int accountNumber { get; set; }
+		private int customerId { get; set; }
+
+		private string? accountType { get; set; }
+
+		private  DateTime OpenningDate { get; set; }
+		private	 DateTime LastTransactionDate { get; set;}
+
+		private int Status; // 1 for active , 2 for closed
+
 		private decimal accountBalance { get; set; }
-		private decimal initialDeposit { get; set; }
-		private decimal interest { get; set; }
+		
 
 		
 		//Constructors
 
 		public Account() { }
 
-		public Account(int accountId, int customerId, string? accountType, int accountNumber, decimal interest, decimal accountBalance)
+		public Account(int accountId, int accountNumber, int customerId, string? accountType, DateTime OpenningDate, DateTime LastTransactionDate, int Status, decimal accountBalance)
 		{
 			this.accountId = accountId;
+			this.accountNumber = accountNumber;
+
 			this.customerId = customerId;
 			this.accountType = accountType;
-			this.accountNumber = accountNumber;
-			this.interest = interest;
+
+			this.OpenningDate = OpenningDate;
+			this.LastTransactionDate = LastTransactionDate;
+
+			this.Status = Status;
+
 			this.accountBalance = accountBalance;
 
 		}
+
+
 		//Methods
 		public int GetAccountId()
         {
@@ -49,6 +63,16 @@ namespace DemoApp.BusinessLogic
 			return this.customerId = customerId;
         }
 
+		public int GetAccountNumber()
+		{
+			return this.accountNumber;
+		}
+
+		public int SetAccountNumber(int accountNumber)
+		{
+			return this.accountNumber = accountNumber;
+		}
+
 
 		public string GetAccountType()
         {
@@ -60,14 +84,25 @@ namespace DemoApp.BusinessLogic
 			return this.accountType = accountType;
         }
 
-		public int GetAccountNumber()
-		{
-			return this.accountNumber;
-		}
-
-		public int  SetAccountNumber(int accountNumber)
+		public DateTime GetOpenningDate()
         {
-			return this.accountNumber = accountNumber;
+			return this.OpenningDate;
+        }
+
+		public DateTime SetOpenningDate(DateTime Openningdate)
+        {
+			return this.OpenningDate = OpenningDate;
+
+        }
+
+		public int GetStatus()
+        {
+			return this.Status;
+        }
+
+		public int SetStatus(int Status)
+        {
+			return this.Status = Status;
         }
 
 
@@ -82,16 +117,7 @@ namespace DemoApp.BusinessLogic
 			return this.accountBalance = accountBalance;
         }
 
-		public decimal GetInterest()
-		{
-			return this.interest;
-		}
-
-
-		public decimal SetInterest(decimal interst)
-        {
-			return this.interest = interest;
-        }
+	
 
 
 	}

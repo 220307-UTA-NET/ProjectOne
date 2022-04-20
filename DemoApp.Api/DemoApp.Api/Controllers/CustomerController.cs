@@ -45,19 +45,69 @@ namespace DemoApp.Api.Controllers
             return customers;
         }
         [HttpGet("{input}")]
+
         public async Task<ActionResult<List<Customer>>> GetCustomerAsync(string input)
-                {
-                    List<Customer> customer;
-                    try
-                    {
-                        customer = await _repository.GetCustomer(input);
-                    }
-                    catch (SqlException ex)
-                    {
-                        _logger.LogError(ex, $"SQL error while getting customers by the name of: {input}.");
-                        return StatusCode(500);
-                    }
-                    return customer;
-                }
+        {
+            List<Customer> customer;
+            try
+            {
+                customer = await _repository.GetCustomer(input);
             }
+            catch (SqlException ex)
+            {
+                _logger.LogError(ex, $"SQL error while getting customers by the name of: {input}.");
+                return StatusCode(500);
+            }
+            return customer;
+        }
+
+
+
+        [HttpPost()]
+
+        public async Task<IActionResult> RegisterCustomerAsync([FromBody]Customer customer)
+        {
+            // List<Customer> customer;
+            try
+            {
+                await _repository.AddCustomer(customer);
+                return StatusCode(200);
+            }
+            catch (SqlException ex)
+            {
+                _logger.LogError(ex, " Regiateration Failed" + customer);
+                return StatusCode(500);
+
+
+            }
+
+        }
+
+        //PUT Method
+
+        [HttpPut()]
+
+        public async Task<IActionResult> UpdateCustomerAsync([FromBody] Customer customer)
+        {
+            // List<Customer> customer;
+            try
+            {
+                await _repository.UpdateCustomerAddress(customer);
+                return StatusCode(200);
+            }
+            catch (SqlException ex)
+            {
+                _logger.LogError(ex, " RUpdating Address was Failed" + customer);
+                return StatusCode(500);
+
+
+            }
+
+        }
+
+
+
+
+
+    }
 }

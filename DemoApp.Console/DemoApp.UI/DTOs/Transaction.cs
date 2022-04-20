@@ -1,20 +1,17 @@
 ﻿using System;
-namespace DemoApp.UI.DTOs
+namespace DemoApp.DTOs
 {
-	public class Transaction
+	public class TransactionDTO
 	{
         public int transId { get; set; }
         public DateTime transDate { get; set; }
-        public string? transType { get; set; }
+        public int accountId { get; set; }
+        public int transTypeId { get; set; }
 
-        public int? custSenderId { get; set; }
-        public int? custSenderAccountId { get; set; }
+        public decimal debitAmount { get; set; }
+        public decimal creditAmount { get; set; }
 
-        public int? custReceiverId { get; set; }
-        public int? custReceiverAccountId { get; set; }
-
-
-        public decimal amount { get; set; }
+        public decimal balance { get; set; }
 
     }
 }

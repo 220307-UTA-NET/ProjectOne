@@ -1,5 +1,5 @@
 ﻿using System;
-namespace DemoApp.UI.DTOs
+namespace DemoApp.DTOs
 {
 	public class EmployeeDTO
 	{
