@@ -4,18 +4,18 @@ namespace DemoApp.BusinessLogic
 	public class Account
 	{
 		//Fields
-		private int accountId { get; set; }
-		private int accountNumber { get; set; }
-		private int customerId { get; set; }
+		public int accountId { get; set; }
+		public int accountNumber { get; set; }
+		public int customerId { get; set; }
 
-		private int accountType { get; set; } // 1: checking, 2:saving
+		public int accountType { get; set; } // 1: checking, 2:saving
 
-		private  DateTime OpenningDate { get; set; }
-		private	 DateTime LastTransactionDate { get; set;}
+		public DateTime OpenningDate { get; set; }
+		public DateTime LastTransactionDate { get; set;}
 
-		private int Status; // 1 for active , 2 for closed
+		public int Status; // 1 for active , 2 for closed
 
-		private decimal accountBalance { get; set; }
+		public decimal accountBalance { get; set; }
 		
 
 		

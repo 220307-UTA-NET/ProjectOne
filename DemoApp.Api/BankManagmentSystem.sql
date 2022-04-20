@@ -34,7 +34,7 @@ CREATE TABLE BankManagementSystem.Customer(
 );
 
 INSERT INTO BankManagementsystem.Customer(IsVerified, FirstName,LastName,CustAddress, DOB)
-VALUES('2','Hamid','Hamedi','Address2', '1989-06-06')
+VALUES('6','Nader','Molaee','22 S. Spring St', '1985-10-06')
 
 
 SELECt *
@@ -58,7 +58,7 @@ LastTransactionDate DATETIME NOT NULL,
 --Interest FLOAT NOT NULL,
 Balance DECIMAL(18, 2) NOT NULL,
 constraint PK_Account Primary key (AccountID),
-Constraint FK_Account_Customer FOREIGN KEY(CustomerID) REFERENCES BankManagementSystem.Customer(CustomerID),
+Constraint FK_Account_Customer FOREIGN KEY(CustomerID) REFERENCES BankManagementSystem.Customer(CustomerID) ON DELETE CASCADE,
 Constraint UK_Account Unique (AccountNumber)
 );
 
@@ -75,6 +75,7 @@ INSERT INTO BankManagementsystem.Account(
 )
 VALUES(223, 1, 1, '2021-05-05', '2022-04-04', 1, '5000')
 
+--SELECT * FROM BankManagementSystem.Account WHERE AccountNumber = 222
 --////////////////////////////////////////////////////////////////////////////////////
 
 ------------Bank Branch Table------------
@@ -129,8 +130,8 @@ DebitAmount     Numeric(18, 2) NOT NULL,
 CreditAmount    Numeric(18, 2) NOT NULL,
 Balance         Numeric(18, 2) NOT NULL,
 Constraint PK_AccountTransaction Primary Key (TransID),
-Constraint FK_Transaction_Account FOREIGN key (AccountID) references BankManagementSystem.ACCOUNT(AccountID),
-Constraint FK_Transaction_TransactionType FOREIGN key (TransTypeID) references BankManagementSystem.TransActionType(ID)
+Constraint FK_Transaction_Account FOREIGN key (AccountID) references BankManagementSystem.ACCOUNT(AccountID) ON DELETE CASCADE,
+Constraint FK_Transaction_TransactionType FOREIGN key (TransTypeID) references BankManagementSystem.TransActionType(ID) ON DELETE CASCADE
 );
 --EmployeeID INT NOT NULL FOREIGN KEY REFERENCES BankManagementSystem.Employee(EmplID)
 

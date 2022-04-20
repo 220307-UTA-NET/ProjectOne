@@ -84,13 +84,7 @@ namespace DemoApp.UI
         }
 
 
-        //private async Task DisplayAllCustomers()
-        //{
-        //    var info = "";
-
-
-
-        //}
+        
 
         private async Task DisplayallCustomers()
         {

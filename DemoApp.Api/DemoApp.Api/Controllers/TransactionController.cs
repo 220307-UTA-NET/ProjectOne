@@ -31,7 +31,7 @@ namespace DemoApp.Api.Controllers
             try
             {
                 transactions = await _repository.GetAllTransactions();
-                return StatusCode(200);
+                
             }
             catch (SqlException ex)
             {
@@ -41,22 +41,22 @@ namespace DemoApp.Api.Controllers
             return transactions;
         }
 
-        //[HttpGet("{input}")]
-        //public async Task<ActionResult<List<Transaction>>> GetTransctionAsync(int input)
-        //        {   var transaction = new List<Transaction>();
-        //            List<Transaction> transactions;
-        //            try
-        //            {
-        //                transactions = await _repository.GetTransaction(input);
-        //                return StatusCode(200);
-        //    }
-        //            catch (SqlException ex)
-        //            {
-        //                _logger.LogError(ex, $"SQL error while getting transactions with name of: {input}");
-        //                return StatusCode(500);
-        //            }
-        //            return transaction;
-        //        }
-        //    }
+        [HttpGet("{input}")]
+        public async Task<ActionResult<List<Transaction>>> GetTransctionAsync(int input)
+        {
+            
+            List<Transaction> transactions;
+            try
+            {
+                transactions = await _repository.GetTransaction(input);
+                
+            }
+            catch (SqlException ex)
+            {
+                _logger.LogError(ex, $"SQL error while getting transactions with name of: {input}");
+                return StatusCode(500);
+            }
+            return transactions;
+        }
     }
 }

@@ -23,22 +23,24 @@ namespace DemoApp.Api.Controllers
             this._logger = logger;
         }
 
-        //// Methods
-        //[HttpGet]
-        //public async Task<ActionResult<List<Account>>> GetAccountAsync(int input)
-        //{
-        //    //List<Account> account;
-        //    ////try
-        //    ////{
-        //    ////    account = await _repository.GetAccount(input);
-        //    ////    return StatusCode(200);
-        //    ////}
-        //    ////catch (SqlException ex)
-        //    ////{
-        //    ////    _logger.LogError(ex, $"SQL error while getting account by the account number of: {input}.");
-        //    ////    return StatusCode(500);
-        //    ////}
-        //}
+        // Methods
+        [HttpGet]
+        public async Task<ActionResult<List<Account>>> GetAccountAsync(int input)
+        {
+            List<Account> account;
+            try
+            {
+                account = await _repository.GetAccount(input);
+                
+            }
+            catch (SqlException ex)
+            {
+                _logger.LogError(ex, $"SQL error while getting account by the account number of: {input}.");
+                return StatusCode(500);
+            }
+            return account;
+
+        }
 
     }
 }

@@ -204,11 +204,11 @@ namespace DemoApp.DataLogic
                 decimal  balance = reader.GetDecimal(6);
                
                 
-                result.Add(new Transaction());
+                result.Add(new Transaction(transId, transDate, accountId, transTypeId, debitAmount, creditAmount, balance));
             }
             await connection.CloseAsync();
 
-            _logger.LogInformation("Executed: GetAllTransactionss");
+            _logger.LogInformation("Executed: GetAllTransactions");
 
             return result;
         }
@@ -216,78 +216,78 @@ namespace DemoApp.DataLogic
 
 
 
-        //public async Task<List<Transaction>> GetTransaction(int input)
-        //{
-        //    List<Transaction> result = new List<Transaction>();
+        public async Task<List<Transaction>> GetTransaction(int input)
+        {
+            List<Transaction> result = new List<Transaction>();
 
-        //    using SqlConnection connection = new(_connectionString);
-        //    await connection.OpenAsync();
+            using SqlConnection connection = new(_connectionString);
+            await connection.OpenAsync();
 
-        //    string cmdString =
-        //        $"SELECT * FROM BankManagementSystem.AccountTransaction WHERE TransId = {input}";
-            
-
-        //    using SqlCommand cmd = new(cmdString, connection);
-
-        //    using SqlDataReader reader = cmd.ExecuteReader();
-        //    while (reader.Read())
-        //    {
-        //        long transId = reader.GetInt64(0);
-        //        DateTime transDate = reader.GetDateTime(1);
-
-        //        int  accountId = reader.GetInt32(2);
-        //        int transTypeId = reader.GetInt32(3);
-        //        decimal debitAmount = reader.GetDecimal(4);
-        //        decimal creditAmount = reader.GetDecimal(5);
-        //        decimal balance = reader.GetDecimal(6);
+            string cmdString =
+                $"SELECT * FROM BankManagementSystem.AccountTransaction WHERE TransId = {input}";
 
 
-        //        result.Add(new Transaction(transId, transDate, accountId, transTypeId, debitAmount, creditAmount, balance));
-        //    }
-        //    await connection.CloseAsync();
+            using SqlCommand cmd = new(cmdString, connection);
 
-        //    _logger.LogInformation("Executed: GetTransaction");
+            using SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                long transId = reader.GetInt64(0);
+                DateTime transDate = reader.GetDateTime(1);
 
-        //    return result;
-        //}
+                int accountId = reader.GetInt32(2);
+                int transTypeId = reader.GetInt32(3);
+                decimal debitAmount = reader.GetDecimal(4);
+                decimal creditAmount = reader.GetDecimal(5);
+                decimal balance = reader.GetDecimal(6);
+
+
+                result.Add(new Transaction(transId, transDate, accountId, transTypeId, debitAmount, creditAmount, balance));
+            }
+            await connection.CloseAsync();
+
+            _logger.LogInformation("Executed: GetTransaction");
+
+            return result;
+        }
 
         //---------------Account Methods------------------------
 
-        //public async Task<List<Account>> GetAccount(int input)
-        //{
-        //    Console.WriteLine();
-        //    List<Account> result = new List<Account>();
+        public async Task<List<Account>> GetAccount(int input)
+        {
+            Console.WriteLine();
+            List<Account> result = new List<Account>();
 
-        //    using SqlConnection connection = new(_connectionString);
-        //    await connection.OpenAsync();
+            using SqlConnection connection = new(_connectionString);
+            await connection.OpenAsync();
 
-        //    string cmdString =
-        //        $"SELECT * FROM BankManagementSystem.Account WHERE AccountNumber = {input}";
-        //    Console.WriteLine(cmdString);
+            string cmdString =
+                $"SELECT * FROM BankManagementSystem.Account WHERE AccountNumber = {input}";
+            Console.WriteLine(cmdString);
 
 
-        //    using SqlCommand cmd = new(cmdString, connection);
+            using SqlCommand cmd = new(cmdString, connection);
 
-        //    using SqlDataReader reader = cmd.ExecuteReader();
-        //    while (reader.Read())
-        //    {
-        //        int accountId = reader.GetInt32(0);
-        //        int accountNumber = reader.GetInt32(1);
-        //        int customerId = reader.GetInt32(2);
-        //        int accountType = reader.GetInt32(3);
-        //        DateTime OpenningDate = reader.GetDateTime(4);
-        //        DateTime LastTransactionDate = reader.GetDateTime(5);
-        //        int Status = reader.GetInt32(6);
-        //        decimal accountBalance = reader.GetDecimal(7);
+            using SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                int accountId = reader.GetInt32(0);
+                int accountNumber = reader.GetInt32(1);
+                int customerId = reader.GetInt32(2);
+                int accountType = reader.GetInt32(3);
+                DateTime OpenningDate = reader.GetDateTime(4);
+                DateTime LastTransactionDate = reader.GetDateTime(5);
+                int Status = reader.GetInt32(6);
+                decimal accountBalance = reader.GetDecimal(7);
 
-        //        result.Add(new Account(accountId,accountNumber, customerId,accountType,OpenningDate,LastTransactionDate, Status, accountBalance));
-        //    }
-        //    await connection.CloseAsync();
+                result.Add(new Account(accountId, accountNumber, customerId, accountType, OpenningDate, LastTransactionDate, Status, accountBalance));
+            }
+            await connection.CloseAsync();
 
-        //    _logger.LogInformation("Executed: GetAccount");
+            _logger.LogInformation("Executed: GetAccount");
 
-        //    return result;
-        //}
+            return result;
+        }
 
 
         // ------------Employee Methods------------------
