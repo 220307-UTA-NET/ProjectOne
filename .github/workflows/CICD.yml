@@ -45,14 +45,22 @@ jobs:
         run: dotnet test ./storeconsole/ConsoleTest/ConsoleTest.csproj
         
       - name: add files for commit
-        run: git add . ./
+        run:  git add . ./
+           
         
-    #  - name: set account 
-    #    run:  git config --global user.email "cubideschristian8@gmail.com"
-    #          git config --global user.name "cubidesrojas"
-    #          git commit -am "Auto commit"
-    #          git push
-
-     
+     # - name: set account 
+      #  run:  git config --global user.email "cubideschristian8@gmail.com"
+       #       git config --global user.name "cubidesrojas"
+        #     git push ./
+      
+      - name: build api 
+        run:  dotnet publish ./Webstore/ --configuration Release -o ${{env.AZURE_WEBAPP_APP_PATH}}
+      - name: Azure WebApp
+        uses: Azure/webapps-deploy@v2
+        with:
+           app-name: christianspizza
+           publish-profile: ${{secrets.pizzas}}
+           package: ${{env.AZURE_WEBAPP_APP_PATH}}
+    
         
          
