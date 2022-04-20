@@ -17,7 +17,7 @@ namespace Project1.ApiTest
         public void UserRegisterationTest()
         {
             //Arrange
-            User test = new User();
+            User test = new User(6, "June", "Lee", "Gemini", "Pearl");
 
             //Act
             string actual = test.GetbankUserUsername();
@@ -53,7 +53,7 @@ namespace Project1.ApiTest
         public void AccountRegisterationTest()
         {
             //Arrange
-           Account test = new Account();
+           Account test = new Account(6, 13000, 4);
 
             //Act
             int actual = test.GetbankUserId();
