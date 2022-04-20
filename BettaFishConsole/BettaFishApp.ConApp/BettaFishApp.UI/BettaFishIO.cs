@@ -180,10 +180,10 @@ namespace BettaFishApp.UI
                     foreach (var bettadescription in bettadescriptions)
                     {
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("\nType" + "[" + bettadescription.tail_ID + "]" + "[" + bettadescription.tailType + "]" + "\n" + bettadescription.description);
+                        Console.WriteLine("\nType" + "[" + bettadescription.tail_ID + "]" + " " + "[" + bettadescription.tailType + "]" + ":" + bettadescription.description);
 
                         Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine("\nPress ENTER to continue.");
+                        Console.WriteLine("Press ENTER to continue.");
                         Console.ReadLine();
                     }
                 }
@@ -225,7 +225,7 @@ namespace BettaFishApp.UI
                     {
 
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("\nFun Fact:" + "[" + bettafunfact.fact_ID + "]" + bettafunfact.funFact);
+                        Console.WriteLine("\nFun Fact" + "[" + bettafunfact.fact_ID + "]" + ":" + bettafunfact.funFact);
 
                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.WriteLine("Press ENTER to continue.");
@@ -293,8 +293,8 @@ namespace BettaFishApp.UI
                     {
 
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("\nFan Story:" + "[" + bettafanstorie.story_ID + "]" + "\nName of Betta:" 
-                            + "[" + bettafanstorie.nameOfBetta + "]" +  ":" + bettafanstorie.story);
+                        Console.WriteLine("\nFan Story" + "[" + bettafanstorie.story_ID + "]" + ":" + "\nName of Betta:" 
+                            + "[" + bettafanstorie.nameOfBetta + "]" +  "\n" + bettafanstorie.story);
                     }
 
                 }
@@ -403,7 +403,7 @@ namespace BettaFishApp.UI
                     {
 
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("\nStore:" + "[" + storelocation.store_ID + "]" + "\nName of Store:"
+                        Console.WriteLine("\nStore" + "[" + storelocation.store_ID + "]" + ":" + "\nName of Store:"
                             + "[" +  storelocation.storeName + "]" + " " + storelocation.storeAddress);
                     }
 
