@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1700.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Games.ConApp", "Games.ConApp\Games.ConApp.csproj", "{695E21A0-C9C2-43B2-A531-63F05E35D539}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Games.ConApp.UI", "Games.ConApp.UI\Games.ConApp.UI.csproj", "{3BFF1F2F-7B0E-412D-98E6-7A18D01432B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{695E21A0-C9C2-43B2-A531-63F05E35D539}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{695E21A0-C9C2-43B2-A531-63F05E35D539}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{695E21A0-C9C2-43B2-A531-63F05E35D539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BFF1F2F-7B0E-412D-98E6-7A18D01432B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BFF1F2F-7B0E-412D-98E6-7A18D01432B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BFF1F2F-7B0E-412D-98E6-7A18D01432B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BFF1F2F-7B0E-412D-98E6-7A18D01432B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

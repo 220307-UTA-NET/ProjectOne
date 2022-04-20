@@ -3,30 +3,43 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text.Json;
 using Games.ConApp.DTOs;
+using Games.ConApp.UI;
 
 namespace GameStore.ConApp
 {
     public class Program
     {
-        // Async methods must return a Task
-        static async Task Main()
+        // Fields
+
+        public static readonly HttpClient httpClient = new HttpClient();
+
+        // Constructors
+
+        // Methods
+
+        static void Main(string[] args)
         {
-            HttpClient client = new HttpClient();
+            Uri uri = new Uri("http://localhost:7171/");
+            IO io = new IO();
 
-            // If method is async, we await the Task
-            // **********************Change URL here**********************
-            string response = await client.GetStringAsync("https://jsonplaceholder.typicode.com/todos");
+            io.Begin();
 
-            // Deserialize JSON from URL to ToDo object
-            List <ToDo> todo = JsonSerializer.Deserialize<List<ToDo>>(response);
+            //HttpClient client = new HttpClient();
 
-            //Console.WriteLine(response);
+            //// If method is async, we await the Task
+            //// **********************Change URL here**********************
+            //string response = await client.GetStringAsync("https://jsonplaceholder.typicode.com/todos");
 
-            // iterates through all *items* in *todo*(which is a ToDo List) and prints out the name field
-            foreach (var item in todo)
-            {
-                Console.WriteLine(item.title);
-            }
+            //// Deserialize JSON from URL to ToDo object
+            //List <ToDo> todo = JsonSerializer.Deserialize<List<ToDo>>(response);
+
+            ////Console.WriteLine(response);
+
+            //// iterates through all *items* in *todo*(which is a ToDo List) and prints out the name field
+            //foreach (var item in todo)
+            //{
+            //    Console.WriteLine(item.title);
+            //}
 
         }
     }
