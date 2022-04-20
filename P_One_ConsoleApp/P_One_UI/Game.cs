@@ -48,7 +48,7 @@ namespace P_One_UI
         /// Establishes random variables of house and sets the player to start in room 1
         /// </summary>
         /// <returns></returns>
-        public async Task EnterHouse()
+        private async Task EnterHouse()
         {
             gRoom = 1;
             await FillRooms(gPlayerID);
@@ -60,7 +60,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="gRoom">current RoomID # in game, used to get info on the the room the player is in </param>
         /// <returns></returns>
-        public async Task EnterRoom(int gRoom)
+        private async Task EnterRoom(int gRoom)
         {           
             while(gRoom!=-1)
             {
@@ -95,7 +95,7 @@ namespace P_One_UI
         /// <param name="currentRoom">Current room DTO the player is in </param>
         /// <param name="newRoom">new roomID # the player is trying to move to</param>
         /// <returns>the RoomID # that the player has successfully moved to or stayed in</returns>
-        public async Task<int> ChooseNextRoom(RoomDTO currentRoom, int newRoom)
+        private async Task<int> ChooseNextRoom(RoomDTO currentRoom, int newRoom)
         {
             List<int> adjRooms = new List<int> { currentRoom.adjRoom1, currentRoom.adjRoom2, currentRoom.adjRoom3 };
             foreach (int i in adjRooms)
@@ -124,7 +124,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="currentRoom">current room the player is located in</param>
         /// <returns>the Room ID # that the player will be moving to or staying in</returns>
-        public async Task<int> ChoiceMenu()
+        private async Task<int> ChoiceMenu()
         {
             RoomDTO currentRoom = await GetRoom(gRoom);
             //int gRoom = currentRoom.roomID;
@@ -161,7 +161,7 @@ namespace P_One_UI
         /// <summary>
         /// Formats Player details and directions to be displayed as a game header
         /// </summary>
-        public async Task GameHeader(int playerID)
+        private async Task GameHeader(int playerID)
         {
             var information = "";
             HttpResponseMessage response = await client.GetAsync($"Player/current/header?playerID={playerID}");
@@ -171,7 +171,8 @@ namespace P_One_UI
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                Console.WriteLine("You're not working fast enough and have been let go! \nTry to work harder at your next job.");
+                //information = response.Content.ReadAsStringAsync().Result;
             }
             string header = JsonSerializer.Deserialize<string>(information);
             Console.WriteLine(header);
@@ -180,7 +181,7 @@ namespace P_One_UI
         /// Sets playerID for newly created player
         /// </summary>
         /// <param name="current">player DTO that is current</param>
-        public void SetCurrentPlayerStats(PlayerDTO current)
+        private void SetCurrentPlayerStats(PlayerDTO current)
         {
             gPlayerID = current.playerID;
         }
@@ -190,7 +191,7 @@ namespace P_One_UI
         /// <param name="currentRoom">current room the player is inside of</param>
         /// <param name="otherRooms">the adjacent rooms the player can immediately travel to</param>
         /// <param name="roomTrash">Items (0-3) inside of each room</param>
-        public async void FormatRoomDescription()
+        private async void FormatRoomDescription()
         {          
             PlayerDTO current = await GetPlayer(gPlayerID);
             RoomDTO currentRoom = await GetRoom(gRoom);
@@ -234,7 +235,7 @@ namespace P_One_UI
         /// Could eventually be used to display "high score" players
         /// </summary>
         /// <returns></returns>
-        public async Task ListLastTwoPlayer()
+        private async Task ListLastTwoPlayer()
         {
             var information = "";
             HttpResponseMessage response = await client.GetAsync($"Player/previous");
@@ -264,7 +265,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="playerID">unique player id</param>
         /// <returns></returns>
-        public async Task<PlayerDTO> GetPlayer(int playerID)
+        private async Task<PlayerDTO> GetPlayer(int playerID)
         {
             var information = "";
             HttpResponseMessage response = await client.GetAsync($"Player/current?playerID={playerID}");
@@ -274,7 +275,8 @@ namespace P_One_UI
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                Console.WriteLine("You're not working fast enough and have been let go! \nTry to work harder at your next job.");
+                //information = response.Content.ReadAsStringAsync().Result;
             }
             PlayerDTO current = JsonSerializer.Deserialize<PlayerDTO>(information);
             return current;
@@ -285,7 +287,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="playerID">unique player id</param>
         /// <returns></returns>
-        public async Task DeletePlayer(int playerID)
+        private async Task DeletePlayer(int playerID)
         {
 
             var information = "";
@@ -297,14 +299,15 @@ namespace P_One_UI
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                Console.WriteLine("That player does not exist");
+                //Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
             }
         }
         /// <summary>
         /// Verifies the player has not left the name field empty
         /// </summary>
         /// <returns></returns>
-        public string NamePlayer()
+        private string NamePlayer()
         {
             string newPlayer;
             while (true)
@@ -326,7 +329,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="newPlayer">name given to the player</param>
         /// <returns></returns>
-        public async Task CreatePlayer(string newPlayer)
+        private async Task CreatePlayer(string newPlayer)
         {
             var information = "";
             HttpResponseMessage response = await client.PostAsJsonAsync($"Player/create", newPlayer);
@@ -336,7 +339,8 @@ namespace P_One_UI
             }
             else
             {
-                Console.WriteLine("{0} ({1}) {2}", (int)response.StatusCode, response.ReasonPhrase, response.Headers);
+                Console.WriteLine("You're not working fast enough and have been let go! \nTry to work harder at your next job.");
+                //information = response.Content.ReadAsStringAsync().Result;
             }
         }
         /// <summary>
@@ -344,7 +348,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="gPlayerID">unique player id whose Moves are updated</param>
         /// <returns></returns>
-        public async Task UpdatePlayer(PlayerDTO current)
+        private async Task UpdatePlayer(PlayerDTO current)
         {
             var information = "";         
             HttpResponseMessage response = await client.PutAsJsonAsync($"Player/current/update", current);
@@ -354,7 +358,8 @@ namespace P_One_UI
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                Console.WriteLine("You're not working fast enough and have been let go! \nTry to work harder at your next job.");
+                //information = response.Content.ReadAsStringAsync().Result;
             }
         }
         /// <summary>
@@ -362,7 +367,7 @@ namespace P_One_UI
         /// Player will be able to pick up Trash in rooms to clean them
         /// </summary>
         /// <param name="gPlayerID">unique player id whose items will be updated</param>
-        public async Task Inventory(int gPlayerID)
+        private async Task Inventory(int gPlayerID)
         {
             Console.Clear();
             Console.WriteLine("---Inventory---\n");
@@ -388,7 +393,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="gPlayerID"></param>
         /// <param name="currentRoom"></param>
-        public async Task Clean(RoomDTO currentRoom)
+        private async Task Clean(RoomDTO currentRoom)
         {
             List<ItemDTO> roomTrash = await GetRoomInv(currentRoom.roomID, gPlayerID);
             Console.Clear(); 
@@ -418,7 +423,7 @@ namespace P_One_UI
         /// <param name="roomTrash"></param>
         /// <param name="roomID"></param>
         /// <param name="gPlayerID"></param>
-        public async Task ValidateTrash(string c, List<ItemDTO> roomTrash, int roomID)
+        private async Task ValidateTrash(string c, List<ItemDTO> roomTrash, int roomID)
         {
             if (Int32.TryParse(c, out int trashIndex) && trashIndex<=roomTrash.Count()&&trashIndex>0)
             {
@@ -458,7 +463,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="gPlayerID">unique player id used to associate this table of trash with the player</param>
         /// <returns></returns>
-        public async Task CreatePlayerTable(int gPlayerID)
+        private async Task CreatePlayerTable(int gPlayerID)
         {
             HttpResponseMessage response = await client.PostAsJsonAsync($"Player/create/table", gPlayerID);
             if (response.IsSuccessStatusCode)
@@ -467,7 +472,8 @@ namespace P_One_UI
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                Console.WriteLine("You're not working fast enough and have been let go! \nTry to work harder at your next job.");
+                //information = response.Content.ReadAsStringAsync().Result;
             }
         }
         /// <summary>
@@ -476,7 +482,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="gPlayerID">unique player id</param>
         /// <returns></returns>
-        public async Task FillRooms(int gPlayerID)
+        private async Task FillRooms(int gPlayerID)
         {
             var information = "";
             HttpResponseMessage response = await client.PostAsJsonAsync($"/room/inventory/fill", gPlayerID);
@@ -486,7 +492,8 @@ namespace P_One_UI
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                Console.WriteLine("You're not working fast enough and have been let go! \nTry to work harder at your next job.");
+                //information = response.Content.ReadAsStringAsync().Result;
             }
         }
         /// <summary>
@@ -495,7 +502,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="gRoom">Room ID # for the specific room</param>
         /// <returns></returns>
-        public async Task<RoomDTO> GetRoom(int gRoom)
+        private async Task<RoomDTO> GetRoom(int gRoom)
         {
             var information = "";
             HttpResponseMessage response = await client.GetAsync($"room/current?roomID={gRoom}");
@@ -505,7 +512,8 @@ namespace P_One_UI
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                Console.WriteLine("You're not working fast enough and have been let go! \nTry to work harder at your next job.");
+                //information = response.Content.ReadAsStringAsync().Result;
             }
             RoomDTO currentRoom = JsonSerializer.Deserialize<RoomDTO>(information);
             return currentRoom;
@@ -516,7 +524,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="adjRoomIDs">room IDs for the adjacent  rooms</param>
         /// <returns></returns>
-        public async Task<List<RoomDTO>> GetRooms(RoomDTO room/*int[]adjRoomIDs*/)
+        private async Task<List<RoomDTO>> GetRooms(RoomDTO room/*int[]adjRoomIDs*/)
         {
             var information = "";
             //string json = JsonSerializer.Serialize(room);
@@ -527,7 +535,8 @@ namespace P_One_UI
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                Console.WriteLine("You're not working fast enough and have been let go! \nTry to work harder at your next job.");
+                //information = response.Content.ReadAsStringAsync().Result;
             }
             List<RoomDTO> otherRooms = JsonSerializer.Deserialize<List<RoomDTO>>(information);
             return otherRooms;
@@ -538,7 +547,7 @@ namespace P_One_UI
         /// <param name="gRoom">room id to get trash from</param>
         /// <param name="gPlayerID">player id to get the trash of</param>
         /// <returns></returns>
-        public async Task<List<ItemDTO>> GetRoomInv(int gRoom, int gPlayerID)
+        private async Task<List<ItemDTO>> GetRoomInv(int gRoom, int gPlayerID)
         {
             int[] gRgPID = new int[] {gRoom,gPlayerID};
             var information = "";
@@ -549,7 +558,8 @@ namespace P_One_UI
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                Console.WriteLine("You're not working fast enough and have been let go! \nTry to work harder at your next job.");
+                //information = response.Content.ReadAsStringAsync().Result;
             }
             List<ItemDTO> roomInventory = JsonSerializer.Deserialize<List<ItemDTO>>(information);
             return roomInventory;
@@ -561,18 +571,19 @@ namespace P_One_UI
         /// </summary>
         /// <param name="gPlayerID">unique player id for table to drop</param>
         /// <returns></returns>
-        public async Task RemovePlayerItemTable(int gPlayerID)
+        private async Task RemovePlayerItemTable(int gPlayerID)
         {
             var information = "";
             HttpResponseMessage response = await client.DeleteAsync($"Player/delete/table?playerID={gPlayerID}");
             if (response.IsSuccessStatusCode)
-            {
+            {          
                 information = response.Content.ReadAsStringAsync().Result;
 
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                Console.WriteLine("You're not working fast enough and have been let go! \nTry to work harder at your next job.");
+                //Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
             }
         }
         /// <summary>
@@ -580,7 +591,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="combo">DTO combo of Room, Item, and player</param>
         /// <returns></returns>
-        public async Task RemoveTrash(R_P_I_DTO combo)
+        private async Task RemoveTrash(R_P_I_DTO combo)
         {
             //int[] trash = new int[] {gPlayerID, itemID, roomID};
             var information = "";
@@ -592,7 +603,8 @@ namespace P_One_UI
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                Console.WriteLine("You're not working fast enough and have been let go! \nTry to work harder at your next job.");
+                //Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
             }
          
         }
@@ -601,7 +613,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="current">the player who will have the trash added to their inventory</param>
         /// <returns></returns>
-        public async Task AddToInventory(PlayerDTO current)
+        private async Task AddToInventory(PlayerDTO current)
         {
               var information = "";
             HttpResponseMessage response = await client.PostAsJsonAsync($"/Player/item/add", current);
@@ -612,7 +624,8 @@ namespace P_One_UI
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                Console.WriteLine("You're not working fast enough and have been let go! \nTry to work harder at your next job.");
+                //Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
             }
         }
         /// <summary>
@@ -620,7 +633,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="playerID">ID of the player who is viewing their inventory</param>
         /// <returns></returns>
-        public async Task<List<ItemDTO>> GetInventory(int playerID)
+        private async Task<List<ItemDTO>> GetInventory(int playerID)
         {          
             var information = "";
             HttpResponseMessage response = await client.GetAsync($"Player/current/inventory?playerID={playerID}");
@@ -630,7 +643,8 @@ namespace P_One_UI
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                Console.WriteLine("You're not working fast enough and have been let go! \nTry to work harder at your next job.");
+                //Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
             }
             List<ItemDTO> playerInventory = JsonSerializer.Deserialize<List<ItemDTO>>(information);
             return playerInventory;
@@ -640,7 +654,7 @@ namespace P_One_UI
         /// </summary>
         /// <param name="playerID"></param>
         /// <returns></returns>
-        public async Task EmptyPlayerInventory(int playerID)
+        private async Task EmptyPlayerInventory(int playerID)
         {
             var information = "";
             HttpResponseMessage response = await client.DeleteAsync($"Player/delete/inventory?playerID={playerID}");
@@ -651,7 +665,8 @@ namespace P_One_UI
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                Console.WriteLine("You're not working fast enough and have been let go! \nTry to work harder at your next job.");
+                //Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
             }
         }
     }

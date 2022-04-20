@@ -97,7 +97,6 @@ namespace P_One.Tests
             Mock<ILogger<API.Controllers.PlayerController>> mocklog = new();
             string playerName1 = "testName1";
             string expectedString1 = $"New Player {playerName1} added!";
-            string expectedJson1 = JsonSerializer.Serialize($"New Player {playerName1} added!");
           
             mockRepo.Setup(x => x.NewPlayer(playerName1)).ReturnsAsync(expectedString1);
             var playerController = new API.Controllers.PlayerController(mocklog.Object, mockRepo.Object);
@@ -106,7 +105,7 @@ namespace P_One.Tests
             var actual1 = await playerController.AddPlayerAsync(playerName1);
 
             //ASSERT
-            Assert.Equal(expectedJson1.Trim('"'), actual1.Content);
+            Assert.Equal(expectedString1, actual1.Content);
         }
         [Fact]
         public async Task RoomController_GetCurrentRoom_GetOneRoom()
@@ -152,5 +151,28 @@ namespace P_One.Tests
             //ASSERT
             Assert.Equal(inventoryJson, actualInventory.Content);
         }
+
+        [Fact]
+        public async Task PlayerController_GetPlayerInventory_GetPlayerItems()
+        {
+            //ARRANGE
+            Mock<IRepo> mockRepo = new();
+            Mock<ILogger<API.Controllers.PlayerController>> mocklog = new();
+            int playerID = 2;
+            List<Item> expectedInventory = new();
+            expectedInventory.Add(new Item(1, "testitem1", 4));
+            expectedInventory.Add(new Item(2, "testitem2", 5));
+            string expectedJson = JsonSerializer.Serialize(expectedInventory);
+
+            mockRepo.Setup(x => x.GetInventory(playerID)).ReturnsAsync(expectedInventory);
+            var playerController = new API.Controllers.PlayerController(mocklog.Object, mockRepo.Object);
+
+            //ACT
+            var actual1 = await playerController.GetPlayerInventory(playerID);
+
+            //ASSERT
+            Assert.Equal(expectedJson, actual1.Content);
+        }
+
     }
 }
