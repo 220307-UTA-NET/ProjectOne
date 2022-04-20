@@ -43,8 +43,6 @@ namespace P_One_UI
                 Console.Clear();
                 await EnterHouse();
             }
-
-
         }
         /// <summary>
         /// Establishes random variables of house and sets the player to start in room 1
@@ -74,6 +72,9 @@ namespace P_One_UI
                             playerID = gPlayerID,
                             load = -1,                      
                         });
+                    Console.WriteLine("Trash empty!");
+                    Thread.Sleep(900);
+
                 }
                 Console.Clear();
                 await GameHeader(gPlayerID);

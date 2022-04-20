@@ -109,9 +109,48 @@ namespace P_One.Tests
             Assert.Equal(expectedJson1.Trim('"'), actual1.Content);
         }
         [Fact]
-        public async Task PlayerController_DeletePlayerAsync_Player_Deleted()
+        public async Task RoomController_GetCurrentRoom_GetOneRoom()
         {
+            //ARRANGE
+            Mock<IRepo> mockRepo = new();
+            Mock<ILogger<API.Controllers.RoomController>> mocklog = new();
+            Room expected = new Room("Cave", "Dark", 1,2,3);
+            int roomID = 2;
+            string expectedJson = JsonSerializer.Serialize(expected);
+            mockRepo.Setup(x => x.GetRoom(roomID)).ReturnsAsync(expected);         
+            var roomController = new API.Controllers.RoomController(mocklog.Object, mockRepo.Object);
 
+            //ACT
+            var room = await roomController.GetRoomCurrentAsync(roomID);
+
+            //ASSERT
+            Assert.Equal(expectedJson, room.Content);
+
+        }
+        [Fact]
+        public async Task RoomController_GetOneRoomInventoryAsync_GetListOfRoomItems()
+        {
+            //ARRAGNE
+            Mock<IRepo> mockRepo = new();
+            Mock<ILogger<API.Controllers.RoomController>> mocklog = new();
+            Room expected = new Room("Cave", "Dark", 1, 2, 3);
+            List<Item> expectedRoomInventory = new List<Item>();
+            Item item = new Item(1,"test1",4);
+            Item item2 = new Item(2, "test2", 5);
+            Item item3 = new Item(3, "test3", 6);
+            expectedRoomInventory.Add(item);
+            expectedRoomInventory.Add(item2);
+            expectedRoomInventory.Add(item3);
+            string inventoryJson= JsonSerializer.Serialize(expectedRoomInventory);
+            int[] info = new int[] { 2, 3 };           
+            mockRepo.Setup(x => x.GetRoomInventory(info[0], info[1])).ReturnsAsync(expectedRoomInventory);
+            var roomController = new API.Controllers.RoomController(mocklog.Object, mockRepo.Object);
+
+            //ACT
+            var actualInventory = await roomController.GetOneRoomInventoryAsync( info);
+
+            //ASSERT
+            Assert.Equal(inventoryJson, actualInventory.Content);
         }
     }
 }
