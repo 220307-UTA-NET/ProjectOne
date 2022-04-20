@@ -1,10 +1,10 @@
-﻿using BettaFishApp.DataLogic;
-using BettaFishApp.Logic;
+﻿using BettaFishApi.DataLogic;
+using BettaFishApi.Logic;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using System.Text.Json;
 
-namespace BettaFishAPI.Controllers
+namespace BettaFishApi.DataLogic.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -143,7 +143,5 @@ namespace BettaFishAPI.Controllers
             }
 
         }
-
-
     }
 }

@@ -10,10 +10,8 @@ namespace BettaFishApp.ConApp
         // Methods
         static async Task Main(string[] args)
         {
-
             
             Uri uri = new Uri("https://bettafishinformation.azurewebsites.net");
-            
 
             BettaFishIO bettaFishIO = new BettaFishIO(uri);
             await bettaFishIO.BeginAsync();

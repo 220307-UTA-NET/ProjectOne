@@ -1,4 +1,4 @@
-﻿namespace BettaFishApp.Logic
+﻿namespace BettaFishApi.Logic
 {
     public class BettaFunFacts
     {
@@ -17,7 +17,7 @@
 
         }
 
-        // Methods
+       
 
     }
 }

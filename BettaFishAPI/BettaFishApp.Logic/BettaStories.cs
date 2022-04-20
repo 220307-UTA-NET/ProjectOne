@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BettaFishApp.Logic
+namespace BettaFishApi.Logic
 {
     public class BettaStories
     {

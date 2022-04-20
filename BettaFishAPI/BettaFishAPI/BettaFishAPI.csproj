@@ -8,12 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Moq" Version="4.17.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BettaFishApp.DataLogic\BettaFishApp.DataLogic.csproj" />
-    <ProjectReference Include="..\BettaFishApp.Logic\BettaFishApp.Logic.csproj" />
+    <ProjectReference Include="..\BettaFishApp.DataLogic\BettaFishApi.DataLogic.csproj" />
+    <ProjectReference Include="..\BettaFishApp.Logic\BettaFishApi.Logic.csproj" />
   </ItemGroup>
 
 </Project>

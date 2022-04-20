@@ -8,11 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+    <PackageReference Include="Moq" Version="4.17.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BettaFishApp.Logic\BettaFishApp.Logic.csproj" />
+    <ProjectReference Include="..\BettaFishApp.Logic\BettaFishApi.Logic.csproj" />
   </ItemGroup>
 
 </Project>

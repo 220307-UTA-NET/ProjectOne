@@ -88,21 +88,21 @@ namespace BettaFishApp.UI
             Console.Clear();
             int choice = -1;
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("\nWelcome to the Betta Fish Fan Website!");
+            Console.WriteLine("Welcome to the Betta Fish Fan Website!");
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Please select an OPTION to explore:");
 
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("[0] : Exit");
-            Console.WriteLine("[1] : Betta Type");
-            Console.WriteLine("[2] : Betta Descriptions");
-            Console.WriteLine("[3] : Betta Fun Facts");
-            Console.WriteLine("[4] : Share Your Betta Story");
-            Console.WriteLine("[5] : View Your Betta Stories");
-            Console.WriteLine("[6] : Register With Us");
-            Console.WriteLine("[7] : View Betta Fan");
-            Console.WriteLine("[8] : Store Locations");
+            Console.WriteLine("\n[0] : Exit");
+            Console.WriteLine("\n[1] : Betta Type");
+            Console.WriteLine("\n[2] : Betta Descriptions");
+            Console.WriteLine("\n[3] : Betta Fun Facts");
+            Console.WriteLine("\n[4] : Share Your Betta Story");
+            Console.WriteLine("\n[5] : View Your Betta Stories");
+            Console.WriteLine("\n[6] : Register With Us");
+            Console.WriteLine("\n[7] : View Betta Fan");
+            Console.WriteLine("\n[8] : Store Locations");
 
 
             string? input = Console.ReadLine();
@@ -139,7 +139,8 @@ namespace BettaFishApp.UI
                     {
 
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("Type" + " : "  + bettatype.tailType);
+                        Console.WriteLine("\n[Type]" + " " + "[" + bettatype.tail_ID + "]" +  ":"  + bettatype.tailType);
+
                     }
                 }
                 else
@@ -179,7 +180,11 @@ namespace BettaFishApp.UI
                     foreach (var bettadescription in bettadescriptions)
                     {
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("\nType--" + bettadescription.tailType + "--" + bettadescription.description);
+                        Console.WriteLine("\nType" + "[" + bettadescription.tail_ID + "]" + "[" + bettadescription.tailType + "]" + "\n" + bettadescription.description);
+
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("\nPress ENTER to continue.");
+                        Console.ReadLine();
                     }
                 }
                 else
@@ -220,7 +225,12 @@ namespace BettaFishApp.UI
                     {
 
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("\nFun Fact: " + bettafunfact.funFact);
+                        Console.WriteLine("\nFun Fact:" + "[" + bettafunfact.fact_ID + "]" + bettafunfact.funFact);
+
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("Press ENTER to continue.");
+                        Console.ReadLine();
+
                     }
 
                 }
@@ -245,7 +255,7 @@ namespace BettaFishApp.UI
                 if (response.IsSuccessStatusCode)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Your story was successfully posted.");
+                    Console.WriteLine("\nYour story was successfully posted.");
                 }
                 else
                 {
@@ -349,8 +359,8 @@ namespace BettaFishApp.UI
                     {
 
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("\nFan:" + "[" + viewregistration.registration_ID + "]" + "Name of Fan:" + viewregistration.lName + 
-                            "" + viewregistration.fName);
+                        Console.WriteLine("\nFan:" + "[" + viewregistration.registration_ID + "]"  + "Name of Fan:" + "[" + viewregistration.lName + 
+                            " " + viewregistration.fName + "]");
 
                     }
 
@@ -414,6 +424,7 @@ namespace BettaFishApp.UI
 
         public RegistrationDTO GetUserInput()
         {
+
             RegistrationDTO bettaregistration = new();
 
             Console.ForegroundColor = ConsoleColor.Green;
@@ -430,6 +441,7 @@ namespace BettaFishApp.UI
             bettaregistration.email = Console.ReadLine();
 
             return bettaregistration;
+
 
         }
 

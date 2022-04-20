@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BettaFishApp.Logic
+namespace BettaFishApi.Logic
 {
     public class BettaStoreLocation
     {
@@ -20,10 +20,6 @@ namespace BettaFishApp.Logic
             this.storeName = storeName;
             this.storeAddress = storeAddress;
         }
-
-
-        //Methods
-
 
     }
 }

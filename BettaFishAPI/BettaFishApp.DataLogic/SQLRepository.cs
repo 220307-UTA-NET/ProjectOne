@@ -1,4 +1,4 @@
-﻿using BettaFishApp.Logic;
+﻿using BettaFishApi.Logic;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BettaFishApp.DataLogic
+namespace BettaFishApi.DataLogic
 {
     public class SQLRepository : IRepository
     {

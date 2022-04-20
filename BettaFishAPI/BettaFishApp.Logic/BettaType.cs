@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BettaFishApp.Logic
+namespace BettaFishApi.Logic
 {
     public class BettaType
     {
@@ -24,7 +24,7 @@ namespace BettaFishApp.Logic
             this.description = description;
         }
 
-        //Methods
+       
         
     }
 }

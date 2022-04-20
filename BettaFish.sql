@@ -34,9 +34,9 @@ SELECT * FROM BettaFish.Facts;
 --Table 3
 CREATE TABLE BettaFish.Registration (
     registration_ID INT PRIMARY KEY IDENTITY, -- creates a unique value that changes with every entry in the table
-    fName NVARCHAR (255) NULL,
-    lName NVARCHAR (255) NULL,
-    email NVARCHAR (255) NULL,
+    fName NVARCHAR (255) NOT NULL,
+    lName NVARCHAR (255) NOT NULL,
+    email NVARCHAR (255) NOT NULL,
 );
 
 DROP TABLE BettaFish.Registration;
@@ -46,11 +46,11 @@ SELECT * FROM BettaFish.Registration;
 -- Table 4
 CREATE TABLE BettaFish.Stories (
     story_ID INT PRIMARY KEY IDENTITY, -- creates a unique value that changes with every entry in the table
-    nameOfBetta NVARCHAR (255) NULL,
-    story NVARCHAR (3000) NULL,
+    nameOfBetta NVARCHAR (255) NOT NULL,
+    story NVARCHAR (3000) NOT NULL,
 );
 
---DROP TABLE BettaFish.Stories;
+DROP TABLE BettaFish.Stories;
 SELECT * FROM BettaFish.Stories;
 
 -- Table 5

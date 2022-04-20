@@ -1,6 +1,6 @@
-﻿using BettaFishApp.Logic;
+﻿using BettaFishApi.Logic;
 
-namespace BettaFishApp.DataLogic
+namespace BettaFishApi.DataLogic
 {
     public interface IRepository
     {
