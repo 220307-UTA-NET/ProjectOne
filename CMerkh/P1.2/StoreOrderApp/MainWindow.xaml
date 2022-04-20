@@ -1,0 +1,81 @@
+﻿<Window x:Class="StoreOrderApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StoreOrderApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        Loaded="OnLoad">
+    <Grid Background="#FFE5E5E5" OpacityMask="Black">
+        <Label Content="Order Quantity | Product | Manufacturer | DC Stock" HorizontalAlignment="Left" Margin="216,28,0,0" VerticalAlignment="Top"/>
+        <ScrollViewer Margin="0,60,0,10">
+            <ItemsControl>
+                <TextBox Name="DCInventory1" HorizontalAlignment="Left" Height="19" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452"/>
+                <TextBox Name="DCQuantity1" HorizontalAlignment="Left" Margin="223,-19,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90"/>
+
+                <TextBox Name="DCInventory2" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452" Background="LightGray"/>
+                <TextBox Name="DCQuantity2" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90" Background="LightGray"/>
+
+                <TextBox Name="DCInventory3" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452"/>
+                <TextBox Name="DCQuantity3" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90"/>
+
+                <TextBox Name="DCInventory4" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452" Background="LightGray"/>
+                <TextBox Name="DCQuantity4" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90" Background="LightGray"/>
+
+                <TextBox Name="DCInventory5" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452"/>
+                <TextBox Name="DCQuantity5" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90"/>
+
+                <TextBox Name="DCInventory6" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452" Background="LightGray"/>
+                <TextBox Name="DCQuantity6" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90" Background="LightGray"/>
+
+                <TextBox Name="DCInventory7" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452"/>
+                <TextBox Name="DCQuantity7" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90"/>
+
+                <TextBox Name="DCInventory8" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452" Background="LightGray"/>
+                <TextBox Name="DCQuantity8" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90" Background="LightGray"/>
+
+                <TextBox Name="DCInventory9" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452"/>
+                <TextBox Name="DCQuantity9" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90"/>
+
+                <TextBox Name="DCInventory10" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452" Background="LightGray"/>
+                <TextBox Name="DCQuantity10" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90" Background="LightGray"/>
+
+                <TextBox Name="DCInventory11" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452"/>
+                <TextBox Name="DCQuantity11" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90"/>
+
+                <TextBox Name="DCInventory12" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452" Background="LightGray"/>
+                <TextBox Name="DCQuantity12" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90" Background="LightGray"/>
+
+                <TextBox Name="DCInventory13" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452"/>
+                <TextBox Name="DCQuantity13" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90"/>
+                <TextBox Name="DCInventory14" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452" Background="LightGray"/>
+                <TextBox Name="DCQuantity14" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90" Background="LightGray"/>
+                <TextBox Name="DCInventory15" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452"/>
+                <TextBox Name="DCQuantity15" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90"/>
+                <TextBox Name="DCInventory16" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452" Background="LightGray"/>
+                <TextBox Name="DCQuantity16" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90" Background="LightGray"/>
+                <TextBox Name="DCInventory17" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452"/>
+                <TextBox Name="DCQuantity17" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90"/>
+                <TextBox Name="DCInventory18" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452" Background="LightGray"/>
+                <TextBox Name="DCQuantity18" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90" Background="LightGray"/>
+                <TextBox Name="DCInventory19" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452"/>
+                <TextBox Name="DCQuantity19" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90"/>
+                <TextBox Name="DCInventory20" HorizontalAlignment="Left" Margin="312,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="452" Background="LightGray"/>
+                <TextBox Name="DCQuantity20" HorizontalAlignment="Left" Margin="223,-20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="90" Background="LightGray"/>
+
+
+
+            </ItemsControl>
+        </ScrollViewer>
+        <Button Name="DCOrderButton" Content="Place Order" HorizontalAlignment="Left" Margin="68,257,0,0" VerticalAlignment="Top" Click="PlaceOrderButtonClick"/>
+
+        <ComboBox Name="StoreSendSelector" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="186">
+            <ComboBoxItem Content="147th St (New York)"/>
+            <ComboBoxItem Content="Delancy St AKA Canal St (New York)"/>
+            <ComboBoxItem Content="95th St (New York)"/>
+            <ComboBoxItem Content="Cicero Ave (Chicago)"/>
+        </ComboBox>
+
+    </Grid>
+</Window>
