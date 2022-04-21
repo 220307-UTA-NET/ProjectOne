@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="utf-8" />
+    <title>Book Store Admin</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+            <a class="navbar-brand" id="navbar" href="./index.html">Book Store</a>
+            <div class="collapse navbar-collapse">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="./customers.html">Customers</a>
+                    <a class="nav-item nav-link" href="./placeorder.html">Place Order</a>
+                    <a class="nav-item nav-link" href="./viewcustomerorders.html">Customer Order History</a>
+                    <a class="nav-item nav-link active" href="./viewlocationorders.html">Location Order History<span class="sr-only">(current)</span></a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <form>
+        <div class="row gy-2 gx-4 justify-content-center input-form align-items-center">
+            <label style="padding-top: 5px; padding-right: 10px;">Select A Location</label>
+            <div class="col-auto">
+                <select class="form-select select-box" id="view-location" onchange="selectedLocation(event)">
+                    <option value="" selected>--choose from the list--</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    <div class="row justify-content-around" hidden id="order-info">
+        <div class="col-sm-4 card" id="order-card">
+            <table class="table hover" id="order-list-table" aria-label="List of orders placed at this location">
+                <thead>
+                  <tr>
+                    <th scope="col" class="center-table-data">ID</th>
+                    <th scope="col" class="center-table-data">Customer</th>
+                    <th scope="col" class="center-table-data">Total</th>
+                    <th scope="col" class="center-table-data">Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+        </div>
+        <div class="col-sm-6 card" id="order-details-card">
+            <table class="table" id="order-detail-table" aria-label="Displays the details of an order">
+                <thead>
+                  <tr>
+                    <th scope="col">Order ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col" class="center-table-data">Price</th>
+                    <th scope="col" class="center-table-data">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <script src="scripts/viewlocationorders.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

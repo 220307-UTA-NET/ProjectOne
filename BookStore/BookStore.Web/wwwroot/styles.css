@@ -1,0 +1,39 @@
+.card {
+    box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+    padding: 10px;
+}
+
+.input-form {
+    margin-top: 25px !important;
+    margin-bottom: 25px;
+}
+
+.select-box {
+    display: block;
+    width: 100%;
+    padding: .375rem 2.25rem .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 16px 12px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.center-table-data {
+    text-align: center;
+}
+
+.hover {
+    cursor: pointer;
+}
+
+#navbar {
+    font-weight: 300;
+    text-decoration: underline;
+    text-shadow: #212529 5px;
+}

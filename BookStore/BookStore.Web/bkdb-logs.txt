@@ -1,0 +1,6 @@
+info: 3/3/2021 10:13:52.565 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.3 initialized 'bookstoredbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 3/3/2021 10:13:53.404 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (88ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[ID], [c].[DefaultLocationID], [c].[FirstName], [c].[LastName]
+      FROM [bkdb].[Customer] AS [c]
