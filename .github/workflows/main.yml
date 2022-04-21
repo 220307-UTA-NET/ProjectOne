@@ -1,14 +1,17 @@
-# This is a basic workflow to help you get started with Actions
+name: CI Merge and Test
 
-name: First CI Merge P-1
-
+env: 
+  DOTNET_VERSION: '6.0.x'
+  AZURE_WEBAPP_PACKAGE_PATH: './BuildOutput'
+  AZURE_WEBAPP_NAME: 'OlympicGames'
+  
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ PhirithP ]
+    branches: [ main ]
   pull_request:
-    branches: [ PhirithP ]
+    branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -24,13 +27,19 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+      
+      - name: Set up .Net Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+                  
+      - name: Build the API with .NET
+        run: dotnet publish ./OlympicGamesApp/OlympicGames.Api/OlympicGames.Api.sln --configuration Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Azure WebApp2
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }} #Login for Build agent and Azure account to deploy 
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
