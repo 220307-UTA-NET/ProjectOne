@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RecipeBookApp.Console": {
+      "commandName": "Project",
+      "sqlDebugging": true
+    }
+  }
+}
