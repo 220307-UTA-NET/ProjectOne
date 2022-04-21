@@ -1,4 +1,4 @@
-# Book Store Inventory Management
+# Book Store 
 
 ## Project Description
 
