@@ -19,17 +19,3 @@ List of features ready and TODOs for future development
 * Track order history by customer
 * Track order history by location
 
-To-do list:
-* Add authentication and authorization
-
-## Getting Started
-Clone the repository:
-`git clone https://github.com/2102-feb08-net/johnw-project1.git`
-
-## Usage
-
-Change directories to the repository directory:
-`cd johnw-project1`
-
-Run the project with the following command:
-`dotnet run -p BookStore/BookStore.Web/`
