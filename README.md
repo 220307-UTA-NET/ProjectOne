@@ -9,7 +9,6 @@
 * (recommended: asynchronous network & other I/O, at least on the REST API)
 * (optional: logging of exceptions and other events
 
-
 ## Design
 * use ADO.NET (not Entity Framework)
 * use ASP.NET Core Web API
