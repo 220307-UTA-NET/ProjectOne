@@ -18,12 +18,23 @@ namespace web.api.Controllers {
 
         [HttpGet("{id}")]
         public Product Get(long id) {
-            return _repository.Products.FirstOrDefault(p => p.ProductID == id);
+            Product p = _repository.Products.FirstOrDefault(p => p.ProductID == id);
+            if (p == null) {
+                Response.StatusCode = 404;
+            }
+            return p;
         }
 
         [HttpPost]
         public void Post([FromBody] Product product) {
-            _repository.CreateProduct(product);
+            if (product.ProductID != null)
+            {
+                Response.StatusCode = 400;
+                Response.WriteAsync("Error 400: Bad Request, Product ID must be null when you want to create a new product.");
+            } else 
+            {
+                _repository.CreateProduct(product);
+            }
         }
 
         [HttpPut("{id}")]
