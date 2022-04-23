@@ -10,12 +10,19 @@ namespace irepository
         private readonly string _connectionstring;
         private readonly ILogger<sqldata> _logger;
 
+        public Irepository Object { get; }
+
         public sqldata(string connectionstring, ILogger<sqldata> logger)
         {
             this._connectionstring = connectionstring;
             this._logger = logger;
         }
+        public sqldata() { }
 
+        public sqldata(Irepository @object)
+        {
+            Object = @object;
+        }
 
         public async Task<IEnumerable<inventory>> getinvetory(int storeid)
         {

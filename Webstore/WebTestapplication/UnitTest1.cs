@@ -4,25 +4,49 @@ using irepository;
 using System.Collections.Generic;
 using business__logic;
 using System.Threading.Tasks;
+using Webstore.controllers;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebTestapplication
 {
     public class UnitTest1
+
+
     {
+        private readonly Customers _unitTest1;
+        private readonly Mock<Irepository> mock = new Mock<Irepository>();
+        private readonly Mock<ILogger<Customers>> logger = new Mock<ILogger<Customers>>();
+
+        public UnitTest1()
+        {
+            _unitTest1 = new Customers(mock.Object, logger.Object);
+        }
+
+
         [Fact]
         public async Task api_getcustomerid_customerid()
         {
-
-
-            Mock<Irepository> mock = new Mock<Irepository>();
 
 
 
             mock.Setup(x => x.getcustomerid("Christian", "cubides")).ReturnsAsync(1);
 
 
+            List<registercustomers> customer_list = new List<registercustomers>();
+            registercustomers customer = new registercustomers("Christian", "cubides");
+            customer_list.Add(customer);
 
-            Assert.Equal(1, 1);
+
+
+
+            // int result = await test1.getcustomerid("Christian", "cubides");
+
+            int customer_id = await _unitTest1.getcustomerid(customer_list);
+
+
+
+            Assert.Equal(1, customer_id);
 
 
         }
@@ -46,19 +70,23 @@ namespace WebTestapplication
         }
 
         [Fact]
-        public async Task api_getcustomerid_customerid3()
+        public async Task api_register_customers()
         {
 
 
-            Mock<Irepository> mock = new Mock<Irepository>();
 
 
 
-            mock.Setup(x => x.getcustomerid("Christian", "cubides")).ReturnsAsync(1);
+            mock.Setup(x => x.registercustomers("Christian", "cubides")).ReturnsAsync(new ContentResult() { StatusCode = 201 });
+            List<registercustomers> customer_list = new List<registercustomers>();
+            registercustomers customer = new registercustomers("Christian", "cubides");
+            customer_list.Add(customer);
 
 
+            var status_code = await _unitTest1.Registercustumers(customer_list);
+            ContentResult result = status_code;
 
-            Assert.Equal(1, 1);
+            Assert.Equal(result, status_code);
 
 
         }

@@ -16,11 +16,19 @@ namespace Webstore.controllers
         private readonly Irepository _repository;
         private readonly ILogger<Customers> _logger;
         private readonly RequestDelegate _next;
+        private Irepository @object;
+
+        public Customers() { }
 
         public Customers(Irepository irepository, ILogger<Customers> logger)
         {
             this._repository = irepository;
             this._logger = logger;
+        }
+
+        public Customers(Irepository @object)
+        {
+            this.@object = @object;
         }
 
         [HttpPost]

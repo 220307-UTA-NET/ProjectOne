@@ -19,6 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\irepository\irepository.csproj" />
+    <ProjectReference Include="..\Webstore\Webstore.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Settings.job">
