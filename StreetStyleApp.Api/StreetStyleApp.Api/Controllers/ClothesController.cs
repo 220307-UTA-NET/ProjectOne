@@ -2,6 +2,12 @@
 using StreetStyleApp.BusinessLogic;
 using System.Data.SqlClient;
 using StreetStyleApp.DataLogic;
+using System.Text.Json;
+using System.Web.Mvc;
+using ContentResult = Microsoft.AspNetCore.Mvc.ContentResult;
+using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
+using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
 namespace StreetStyleApp.Api.Controllers
 {
@@ -22,9 +28,9 @@ namespace StreetStyleApp.Api.Controllers
 
         // Methods
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Clothes>>> GetAllClothesAsync()
+        public async Task<ContentResult> GetAllClothesAsync()
         {
-            IEnumerable<Clothes> clothes;
+            IEnumerable<Clothes> clothes = new List<Clothes> ();
             try
             {
                 clothes = await _repository.GetAllClothes();
@@ -32,11 +38,19 @@ namespace StreetStyleApp.Api.Controllers
             catch (SqlException ex)
             {
                 _logger.LogError(ex, "SQL error while getting all clothes.");
-                return StatusCode(500);
+                //return StatusCode = 500;
             }
-            return clothes.ToList();
+            string closeJSon = JsonSerializer.Serialize(clothes);
+            return new ContentResult()
+            {
+                StatusCode = 200,
+                ContentType = "application/json",
+                Content = closeJSon
+            };
+            
+            //return clothes.ToList();
         }
 
-       
+
     }
 }

@@ -116,15 +116,14 @@ namespace StreetStyleApp.DataLogic
             while (reader.Read())
             {
                 var ClothingID = reader.GetInt32(0);
-                var ClothingItem = reader.GetString(0);
-                var ClothingBrand = reader.GetString(1);
+                var ClothingItem = reader.GetString(1);
+                var ClothingBrand = reader.GetString(2);
                 result.Add(new(ClothingID, ClothingItem, ClothingBrand));
             }
             reader.Close();
 
             cmdString =
-                "DELETE FROM Clothes.Clothing" +
-                "WHERE ClothingID = @ClothingID;";
+                "DELETE FROM Clothes.Clothing WHERE ClothingID = @ClothingID;";
 
             using SqlCommand cmd2 = new(cmdString, connection);
 
