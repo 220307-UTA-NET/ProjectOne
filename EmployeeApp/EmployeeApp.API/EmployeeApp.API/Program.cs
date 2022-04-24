@@ -5,8 +5,8 @@ using EmployeeApp.DataLogic;
 var builder = WebApplication.CreateBuilder(args);
 
 // Connection String
-string connectionString = builder.Configuration["ConnectionString"];
-//string connectionString = builder.Configuration.GetConnectionString("RPS-DB-Connection");
+//string connectionString = builder.Configuration["ConnectionString"];
+string connectionString = builder.Configuration.GetConnectionString("ConnectionSt ring");
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

@@ -91,6 +91,7 @@ namespace EmployeeApp.UI
             }
         }
 
+        // Display all employees in the database
         private async Task DisplayAllEmployeesAsync()
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _uri.ToString() + "api/employees");
@@ -112,7 +113,7 @@ namespace EmployeeApp.UI
                     Console.WriteLine("Employees: ");
                     foreach(var employee in employees)
                     {
-                        //Console.WriteLine("Id: " + employee.Id);
+                        Console.WriteLine("Employee Id: " + employee.Id);
                         Console.WriteLine("Name: " + employee.FirstName + " " + employee.LastName);
                         Console.WriteLine("Birthdate: " + employee.BirthDate);
                         Console.WriteLine("Department: " + employee.Department);
@@ -131,6 +132,7 @@ namespace EmployeeApp.UI
             Console.Clear();
         }
 
+        // Display an employee by Employee Id
         private async Task DisplayEmployeeAsync()
         {
             int employeeId = -1;
@@ -170,7 +172,8 @@ namespace EmployeeApp.UI
                     Console.WriteLine("No employee with Id: {0} found.", employeeId);
                 }
                 else
-                {   
+                {
+                    Console.WriteLine("Employee Id: " + employee[0].Id);
                     Console.WriteLine("Name: " + employee[0].FirstName + " " + employee[0].LastName);
                     Console.WriteLine("Birthdate: " + employee[0].BirthDate);
                     Console.WriteLine("Department: " + employee[0].Department);
@@ -183,6 +186,7 @@ namespace EmployeeApp.UI
             Console.Clear();
         }
 
+        // Add a new employee into the database
         private async Task AddEmployeeAsync()
         {
             // variables for an Employee
@@ -327,18 +331,6 @@ namespace EmployeeApp.UI
 
             response.EnsureSuccessStatusCode();     
 
-            //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, _uri.ToString() + "api/addEmp/");
-            //request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
-
-            //using (HttpResponseMessage response = await httpClient.SendAsync(request))
-            //{
-            //    response.EnsureSuccessStatusCode();
-
-            //    if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
-            //    {
-            //        throw new ArrayTypeMismatchException();
-            //    }
-
             var employee = await response.Content.ReadFromJsonAsync<List<EmployeeDTO>>();
 
             if (employee.Count == 0)
@@ -348,6 +340,7 @@ namespace EmployeeApp.UI
             else
             {
                 Console.WriteLine("\nEmployee added:");
+                Console.WriteLine("Employee Id: " + employee[0].Id);
                 Console.WriteLine("Name: " + employee[0].FirstName + " " + employee[0].LastName);
                 Console.WriteLine("Birthdate: " + employee[0].BirthDate);
                 Console.WriteLine("Department: " + employee[0].Department);
@@ -359,6 +352,8 @@ namespace EmployeeApp.UI
             Console.ReadLine();
             Console.Clear();
         }
+
+        // Update an existing employee in the database by Employee Id
         private async Task UpdateEmployeeAsync()
         {
             // variables for an Employee
@@ -412,7 +407,8 @@ namespace EmployeeApp.UI
                 }
                 else
                 {
-                    Console.WriteLine("\nName: " + employee[0].FirstName + " " + employee[0].LastName);
+                    Console.WriteLine("\nEmployee Id: " + employee[0].Id);
+                    Console.WriteLine("Name: " + employee[0].FirstName + " " + employee[0].LastName);
                     Console.WriteLine("Birthdate: " + employee[0].BirthDate);
                     Console.WriteLine("Department: " + employee[0].Department);
                     Console.WriteLine("Title: " + employee[0].Title);
@@ -581,21 +577,6 @@ namespace EmployeeApp.UI
 
                                 response1.EnsureSuccessStatusCode();
 
-                                //request = new HttpRequestMessage(HttpMethod.Put, _uri.ToString() + $"api/updateEmp?Id={employeeId}");
-                                //request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
-
-                                //using (HttpResponseMessage response1 = await httpClient.SendAsync(request))
-                                //{
-                                //    response.EnsureSuccessStatusCode();
-
-                                //    if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
-                                //    {
-                                //        throw new ArrayTypeMismatchException();
-                                //    }
-                                //    Console.WriteLine("Employee updated.");
-                                //    loop1 = false;
-                                //}
-
                                 Console.WriteLine("\nEmployee updated.");
                                 loop1 = false;
                                 break;
@@ -615,6 +596,8 @@ namespace EmployeeApp.UI
             Console.ReadLine();
             Console.Clear();
         }
+
+        // Delete an employee from the database by Employee Id
         private async Task DeleteEmployeeAsync()
         {
             int employeeId = -1;
@@ -659,7 +642,8 @@ namespace EmployeeApp.UI
                 }
                 else
                 {
-                    Console.WriteLine("\nName: " + employee[0].FirstName + " " + employee[0].LastName);
+                    Console.WriteLine("\nEmployee Id: " + employee[0].Id);
+                    Console.WriteLine("Name: " + employee[0].FirstName + " " + employee[0].LastName);
                     Console.WriteLine("Birthdate: " + employee[0].BirthDate);
                     Console.WriteLine("Department: " + employee[0].Department);
                     Console.WriteLine("Title: " + employee[0].Title);
@@ -712,6 +696,7 @@ namespace EmployeeApp.UI
             Console.Clear();
         }
 
+        // Print out all locations in the database
         private async Task GetLocationsAsync()
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _uri.ToString() + "api/locations");

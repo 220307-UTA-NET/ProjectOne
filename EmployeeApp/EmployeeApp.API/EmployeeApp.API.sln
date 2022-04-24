@@ -5,9 +5,9 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeApp.API", "EmployeeApp.API\EmployeeApp.API.csproj", "{FE15F00D-A647-45F5-B9BE-0F5BA0935D63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeApp.BusinessLogic", "EmployeeApp.BusinessLogic\EmployeeApp.BusinessLogic.csproj", "{9D024981-AD56-42A0-8D3B-773D6077230C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeApp.BusinessLogic", "EmployeeApp.BusinessLogic\EmployeeApp.BusinessLogic.csproj", "{9D024981-AD56-42A0-8D3B-773D6077230C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeApp.DataLogic", "EmployeeApp.DataLogic\EmployeeApp.DataLogic.csproj", "{90C40FFE-CFD4-4CBE-B148-E6E6C4FDB3E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeApp.DataLogic", "EmployeeApp.DataLogic\EmployeeApp.DataLogic.csproj", "{90C40FFE-CFD4-4CBE-B148-E6E6C4FDB3E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

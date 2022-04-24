@@ -28,7 +28,7 @@ namespace EmployeeApp.DataLogic
         /// Get all employees information from the database.
         /// </summary>
         /// <returns>
-        /// A list of all employees
+        /// A List of all Employee objects
         /// </returns>
         public async Task<IEnumerable<Employee>> GetAllEmployeesAsync()
         {
@@ -76,7 +76,7 @@ namespace EmployeeApp.DataLogic
         /// </summary>
         /// <param name="Id"></param>
         /// <returns>
-        /// A list with a single employee
+        /// A List containing a single Employee object
         /// </returns>
         public async Task<IEnumerable<Employee>> GetEmployeeAsync(int Id)
         {
@@ -120,6 +120,13 @@ namespace EmployeeApp.DataLogic
             return result;  // Return the list filled with an Employee
         }
 
+        /// <summary>
+        /// Add a new employee to the database
+        /// </summary>
+        /// <param name="emp"></param>
+        /// <returns>
+        /// A List containing a single Employee object
+        /// </returns>
         public async Task<IEnumerable<Employee>> AddEmployeeAsync(Employee emp)
         {
             // Create an empty List to save the Employee
@@ -179,6 +186,14 @@ namespace EmployeeApp.DataLogic
             return result;  // Return the list filled with the new Employee
         }
 
+        /// <summary>
+        /// Update an existing employee information
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="emp"></param>
+        /// <returns>
+        /// A List of a single Employee object containing the updated information
+        /// </returns>
         public async Task<IEnumerable<Employee>> UpdateEmployeeAsync(int Id, Employee emp)
         {
             // Empty List to save the result
@@ -242,6 +257,13 @@ namespace EmployeeApp.DataLogic
             return result;
         }
         
+        /// <summary>
+        /// Remove an employee from the database based on their Id
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns>
+        /// A List of a single Employee object of the deleted employee
+        /// </returns>
         public async Task<IEnumerable<Employee>> DeleteEmployeeAsync(int Id)
         {
             // Empty List to save the Employee to be deleted
@@ -299,6 +321,12 @@ namespace EmployeeApp.DataLogic
             return result;
         }
 
+        /// <summary>
+        /// Get all locations info from the database
+        /// </summary>
+        /// <returns>
+        /// A List of all Location objects
+        /// </returns>
         public async Task<IEnumerable<Location>> GetLocationsAsync()
         {
             // Create an empty List to save all Employees
