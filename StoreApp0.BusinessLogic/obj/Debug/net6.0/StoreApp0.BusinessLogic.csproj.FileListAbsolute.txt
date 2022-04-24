@@ -1,0 +1,12 @@
+/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/bin/Debug/net6.0/StoreApp0.BusinessLogic.deps.json
+/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/bin/Debug/net6.0/StoreApp0.BusinessLogic.dll
+/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/bin/Debug/net6.0/StoreApp0.BusinessLogic.pdb
+/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/obj/Debug/net6.0/StoreApp0.BusinessLogic.csproj.AssemblyReference.cache
+/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/obj/Debug/net6.0/StoreApp0.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/obj/Debug/net6.0/StoreApp0.BusinessLogic.AssemblyInfoInputs.cache
+/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/obj/Debug/net6.0/StoreApp0.BusinessLogic.AssemblyInfo.cs
+/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/obj/Debug/net6.0/StoreApp0.BusinessLogic.csproj.CoreCompileInputs.cache
+/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/obj/Debug/net6.0/StoreApp0.BusinessLogic.dll
+/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/obj/Debug/net6.0/refint/StoreApp0.BusinessLogic.dll
+/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/obj/Debug/net6.0/StoreApp0.BusinessLogic.pdb
+/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/obj/Debug/net6.0/ref/StoreApp0.BusinessLogic.dll
