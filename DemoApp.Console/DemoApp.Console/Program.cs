@@ -13,7 +13,7 @@ namespace DempApp.Console
         {
         
 
-            Uri uri = new Uri("https://localhost:37133");
+            Uri uri = new Uri("http://localhost:37133");
 
             DemoApp.UI.IO io = new IO(uri);
 

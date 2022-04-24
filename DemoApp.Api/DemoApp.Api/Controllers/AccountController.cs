@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace DemoApp.Api.Controllers
 {
@@ -42,5 +43,52 @@ namespace DemoApp.Api.Controllers
 
         }
 
+        [HttpPost()]
+
+        public async Task<IActionResult> AddNewAccountAsync([FromBody] Account account)
+        {
+            // List<Account> account;
+            try
+            {
+                await _repository.AddAccount(account);
+                return StatusCode(200);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(JsonSerializer.Serialize(account));
+                _logger.LogError(ex, " Account Regiateration Failed" + account);
+                return StatusCode(500);
+
+
+            }
+
+        }
+
+        [HttpPut()]
+        public async Task<IActionResult> UpdateAccountBalalaceAsync([FromBody] Account account)
+        {
+            // List<Customer> customer;
+            try
+            {
+                await _repository.UpdateAccountBalance(account);
+                return StatusCode(200);
+            }
+            catch (SqlException ex)
+            {
+                _logger.LogError(ex, " Updating account failed" + account);
+                return StatusCode(500);
+
+
+            }
+
+        }
+
+
+
+
     }
+
+        
+
+    
 }

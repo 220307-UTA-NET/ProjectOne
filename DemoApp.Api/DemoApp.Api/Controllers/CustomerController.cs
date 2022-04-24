@@ -24,6 +24,8 @@ namespace DemoApp.Api.Controllers
         }
 
         // Methods
+
+
         [HttpGet]
         public async Task<ActionResult<List<Customer>>> GetAllCustomersAsync()
         {
@@ -65,7 +67,7 @@ namespace DemoApp.Api.Controllers
 
         [HttpPost()]
 
-        public async Task<IActionResult> RegisterCustomerAsync([FromBody]Customer customer)
+        public async Task<IActionResult> RegisterCustomerAsync([FromBody] Customer customer)
         {
             // List<Customer> customer;
             try
@@ -85,19 +87,19 @@ namespace DemoApp.Api.Controllers
 
         //PUT Method
 
-        [HttpPut()]
+        [HttpPut("{input}/{address}")]
 
-        public async Task<IActionResult> UpdateCustomerAsync([FromBody] Customer customer)
+        public async Task<IActionResult> UpdateCustomerAsync(int input, string address)
         {
             // List<Customer> customer;
             try
             {
-                await _repository.UpdateCustomerAddress(customer);
+                await _repository.UpdateCustomerAddress(input, address);
                 return StatusCode(200);
             }
             catch (SqlException ex)
             {
-                _logger.LogError(ex, " Updating Address Was Failed" + customer);
+                _logger.LogError(ex, " Updating Address Was Failed");
                 return StatusCode(500);
 
 
@@ -108,12 +110,12 @@ namespace DemoApp.Api.Controllers
         //Delete Method
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteCustomerAsync(int CustomerId)
+        public async Task<IActionResult> DeleteCustomerAsync([FromBody] Customer customer)
         {
            
             try
             {
-                 await _repository.DeleteCustomer(CustomerId);
+                 await _repository.DeleteCustomer(customer.custId);
                 return StatusCode(200);
             }
             catch (SqlException ex)

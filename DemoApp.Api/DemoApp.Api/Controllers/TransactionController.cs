@@ -58,5 +58,34 @@ namespace DemoApp.Api.Controllers
             }
             return transactions;
         }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateAccountBalanceAsync([FromBody] TransactionType transaction)
+        {
+            // List<Customer> customer;
+            try
+            {
+                transaction.FromAccount.accountBalance -= transaction.amount;
+                transaction.ToAccount.accountBalance += transaction.amount;
+
+                _repository.UpdateAccountBalance(transaction.FromAccount);
+                _repository.UpdateAccountBalance(transaction.ToAccount);
+
+                return StatusCode(200);
+            }
+            catch (SqlException ex)
+            {
+                _logger.LogError(ex, " TRANSACTION FAILED" + transaction );
+                return StatusCode(500);
+
+
+            }
+
+        }
+
+
+
     }
 }

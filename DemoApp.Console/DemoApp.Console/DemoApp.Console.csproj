@@ -10,4 +10,12 @@
   <ItemGroup>
     <ProjectReference Include="..\DemoApp.UI\DemoApp.UI.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Moq" />
+    <None Remove="xunit" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.17.2" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+  </ItemGroup>
 </Project>

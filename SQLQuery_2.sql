@@ -11,7 +11,7 @@ DECLARE @transID2 bigint
 Set @FromAccount    = 222
 SET @toAccount      = 223
 Set @TransType      = 2
-set @amount         = 425
+set @amount         = 100
 
 EXECUTE @RC = [BankManagementSystem].[SpTransferMoney] 
    @FromAccount

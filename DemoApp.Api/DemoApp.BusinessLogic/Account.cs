@@ -10,20 +10,19 @@ namespace DemoApp.BusinessLogic
 
 		public int accountType { get; set; } // 1: checking, 2:saving
 
-		public DateTime OpenningDate { get; set; }
-		public DateTime LastTransactionDate { get; set;}
+		public string OpenningDate { get; set; }
+		public string LastTransactionDate { get; set;}
 
 		public int Status; // 1 for active , 2 for closed
 
 		public decimal accountBalance { get; set; }
-		
 
 		
 		//Constructors
 
 		public Account() { }
 
-		public Account(int accountId, int accountNumber, int customerId, int accountType, DateTime OpenningDate, DateTime LastTransactionDate, int Status, decimal accountBalance)
+		public Account(int accountId, int accountNumber, int customerId, int accountType, string OpenningDate, string LastTransactionDate, int Status, decimal accountBalance)
 		{
 			this.accountId = accountId;
 			this.accountNumber = accountNumber;
@@ -84,12 +83,12 @@ namespace DemoApp.BusinessLogic
 			return this.accountType = accountType;
         }
 
-		public DateTime GetOpenningDate()
+		public string GetOpenningDate()
         {
 			return this.OpenningDate;
         }
 
-		public DateTime SetOpenningDate(DateTime Openningdate)
+		public string SetOpenningDate(string Openningdate)
         {
 			return this.OpenningDate = OpenningDate;
 

@@ -9,7 +9,7 @@ ID int Not NULL,
 Name varchar(100),
 Constraint PK_TransactionType Primary Key (ID));
 
-SELECt *
+SELECT *
 FROM BankManagementsystem.TransActionType
 
 INSERT INTO BankManagementSystem.TransactionType VALUES(1, 'Atm deposit');
@@ -18,8 +18,7 @@ INSERT INTO BankManagementSystem.TransactionType VALUES(3, 'External transfer');
 INSERT INTO BankManagementSystem.TransactionType VALUES(4, 'Branch deposit');
 INSERT INTO BankManagementSystem.TransactionType VALUES(5, 'Branch credit');
 
-SELECT * FROM BankManagementSystem.Customer 
---WHERE (FirstName = 'Hosna') OR (LastName = 'Hosna');
+
 
 
 ------------- Customer Table-------------
@@ -35,9 +34,8 @@ CREATE TABLE BankManagementSystem.Customer(
 );
 
 INSERT INTO BankManagementsystem.Customer(IsVerified, FirstName,LastName,CustAddress, DOB)
-VALUES('2','Hamid','Hamedi','Address2', '1989-06-06')
+VALUES('2','Chanel','Dung',' 123 Camplell Ave.', '1999-11-06')
 
---UPDATE BankManagementSystem.Customer set CustAddress =  'customer.custAddress' WHERE CustomerID = 2
 
 SELECt *
 FROM BankManagementsystem.Customer
@@ -53,16 +51,18 @@ AccountID INT IDENTITY(1, 1) NOT NULL,
 AccountNumber INT NOT NULL,
 CustomerID INT NOT NULL,
 [Type] int NOT NULL, --1 checking 2: saving
-OpenningDate DATETIME NOT NULL,
-LastTransactionDate DATETIME NOT NULL,
+OpenningDate NVARCHAR(255) NOT NULL,
+LastTransactionDate NVARCHAR(255) NOT NULL,
 [Status] int NOT NULL, -- 1 for active, 2 closed
 --InitialDeposit DECIMAL NOT NULL,
 --Interest FLOAT NOT NULL,
 Balance DECIMAL(18, 2) NOT NULL,
 constraint PK_Account Primary key (AccountID),
-Constraint FK_Account_Customer FOREIGN KEY(CustomerID) REFERENCES BankManagementSystem.Customer(CustomerID),
+Constraint FK_Account_Customer FOREIGN KEY(CustomerID) REFERENCES BankManagementSystem.Customer(CustomerID) ON DELETE CASCADE,
 Constraint UK_Account Unique (AccountNumber)
 );
+
+Insert Into BankManagementSystem.Account (AccountNumber,CustomerID, Type, OpenningDate, LastTransactionDate,Status,Balance) VALUES (475,4, 0, '2021-05-05','2021-05-05', 0, 0) 
 
 SELECt *
 FROM BankManagementsystem.Account
@@ -77,6 +77,7 @@ INSERT INTO BankManagementsystem.Account(
 )
 VALUES(223, 1, 1, '2021-05-05', '2022-04-04', 1, '5000')
 
+--SELECT * FROM BankManagementSystem.Account WHERE AccountNumber = 222
 --////////////////////////////////////////////////////////////////////////////////////
 
 ------------Bank Branch Table------------
@@ -123,7 +124,7 @@ VALUES('Employee1F', 'Employee2L')
 Drop table if exists BankManagementSystem.AccountTransaction;
 
 CREATE TABLE BankManagementSystem.AccountTransaction(
-TransId         BIGINT NOT NULL Identity (1,1),
+TransId         BigINT NOT NULL Identity (1,1),
 TransDate       DATETime NOT NULL,
 AccountID       INT NOT NULL,-- FOREIGN KEY REFERENCES BankManagementSystem.Account(AccountID),
 TransTypeID     INT NOT NULL,
@@ -131,12 +132,15 @@ DebitAmount     Numeric(18, 2) NOT NULL,
 CreditAmount    Numeric(18, 2) NOT NULL,
 Balance         Numeric(18, 2) NOT NULL,
 Constraint PK_AccountTransaction Primary Key (TransID),
-Constraint FK_Transaction_Account FOREIGN key (AccountID) references BankManagementSystem.ACCOUNT(AccountID),
-Constraint FK_Transaction_TransactionType FOREIGN key (TransTypeID) references BankManagementSystem.TransActionType(ID)
+Constraint FK_Transaction_Account FOREIGN key (AccountID) references BankManagementSystem.ACCOUNT(AccountID) ON DELETE CASCADE,
+Constraint FK_Transaction_TransactionType FOREIGN key (TransTypeID) references BankManagementSystem.TransActionType(ID) ON DELETE CASCADE
 );
 --EmployeeID INT NOT NULL FOREIGN KEY REFERENCES BankManagementSystem.Employee(EmplID)
+
 
 SELECt *
 FROM BankManagementsystem.AccountTransaction
 INSERT INTO BankManagementSystem.AccountTransaction(TransId,TransDate,AccountID,TransTypeID,DebitAmount,CreditAmount,Balance)
-VALUES(9,'2022-04-20 22:30:43.237', 2 ,2, 10, 10,0)
+VALUES(1,'2022-03-04', 1 ,2, '200', '200',0)
+
+SELECT * FROM BankManagementSystem.AccountTransaction

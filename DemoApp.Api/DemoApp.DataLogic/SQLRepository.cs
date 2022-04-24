@@ -14,6 +14,7 @@ namespace DemoApp.DataLogic
         // Fields
         private readonly string _connectionString;
         private readonly ILogger<SQLRepository> _logger;
+        //private readonly object cmd;
 
         // Constructors
         public SQLRepository(string connectionString, ILogger<SQLRepository> logger)
@@ -35,7 +36,7 @@ namespace DemoApp.DataLogic
             await connection.OpenAsync();
 
             string cmdString = "SELECT * FROM BankManagementSystem.Customer";
-             
+
 
 
             using SqlCommand cmd = new(cmdString, connection);
@@ -43,7 +44,7 @@ namespace DemoApp.DataLogic
             using SqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
-            { 
+            {
                 int CustomerId = reader.GetInt32(0);
                 int IsVerified = reader.GetInt32(1);
                 string custFirstName = reader.GetString(2);
@@ -63,7 +64,7 @@ namespace DemoApp.DataLogic
 
 
 
-                result.Add(new Customer(CustomerId, IsVerified, custFirstName, custLastName,custAddress, DOB));
+                result.Add(new Customer(CustomerId, IsVerified, custFirstName, custLastName, custAddress, DOB));
             }
             await connection.CloseAsync();
 
@@ -82,7 +83,7 @@ namespace DemoApp.DataLogic
             await connection.OpenAsync();
 
             string cmdString =
-                $"SELECT * FROM BankManagementSystem.Customer WHERE (FirstName = '{input}') OR (LastName = '{input}')";
+                $"SELECT * FROM BankManagementSystem.Customer WHERE (FirstName = '{input}') OR (LastName = '{input}') OR (CustomerID = {Int32.Parse(input)})";
             Console.WriteLine(cmdString);
 
 
@@ -121,7 +122,7 @@ namespace DemoApp.DataLogic
         public async Task AddCustomer(Customer customer)
         {
             Console.WriteLine(customer.custFirstName);
-
+           
             using SqlConnection connection = new SqlConnection(_connectionString);
             await connection.OpenAsync();
 
@@ -140,16 +141,15 @@ namespace DemoApp.DataLogic
 
 
         //UpdateCustomer
-        public async Task UpdateCustomerAddress(Customer customer)
+        public async Task UpdateCustomerAddress(int CustomerID, string address)
         {
-            Console.WriteLine(customer.custFirstName);
-
+            List<Customer> customer = await GetCustomer(CustomerID.ToString());
             using SqlConnection connection = new SqlConnection(_connectionString);
             await connection.OpenAsync();
 
             string cmdString =
-              //  $"Insert Into BankManagementSystem.Customer (CustAddress) VALUES ('{customer.custAddress}') Where CustomerID = {customer.custId}";
-            $"UPDATE BankManagementSystem.Customer set CustAddress = '{customer.custAddress}' WHERE CustomerID = {customer.custId}";
+            //  $"Insert Into BankManagementSystem.Customer (CustAddress) VALUES ('{customer.custAddress}') Where CustomerID = {customer.custId}";
+            $"UPDATE BankManagementSystem.Customer set CustAddress = '{address}' WHERE CustomerID = {customer[0].custId}";
 
             using SqlCommand cmd = new SqlCommand(cmdString, connection);
             cmd.ExecuteNonQuery();
@@ -175,10 +175,10 @@ namespace DemoApp.DataLogic
             _logger.LogInformation("Executed: Updated Customer Address");
 
         }
-        
+
 
         // ------------Transactions Methods--------------------
-        
+
         public async Task<List<Transaction>> GetAllTransactions()
         {
             List<Transaction> result = new List<Transaction>();
@@ -201,9 +201,9 @@ namespace DemoApp.DataLogic
                 int transTypeId = reader.GetInt32(3);
                 decimal debitAmount = reader.GetDecimal(4);
                 decimal creditAmount = reader.GetDecimal(5);
-                decimal  balance = reader.GetDecimal(6);
-               
-                
+                decimal balance = reader.GetDecimal(6);
+
+
                 result.Add(new Transaction(transId, transDate, accountId, transTypeId, debitAmount, creditAmount, balance));
             }
             await connection.CloseAsync();
@@ -251,9 +251,33 @@ namespace DemoApp.DataLogic
             return result;
         }
 
-        //---------------Account Methods------------------------
+        //connecting to sp on sql
 
-        public async Task<List<Account>> GetAccount(int input)
+        //public async Task<List<Transaction>>InternalTransfer(Account a1, Account a2)
+        //{
+        //    using SqlConnection connection = new(_connectionString);
+        //    await connection.OpenAsync();
+
+        //    cmd.CommandType = CommandType.StoredProcedure;
+
+        //    //using (var conn = new SqlConnection(connection))
+        //    //using (var command = new SqlCommand("ProcedureName", conn)
+        //    //{
+        //    //    CommandType = cmd.StoredProcedure
+        //    //})
+        //    //{
+        //    //    conn.Open();
+        //    //    command.ExecuteNonQuery();
+        //    //}
+
+        //}
+        
+
+
+
+            //---------------Account Methods------------------------
+
+            public async Task<List<Account>> GetAccount(int input)
         {
             Console.WriteLine();
             List<Account> result = new List<Account>();
@@ -275,8 +299,8 @@ namespace DemoApp.DataLogic
                 int accountNumber = reader.GetInt32(1);
                 int customerId = reader.GetInt32(2);
                 int accountType = reader.GetInt32(3);
-                DateTime OpenningDate = reader.GetDateTime(4);
-                DateTime LastTransactionDate = reader.GetDateTime(5);
+                string OpenningDate = reader.GetString(4);
+                string LastTransactionDate = reader.GetString(5);
                 int Status = reader.GetInt32(6);
                 decimal accountBalance = reader.GetDecimal(7);
 
@@ -289,6 +313,81 @@ namespace DemoApp.DataLogic
             return result;
         }
 
+
+        // GetAllAccounts
+
+        public async Task<List<Account>> GetAllAccounts()
+        {
+            List<Account> result = new List<Account>();
+
+            using SqlConnection connection = new(_connectionString);
+            await connection.OpenAsync();
+
+            string cmdString = "SELECT * FROM BankManagementSystem.Account";
+
+            using SqlCommand cmd = new(cmdString, connection);
+
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                int accountId = reader.GetInt32(0);
+                int accountNumber = reader.GetInt32(1);
+                int customerId = reader.GetInt32(2);
+                int accountType = reader.GetInt32(3);
+                string OpenningDate = reader.GetString(4);
+                string LastTransactionDate = reader.GetString(5);
+                int Status = reader.GetInt32(6);
+                decimal accountBalance = reader.GetDecimal(7);
+
+                result.Add(new Account(accountId, accountNumber, customerId, accountType, OpenningDate, LastTransactionDate, Status, accountBalance));
+            }
+            await connection.CloseAsync();
+
+            _logger.LogInformation("Executed: Getting All Accounts");
+
+            return result;
+        }
+
+
+        public async Task AddAccount(Account account)
+        {
+            Console.WriteLine(account.accountNumber);
+
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync();
+
+            string cmdString =
+                $"Insert Into BankManagementSystem.Account (AccountNumber,CustomerID, Type, OpenningDate, LastTransactionDate,Status,Balance) VALUES ({account.accountNumber},{account.customerId}, {account.accountType}, '{account.OpenningDate}', '{account.LastTransactionDate}', {account.Status}, {account.accountBalance}) ";
+            Console.WriteLine(cmdString);
+
+            using SqlCommand cmd = new SqlCommand(cmdString, connection);
+            cmd.ExecuteNonQuery();
+            await connection.CloseAsync();
+
+            _logger.LogInformation("Executed: Account Created");
+
+        }
+
+
+        public async Task UpdateAccountBalance(Account account)
+        {
+            Console.WriteLine(account.accountNumber);
+
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync();
+
+            string cmdString =
+            
+            $"UPDATE BankManagementSystem.Account set Balance = '{account.accountBalance}' WHERE AccountNumber = {account.accountNumber}";
+
+            using SqlCommand cmd = new SqlCommand(cmdString, connection);
+            cmd.ExecuteNonQuery();
+            await connection.CloseAsync();
+
+            _logger.LogInformation("Executed: Updated Account Balance");
+
+        }
 
         // ------------Employee Methods------------------
         // GetAllEmployees 
@@ -351,7 +450,7 @@ namespace DemoApp.DataLogic
         }
 
        
-
-       
     }
+       
 }
+
