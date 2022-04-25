@@ -1,5 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
-//using Microsoft.Extensions.Logging;
+
 using StoreApp0.BusinessLogic;
 
 
@@ -9,17 +9,14 @@ namespace StoreApp0.DataLogic
 
     public class SqlRepository : IRepository
     {
-        // will hold all of the communication to and from the database
-
-        // Fields
+        
         private readonly string _connectionString;
         private SqlConnection conn = null;
 
-        // Constructor
+     
         public SqlRepository(string? connectionString = null)
         {
-            //this._connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
-            this._connectionString = "Server=tcp:bruk.database.windows.net,1433;Initial Catalog=bruk;Persist Security Info=False;User ID=loginbruk;Password=Chuchu@2022;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            this._connectionString = "Server=tcp:bruk.database.windows.net,1433;Initial Catalog=bruk;Persist Security Info=False;User ID=loginbruk;Password=;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         }
 
@@ -52,7 +49,7 @@ namespace StoreApp0.DataLogic
                 }
                 _connection.Close();
             }
-            //  command.ExecuteNonQuery();
+            
 
             return result;
         }
@@ -83,7 +80,7 @@ namespace StoreApp0.DataLogic
                 }
                 _connection.Close();
             }
-            //  command.ExecuteNonQuery();
+            
 
             return customer;
         }
@@ -104,7 +101,7 @@ namespace StoreApp0.DataLogic
                 }
                 _connection.Close();
             }
-            //  command.ExecuteNonQuery();
+            
 
             return insertedId;
         }
@@ -136,10 +133,11 @@ namespace StoreApp0.DataLogic
                 }
                 _connection.Close();
             }
-            //  command.ExecuteNonQuery();
+            
 
             return result;
         }
+
 
 
         public async Task<Product> GetProductById(int id)
@@ -168,7 +166,7 @@ namespace StoreApp0.DataLogic
                 }
                 _connection.Close();
             }
-            //  command.ExecuteNonQuery();
+            
 
             return product;
         }
@@ -191,7 +189,7 @@ namespace StoreApp0.DataLogic
                 }
                 _connection.Close();
             }
-            //  command.ExecuteNonQuery();
+            
 
             return insertedId;
         }

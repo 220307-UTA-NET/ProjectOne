@@ -13,11 +13,11 @@ namespace StoreApp0.Api.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        // Fields
+      
         private readonly IRepository _repository;
         private readonly ILogger<ProductController> _logger;
 
-        // Constructors
+      
         public ProductController(IRepository repository, ILogger<ProductController> logger)
         {
             this._repository = repository;
@@ -61,7 +61,7 @@ namespace StoreApp0.Api.Controllers
             return Ok(productDTO);
         }
 
-        // Methods
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductDTO>>> GetAllProductsAsyc()
         {

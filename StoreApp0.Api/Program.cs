@@ -2,10 +2,8 @@
 
 var builder = WebApplication.CreateBuilder(args);
 
-//string connectionString = builder.Configuration.GetConnectionString("connectionString");
-//IConfiguration configuration = new ConfigurationBinder().AddJsonFile("appsettings.json").Build();
-//var connectionString = builder.Configuration.GetConnectionString("CustomerDB");
-// Add services to the container.
+
+
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IRepository, SqlRepository>();
