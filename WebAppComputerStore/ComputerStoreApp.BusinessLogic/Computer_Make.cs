@@ -22,6 +22,14 @@
             this.Name = Name;
 
         }
+        public Computer_Make(int ID, string Name, Decimal Price, int Type, int OS)
+        {
+            this.ID = ID;
+            this.Name = Name;
+            this.Price = Price;
+            this.Type = Type;
+            this.OS = OS;
+        }
 
         public Computer_Make(int ID, string Name, decimal Price, int Type, int OS, string Type_Name, string OS_Name)
         {

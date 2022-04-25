@@ -50,8 +50,8 @@ namespace ComputerStoreApp.DataLogic
             await connection.OpenAsync();
 
             string cmdString =
-               // "SELECT Computer_Make_ID, Computer_Make_Name, Computer_Make_Price, Computer_Type_ID, Computer_OS_ID FROM ComputerStore.Computer_Make;";
-                "SELECT distinct ComputerStore.Computer_OS.OS_Name,ComputerStore.Computer_Type.Computer_Type_Name, Computer_Make_Price, Computer_Make_Name FROM ComputerStore.Computer_OS JOIN ComputerStore.Computer_Make ON Computer_OS_ID = Computer_Make.Computer_OS_ID JOIN ComputerStore.Computer_Type ON Computer_Type.Computer_Type_ID = Computer_Make.Computer_Type_ID;";
+                "SELECT Computer_Make_ID, Computer_Make_Name, Computer_Make_Price, Computer_Type_ID, Computer_OS_ID FROM ComputerStore.Computer_Make;";
+               // "SELECT distinct ComputerStore.Computer_OS.OS_Name,ComputerStore.Computer_Type.Computer_Type_Name, Computer_Make_Price, Computer_Make_Name FROM ComputerStore.Computer_OS JOIN ComputerStore.Computer_Make ON Computer_OS_ID = Computer_Make.Computer_OS_ID JOIN ComputerStore.Computer_Type ON Computer_Type.Computer_Type_ID = Computer_Make.Computer_Type_ID;";
 
             using SqlCommand cmd = new(cmdString, connection);
 
@@ -59,18 +59,18 @@ namespace ComputerStoreApp.DataLogic
 
             while (reader.Read())
             {
-                /*var ID = reader.GetInt32(0);
+                var ID = reader.GetInt32(0);
                 var Name = reader.GetString(1);
                 var Price = reader.GetDecimal(2);
                 var Type = reader.GetInt32(3);
                 var OS = reader.GetInt32(4);
-                result.Add(new (ID, Name, Price, Type, OS));*/
-             
-                var OS_Name = reader.GetString(0);
-                var Type_Name = reader.GetString(1);
-                var Price = reader.GetDecimal(2);
-                var MakeName = reader.GetString(3);
-                result.Add(new(OS_Name, Type_Name, Price, MakeName));
+                result.Add(new(ID, Name, Price, Type, OS));
+
+                /* var OS_Name = reader.GetString(0);
+                 var Type_Name = reader.GetString(1);
+                 var Price = reader.GetDecimal(2);
+                 var MakeName = reader.GetString(3);
+                 result.Add(new(OS_Name, Type_Name, Price, MakeName));*/
             }
             await connection.CloseAsync();
 

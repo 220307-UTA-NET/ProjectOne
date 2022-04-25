@@ -108,7 +108,7 @@ namespace ComputerStore.UI
         }
         private async Task AddComputer()
         {
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, uri.ToString() + "Computer_Makes_");
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, uri.ToString() + "Computer_Makes_");
             request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
 
             using (HttpResponseMessage response = await httpClient.SendAsync(request))

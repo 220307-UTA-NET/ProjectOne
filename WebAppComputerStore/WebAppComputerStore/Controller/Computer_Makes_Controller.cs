@@ -40,14 +40,8 @@ namespace WebAppComputerStore.Controller
            
         }
 
-        // GET api/<StoreController>/5
-        /*  [HttpGet("{id}")]
-          public string Get(int id)
-          {
-              return "value";
-          }*/
 
-      //  POST api/<StoreController>
+      //  My Post Method
         [HttpPost]
         public async Task<ActionResult<IEnumerable<Computer_Make>>> AddToComputer()
         {
