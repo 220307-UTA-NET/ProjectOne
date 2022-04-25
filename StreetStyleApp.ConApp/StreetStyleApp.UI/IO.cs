@@ -225,7 +225,7 @@ namespace StreetStyleApp.UI
                 }
                 else
                 {
-                    Console.WriteLine("Error!");
+                    Console.WriteLine("New clothes has been created!");
                 }
 
                 //var clothes = await response.Content.ReadFromJsonAsync<List<ClothesDTO>>();
@@ -245,7 +245,6 @@ namespace StreetStyleApp.UI
                 //    Console.WriteLine("No clothes found.");
 
                 //}
-                Console.WriteLine("\nNew clothes has been created!");
                 Console.WriteLine("\nPress any key to continue.");
                 Console.ReadLine();
                 Console.Clear();
@@ -261,7 +260,7 @@ namespace StreetStyleApp.UI
                 Console.WriteLine("Enter a Clothing ID: ");
                 ClothingID = Int32.Parse(Console.ReadLine());
 
-                if (ClothingID == null)
+                if (ClothingID == 0)
                 {
                     Console.WriteLine("Enter a valid clothing ID.");
                     Console.ReadLine();
