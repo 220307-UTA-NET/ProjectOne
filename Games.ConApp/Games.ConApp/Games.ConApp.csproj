@@ -8,12 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="DTOs\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTOs\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Games.ConApp.UI\Games.ConApp.UI.csproj" />
   </ItemGroup>
 </Project>
