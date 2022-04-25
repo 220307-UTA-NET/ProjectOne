@@ -1,9 +1,11 @@
 ﻿<Properties StartupConfiguration="{BD069D90-3792-4C2B-838E-BDCD52D6C194}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.StoreApp0.Api PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="StoreApp0.Api/Store0Controller/ProductController.cs">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="StorAppo.Data/SqlRepository.cs">
     <Files>
       <File FileName="StorAppo.Data/IRepository.cs" Line="1" Column="1" />
       <File FileName="StoreApp0.BusinessLogic/Product.cs" Line="1" Column="1" />
@@ -15,7 +17,7 @@
       <File FileName="StoreApp0.Api/DTO/CustomerDTO.cs" Line="1" Column="1" />
       <File FileName="StoreApp0.Api/DTO/AddProductDTO.cs" Line="1" Column="1" />
       <File FileName="StoreApp0.Api/DTO/AddCustomerDTO.cs" Line="1" Column="1" />
-      <File FileName="StorAppo.Data/SqlRepository.cs" Line="1" Column="1" />
+      <File FileName="StorAppo.Data/SqlRepository.cs" Line="200" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -36,7 +38,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
 </Properties>
