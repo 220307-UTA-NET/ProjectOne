@@ -1,11 +1,13 @@
 ﻿using DemoApp.UI;
 using DemoApp.DTOs;
 using Xunit;
+using System.Net.Http;
 
 namespace Tests;
 
 public class UnitTest1
 {
+	private readonly CustomerDTO customer = new CustomerDTO(1, 2, "Test", "West", "123abc street", "1985-01-23");
     
 	[Fact]
 	public void Fact1()
@@ -25,6 +27,21 @@ public class UnitTest1
 
 
 	}
+
+	[Fact]
+	public void Fact2()
+    {
+		//ASSERT
+		Assert.IsType<HttpClient>(IO.httpClient);
+    }
+
+
+	[Fact]
+	public void Fact3()
+    {
+		//ASSERRS
+		Assert.StartsWith(customer.custFirstName, "Test");
+    }
 
 	
 }

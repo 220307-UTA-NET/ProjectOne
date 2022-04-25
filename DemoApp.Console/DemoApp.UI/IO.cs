@@ -4,7 +4,7 @@ using System.Net.Http.Json;
 using System.Net.Mime;
 using System.Text.Json.Serialization;
 using System.Text.Json;
-
+using DemoApp.UI.DTOs;
 
 namespace DemoApp.UI
 {
@@ -43,14 +43,14 @@ namespace DemoApp.UI
                         continue;
 
                     case 2:
-                        Console.WriteLine("Enter First Name or Last Name to Retreive customer info");
+                        Console.WriteLine("Enter your First Name or Last Name or Customer ID to Retreive customer info");
                         string s = Console.ReadLine();
                         
                         await DisplayCustomerInfo(s);
                         continue;
 
                     case 3:
-                        Console.WriteLine("Enter your customer ID to update your answer");
+                        Console.WriteLine("Enter your customer ID to update your address");
                         int custID = int.Parse(Console.ReadLine());
                         Console.WriteLine("Enter your new address to update your answer");
                         string address = Console.ReadLine();
@@ -99,6 +99,16 @@ namespace DemoApp.UI
 
             }
         }
+
+        //private async Task DoTranaction()
+        //{
+        //    AccountDTO fromAccount = reateNewAccount();
+        //    decimal amount = Decimal.Parse(Console.ReadLine());
+        //    TransactionType transactionType = new TransactionType();
+        //    transactionType.FromAccount = fromAccount;
+
+            
+        //}
 
         private async Task CreateNewAccount()
         {
@@ -160,12 +170,14 @@ namespace DemoApp.UI
                     {
                         Console.WriteLine("ID: " + c.custId + "\n" + "Name: " + c.custFirstName + " " + c.custLastName + "\n" + "Address: " +c.custAddress + "\n"+ "Date of Birth: " + c.dob + "\n");
                     }
+                    Console.WriteLine("Please press enter to continue");
+                    Console.ReadLine();
                 }
                 else
                 {
                     Console.WriteLine("No customer found.");
                     Console.WriteLine("Please press Enter to continue");
-
+                    Console.ReadLine();
                 }
                 return customerInfo;
             }

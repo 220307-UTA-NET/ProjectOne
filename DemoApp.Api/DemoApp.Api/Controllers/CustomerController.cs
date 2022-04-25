@@ -46,6 +46,7 @@ namespace DemoApp.Api.Controllers
             }
             return customers;
         }
+
         [HttpGet("{input}")]
 
         public async Task<ActionResult<List<Customer>>> GetCustomerAsync(string input)

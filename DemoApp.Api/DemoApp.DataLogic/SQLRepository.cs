@@ -81,9 +81,19 @@ namespace DemoApp.DataLogic
 
             using SqlConnection connection = new(_connectionString);
             await connection.OpenAsync();
+            int number;
+            string cmdString;
+            bool success = int.TryParse(input, out number);
+            if(!success)
+            {
+                cmdString = $"SELECT * FROM BankManagementSystem.Customer WHERE (FirstName = '{input}') OR (LastName = '{input}')";
+            }
+            else
+            {
+                cmdString = $"SELECT * FROM BankManagementSystem.Customer WHERE CustomerID = {Int32.Parse(input)}";
+            }
+            
 
-            string cmdString =
-                $"SELECT * FROM BankManagementSystem.Customer WHERE (FirstName = '{input}') OR (LastName = '{input}') OR (CustomerID = {Int32.Parse(input)})";
             Console.WriteLine(cmdString);
 
 
