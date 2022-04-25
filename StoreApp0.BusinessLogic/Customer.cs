@@ -16,13 +16,8 @@ namespace StoreApp0.BusinessLogic
 		}
 
 		public Customer()
-        {
+		{ }
 
-        }
-        //public static Microsoft.AspNetCore.Mvc.ActionResult<IEnumerable<Customer>> ToList()
-        //{
-        //    throw new NotImplementedException();
-        //}
-    }
+	}   
 }
 
