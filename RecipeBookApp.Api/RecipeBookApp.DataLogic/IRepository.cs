@@ -13,6 +13,29 @@ namespace RecipeBookApp.DataLogic
     {
         Task<IEnumerable<User>> ListOfUsers();
         Task<ContentResult> CreateNewUser(string username, string password, string firstName, string lastName);
+        Task<IEnumerable<Recipe>> ListOfRecipes();
+        Task<IEnumerable<Recipe>> FindRecipe(string TheRecipeName);
+        Task<ContentResult> CreateNewRecipe(string RecipeName, decimal rating);
+        Task<ContentResult> AddToIngredientsList(string RecipeName, decimal IngredientQuantity, string UnitOfMeasure, string Ingredient);
+
+        Task<IEnumerable<Ingredient>> ListOfIngredients();
+
+        Task<IEnumerable<Ingredient>> SingleListOfIngredients(string TheRecipeName);
+
+        Task<IEnumerable<Step>> SingleListOfSteps(string TheRecipeName);
+
+
+
+        Task<ContentResult> DeleteRecipe(string TheRecipeName);
+
+
+        /*
+                Task<IEnumerable<FullDetail>> FullRecipeDetails(string TheRecipeName);
+        */
+
 
     }
+}
+
+
         

@@ -39,6 +39,23 @@ namespace RecipeServer.RecipeController
             };
         }
 
+        [HttpPut("/username")]
+        public ContentResult PutUsernameUpdate([FromBody] string oldName,string newName)
+        {
+            usernames.Remove(oldName);
+            //string json_deleted = JsonSerializer.Serialize(usernames);
+            usernames.Add(newName);
+            string json = JsonSerializer.Serialize(usernames);
+            return new ContentResult()
+            {
+                StatusCode = 202,
+                ContentType = "application/json",
+                Content = json
+            };
+        }
+
+
+
         [HttpDelete("/username/deletebody")]
         public ContentResult DeleteSpecificUser([FromBody] string newName)   // deletes the number in body
         {
@@ -71,3 +88,10 @@ namespace RecipeServer.RecipeController
 
     }
 }
+
+
+
+// Add a range of items  
+string[] authors = { "Mike Gold", "Don Box",
+                        "Sundar Lal", "Neel Beniwal" };
+AuthorList.AddRange(authors);

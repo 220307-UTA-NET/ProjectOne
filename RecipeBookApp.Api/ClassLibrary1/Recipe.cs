@@ -1,36 +1,37 @@
 ﻿
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-//namespace RecipeBookApp.BusinessLogic
-//{
-//    public class Recipe
-//    {
-//        // Fields
-//        string RecipeName;
-//        //DateTime DateAdded;
-//        string? Ingredients;
+namespace RecipeBookApp.BusinessLogic
+{
+    public class Recipe
+    {
+        // Fields
+        public string RecipeName { get; set; }
+        public decimal Rating { get; set; }
 
-
-//        // Constructors
-//        public Recipe() { }
-//        public Recipe(string RecipeName, DateTime DateAdded, string Notes, string Course, double Rating, string KeyIngredient, int LevelOfDifficulty)
-//        {
-//            this.RecipeName = RecipeName;
-//            this.DateAdded = DateAdded;
-//            this.Description = Description;
-//            this.Course = Course;
-//            this.Rating = Rating;
-//            this.KeyIngredient = KeyIngredient;
-//            this.LevelOfDifficulty = LevelOfDifficulty;
-//        }
+        //DateTime DateAdded;
+        //string? Ingredients;
 
 
-        // Methods
-        // setters
+
+        // Constructors
+        public Recipe() { }
+        public Recipe(string RecipeName, decimal Rating)
+        {
+            this.RecipeName = RecipeName;
+            this.Rating = Rating;
+        }
+    }
+}
+
+
+
+        //Methods
+//        //setters
 //        public void SetRecipeName(string RecipeName)
 //        { this.RecipeName = RecipeName; }
 //        public void SetCourse(string course)

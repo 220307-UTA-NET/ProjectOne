@@ -30,6 +30,6 @@ namespace RecipeBookApp.BusinessLogic
             this.FirstName = firstName;
             this.LastName = lastName;
         }
-   */
+   
     }
 }

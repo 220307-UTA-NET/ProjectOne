@@ -1,0 +1,106 @@
+CREATE SCHEMA Recipes;
+GO
+
+---------------   CREATE TABLES  ---------------
+
+CREATE TABLE Recipes.Users(
+username NVARCHAR(255) PRIMARY KEY,
+password NVARCHAR(255)NOT NULL,
+FirstName NVARCHAR(255)NOT NULL,
+LastName NVARCHAR(255)NOT NULL
+);
+
+
+CREATE TABLE Recipes.RecipeInfo(
+RecipeName NVARCHAR(255)  PRIMARY KEY,
+Rating DECIMAL(3,2)  );
+
+
+CREATE TABLE Recipes.Steps(
+RecipeName NVARCHAR(255),
+StepNumber INT NOT NULL, 
+StepDescription NVARCHAR(255) NOT NULL,
+CONSTRAINT FK__RecipeID__RecipeInfo FOREIGN KEY (RecipeName) 
+REFERENCES Recipes.RecipeInfo(RecipeName) ON UPDATE CASCADE ON DELETE CASCADE);
+
+
+CREATE TABLE Recipes.Ingredients(
+RecipeName NVARCHAR(255) NOT NULL,
+IngredientQuantity DECIMAL(5,2) NOT NULL,
+UnitOfMeasure NVARCHAR(128) NOT NULL,
+Ingredient NVARCHAR(255) NOT NULL,
+CONSTRAINT FK__RecipeIngredient__RecipeInfo FOREIGN KEY (RecipeName) 
+REFERENCES Recipes.RecipeInfo(RecipeName) ON UPDATE CASCADE ON DELETE CASCADE);
+
+
+
+---------------   SELECTS   ---------------
+SELECT * FROM Recipes.Users;
+
+SELECT * FROM Recipes.RecipeInfo;
+
+SELECT * FROM Recipes.Ingredients;
+
+SELECT * FROM Recipes.Steps;
+
+
+---------------   INITIAL DATA  ---------------
+
+
+INSERT INTO Recipes.RecipeInfo (RecipeName, Rating)
+VALUES 
+('Hot Fudge', 4.5),
+('Macarons', 5);
+
+
+
+INSERT INTO Recipes.Ingredients(RecipeName,IngredientQuantity, UnitOfMeasure, Ingredient)
+VALUES
+('Macarons', 120, 'grams', 'Almond FLour'),
+('Macarons', 28, 'grams', 'Granulated Sugar' ),
+('Macarons',  200, 'grams','Powdered Sugar'),
+('Macarons', 100, 'grams', 'Egg Whites' ),
+('Macarons', (.25), 'teaspoon','Salt' );
+
+INSERT INTO Recipes.Ingredients(RecipeName,IngredientQuantity, UnitOfMeasure, Ingredient)
+VALUES
+('Hot Fudge', 120, 'grams', 'bittersweet chocolate'),
+('Hot Fudge', 245, 'grams', 'cocoa powder'),
+('Hot Fudge', 1.5, 'cups', 'whole milk'),
+('Hot Fudge', 1.5, 'teaspoon', 'salt'),
+('Hot Fudge', 720, 'grams', 'sugar');
+
+
+
+INSERT INTO Recipes.Steps (RecipeName, StepNumber, StepDescription) -- change name to Recipes.Directions
+VALUES 
+( 'Hot Fudge', 1, 'Combine ingredients'),
+( 'Hot Fudge', 2,'Bring to a boil'),
+( 'Hot Fudge', 3,'Add chopped chocolate'),
+( 'Hot Fudge', 4,'Add vanilla'),
+( 'Hot Fudge', 5,'Store in jar and label with date'),
+( 'Hot Fudge', 6,'Enjoy!'),
+( 'Macarons', 1, 'Sift almond flour and powdered sugar'),
+( 'Macarons', 2, 'Whip up meringue to stiff peaks'),
+( 'Macarons', 3, 'Add almond flour/ powdered sugar mixture to merigue'),
+( 'Macarons', 4, 'Macaronage'),
+( 'Macarons', 5, 'Pipe into 1 inch rounds onto parchment paper'),
+( 'Macarons', 6, 'Let rest until film forms on outter layer of piped rounds'),
+( 'Macarons', 7, 'Bake at 335F for 10 minutes, then lower temperature to 320F and bake until macaron shells lift off easily from parchment'),
+( 'Macarons', 8, 'Fill macarons once shells are cooled completely and store in fridge for 2 day to mature before serving at room temp'),
+( 'Macarons', 9, 'Store leftovers in airtight, container in freezer for up to 3 months') --,
+--( 'Cookies', 1, 'Store leftovers in airtight, container in freezer for up to 3 months')
+;
+
+
+
+---------------   DROP TABLES  ---------------
+-- DROP TABLE Recipes.Users;
+-- DROP TABLE Recipes.RecipeInfo;
+-- DROP TABLE Recipes.Steps;
+-- DROP TABLE Recipes.Ingredients;
+
+
+
+
+

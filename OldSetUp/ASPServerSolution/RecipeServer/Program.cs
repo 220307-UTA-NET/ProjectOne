@@ -1,4 +1,4 @@
-// Recipe Book Server 
+// R
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();

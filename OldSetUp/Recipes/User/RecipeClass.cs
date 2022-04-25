@@ -14,7 +14,7 @@ namespace Recipe.Logic
         string? Course;
         double Rating;
         public string? Description { get; set; }
-        public int LevelOfDifficulty { get; set; }
+        int LevelOfDifficulty { get; set; }
         public string KeyIngredient { get; set; }
         //string? KeyIngredient;
         //int? LevelOfDifficulty;
@@ -53,6 +53,7 @@ namespace Recipe.Logic
         { return this.DateAdded; }
         public double GetRating()
         { return this.Rating; }
+
 
 
         //public int LevelOfDifficulty { get; set; }

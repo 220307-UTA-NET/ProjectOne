@@ -85,18 +85,9 @@ namespace RecipeBookApp.Api.Controllers
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-
         [HttpPost("/userAccount")]
         public async Task<ContentResult> CreateNewUserWithPost([FromBody] List<User> newAccts)
         {
-
-
-            //string username = "";
-            //string password = "";
-            //string firstName = "";
-            //string lastName = "";
-
-            //User newUserAcct = new();
 
             foreach (var stringUserItem in newAccts)
             {
@@ -131,6 +122,13 @@ namespace RecipeBookApp.Api.Controllers
             };
             return returnResult;
         }
+
+
+
+
+
+
+
     }
 }
        

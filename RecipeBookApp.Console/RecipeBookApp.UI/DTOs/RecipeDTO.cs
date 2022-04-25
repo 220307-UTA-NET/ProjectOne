@@ -1,6 +1,17 @@
-﻿namespace RecipeBookApp.UI.DTOs
+﻿
+namespace RecipeBookApp.UI.DTOs
 {
-    internal class RecipeDTO
+    [Serializable]
+    public class RecipeDTO
     {
+        public string? RecipeName { get; set; }
+        public decimal Rating { get; set; }
+
+
+        public RecipeDTO(string RecipeName, decimal Rating)
+        {
+            this.RecipeName = RecipeName;
+            this.Rating = Rating;
+        }
     }
 }

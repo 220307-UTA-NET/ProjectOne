@@ -1,15 +1,24 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+# AS build
 
 WORKDIR /App
 
 COPY ./ ./
 
-RUN dotnet build
+# RUN dotnet build
+RUN dotnet publish -c Release
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+# ENTRYPOINT ["dotnet", "./RecipeBookApp.Console/bin/Debug/net6.0/RecipeBookApp.ConApp.dll"]
+
+
+# C:\Revature\Project1\ProjectOne\RecipeBookApp.Console
+# \RecipeBookApp.Console\bin\Debug\net6.0\RecipeBookApp.ConApp.dll
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS run
 
 WORKDIR /App
 
-COPY --from=build /App/RecipeBookApp.ConApp/bin/Debug/net6.0/ ./
+COPY --from=build /App/RecipeBookApp.Console/bin/Release/net6.0/publish/ ./ 
+# COPY --from=build  /App/RecipeBookApp.ConApp/bin/Debug/net6.0/
 
 ENTRYPOINT ["dotnet", "./RecipeBookApp.ConApp.dll"]

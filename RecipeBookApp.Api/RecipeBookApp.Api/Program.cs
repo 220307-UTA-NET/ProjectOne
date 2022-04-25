@@ -9,8 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Connection String:
 // Argument, Hardcoded, File, User Secrets, Environmental Variables
 //string connectionString = builder.Configuration.GetConnectionString("connectionString");
-//string connectionString = "Server=tcp:revature-server.database.windows.net,1433;Initial Catalog=myDatabase;Persist Security Info=False;User ID=myloginproj0;Password=fatRabbits123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-//string connectionString = File.ReadAllText(@"/Revature/ConnectionStrings/Project1.txt");
 
 
 
@@ -23,7 +21,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+// For Deployment
 //string connectionString = builder.Configuration.GetConnectionString("RPS-DB-Connection");
 //builder.Services.AddSingleton<IRepository>(sp => new SqlRepository(connectionString, sp.GetRequiredService<ILogger<SqlRepository>>()));
 //var app = builder.Build();
@@ -31,13 +29,13 @@ builder.Services.AddSwaggerGen();
 //Uri uri = new Uri("https://revatureprojectone.azurewebsites.net");
 
 
-
-//For hard coded connection strings 
+// For Development
+Uri uri = new Uri("https://localhost:7089");
 string connectionString = File.ReadAllText(@"/Revature/ConnectionStrings/Project0.txt");
 //string connectionString = builder.Configuration.GetConnectionString(connectionString);
 builder.Services.AddSingleton<IRepository>(sp => new SqlRepository(connectionString, sp.GetRequiredService<ILogger<SqlRepository>>()));
 var app = builder.Build();
-Uri uri = new Uri("https://localhost:7089");
+
 
 
 if (app.Environment.IsDevelopment())
