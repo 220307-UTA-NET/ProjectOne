@@ -21,5 +21,3 @@ The goal of this project is to use a console application to talk to an API that 
 To-do list:
 * Dependency Injections for Authorization and Authentication
 * Add Other ISO Regions for Database
-
-## Getting Started
