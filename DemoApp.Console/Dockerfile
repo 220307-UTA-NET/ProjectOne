@@ -13,7 +13,8 @@ COPY ./ ./
 # COPY <source/the file location of the Dockerfile> <destination/inside the working directory of the container/image>
 
 # The RUN statement/command runs a command inside the container.
-RUN dotnet publish -c Release
+RUN dotnet publish -c Release -o /App/bin
+#Run dotnet build 
 # RUN <command>
 
 
@@ -26,7 +27,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS run
 
 WORKDIR /App
 
-COPY --from=build /App/DockerDemo/bin/Release/net6.0/publish/ ./
+#COPY --from=build /App/DemoApp.Api/bin/Release/net6.0/publish/ ./
+COPY --from=build /App/bin .
 
 # The ENTRYPOINT statement/command specifies the command that is run when the container is started.
 ENTRYPOINT ["dotnet", "./DemoApp.Api.dll"]

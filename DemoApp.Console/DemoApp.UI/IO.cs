@@ -100,15 +100,7 @@ namespace DemoApp.UI
             }
         }
 
-        //private async Task DoTranaction()
-        //{
-        //    AccountDTO fromAccount = reateNewAccount();
-        //    decimal amount = Decimal.Parse(Console.ReadLine());
-        //    TransactionType transactionType = new TransactionType();
-        //    transactionType.FromAccount = fromAccount;
-
-            
-        //}
+        
 
         private async Task CreateNewAccount()
         {
@@ -239,8 +231,17 @@ namespace DemoApp.UI
 
         }
 
-        
-        
+        //private async Task DoTranaction()
+        //{
+        //    AccountDTO fromAccount = reateNewAccount();
+        //    decimal amount = Decimal.Parse(Console.ReadLine());
+        //    TransactionType transactionType = new TransactionType();
+        //    transactionType.FromAccount = fromAccount;
+        //
+        //  need more work....
+
+        //}
+
         private int MainMenu()
         {
             Console.Clear();
@@ -262,4 +263,5 @@ namespace DemoApp.UI
         }      
     }
 }
+
 

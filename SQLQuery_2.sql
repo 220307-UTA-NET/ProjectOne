@@ -8,8 +8,8 @@ DECLARE @transID2 bigint
 
 -- TODO: Set parameter values here.
 
-Set @FromAccount    = 222
-SET @toAccount      = 223
+Set @FromAccount    = 223
+SET @toAccount      = 652
 Set @TransType      = 2
 set @amount         = 100
 
