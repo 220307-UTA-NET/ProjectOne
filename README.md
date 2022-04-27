@@ -1,6 +1,7 @@
-# Project 1: Web Application
-220307 UTA .NET / Richard Hawkins
+# Project 1: Very Local Library Management Tool - Web Application
+220307 UTA .NET / Tryggve Rogness
 
+I created a library management tool
 ## Functionality
 * interactive console application with a REST HTTP API backend
 * input validation (in the console app and also in the server)
