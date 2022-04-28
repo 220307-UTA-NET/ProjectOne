@@ -2,6 +2,8 @@
 using System.Net.Http.Json;
 using System.Net.Mime;
 using StoreApplication.UI.DTOs;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 
 namespace StoreApplication.UI
@@ -16,6 +18,18 @@ namespace StoreApplication.UI
         public IO(Uri uri)
         {
             this._uri = uri;
+        }
+
+
+        public async Task placeOrder()
+        {
+
+        }
+
+        // place order. => add order and customer information in the database
+        public async Task placeOrder(string phoneNumber)
+        {
+
         }
 
         // add a new customer in the customer database
@@ -65,81 +79,136 @@ namespace StoreApplication.UI
             }
         }
 
-        //public async Task placeOrder()
-        //{
+        // search customer by name
+        public async Task searchCustomer()
+        {
+            Console.WriteLine("\nSearch a customer by name");
+            Console.Write("Enter first name => ");
+            string fname = Console.ReadLine();
+            Console.Write("Enter last name => ");
+            string lname = Console.ReadLine();
 
-        //}
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _uri.ToString() + $"Customer/getCustomer/{fname}/{lname}");
+            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
+            using (HttpResponseMessage response = await httpClient.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
 
-        //public async Task searchCustomer()
-        //{
-        //    Console.WriteLine("\nSearch a customer by name");
-        //    Console.Write("Enter first name => ");
-        //    string fname = Console.ReadLine();
-        //    Console.Write("Enter last name => ");
-        //    string lname = Console.ReadLine();
+                if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+                {
+                    throw new ArrayTypeMismatchException();
+                }
+                if (response.IsSuccessStatusCode)
+                {
+                    var customer = await response.Content.ReadFromJsonAsync<CustomerDTO>();
+                    if (customer != null)
+                    {
+                        Console.WriteLine("Customer info:" + customer.CustomerID + "\t" + customer.FirstName + "\t" +
+                                           customer.LastName + "\t" + customer.PhoneNumber + "\t" + customer.Zipcode);
+                    }
+                    else { Console.WriteLine("no orders found"); }
+                }
+            }
+        }
 
-        //    Customer customer = this.repo.GetCustomer(fname, lname);
 
-        //    if (customer.GetCustomerID() == 0)
-        //    {
-        //        Console.WriteLine("\nThe customer does not exist");
-        //    }
-        //    else
-        //    {
-        //        string str = "";
-        //        Console.WriteLine("\nThe customer information");
-        //        str += customer.GetCustomerID() + "\t" + customer.GetFirstName() + "\t" + customer.GetLastName();
-        //        str += "\t" + customer.GetPhoneNumber() + "\t" + customer.GetZipcode();
-        //        Console.WriteLine(str);
-        //    }
-        //}
+        // This method displays details of an order
+        public async Task displayOrder()
+        {
+            Console.WriteLine("\nDISPLAY DETAILS OF AN ORDER");
+             bool isIn;
+            ProductDTO product;
 
-        //public async Task displayOrder()
-        //{
-        //    //Order order = new Order();
-        //    Console.WriteLine("\nDisplay details of an order");
-        //    Console.Write("Enter a customer ID => ");
-        //    int id = int.Parse(Console.ReadLine());
-        //    Product product = this.repo.GetOrderDetails(id);
-        //    Console.WriteLine(product.getProduct());
-        //}
+            Console.Write("Enter the ID of a customer =>  ");
+            string str = Console.ReadLine();
+            int id;
 
-        //// display all order history of a customer
-        //public async Task displayOrder(string str1, string str2)
-        //{
-        //    Console.WriteLine("\nDISPLAY ALL ORDER HISTORY OF A CUSTOMER");
-        //    Console.Write("Enter the ID of a customer =>  ");
-        //    int id = int.Parse(Console.ReadLine());
+            do
+            {
+                // input validation to check for numeric value
+                while (!int.TryParse(str, out id))
+                {
+                    Console.WriteLine("Invalid input.You should only enter a numeric.");
+                    Console.Write("Enter the ID of a customer =>  ");
+                    str = Console.ReadLine();
+                }
 
-        //    IEnumerable<OrderDTO> orders = this.repo.GetAllOrdersCust(id);
+                product = await helperFuncOrderDetails(id);
 
-        //    HttpResponseMessage response = await httpClient.GetAsync(id);
-        //    response.EnsureSuccessStatusCode();
+                if (product == null)
+                {
+                    isIn = false;
+                    Console.WriteLine("The customer with the id number " + id.ToString() + " did not make any purchase in any");
+                    Console.WriteLine("store locations. Enter another customer id, or press enter to exit");
+                    Console.Write("Enter the ID of a customer =>  ");
+                    str = Console.ReadLine();
+                }
+                else
+                {
+                    isIn = true;
+                    str = string.Empty;
+                }
 
-        //    bool isIn = true;
-        //    string str;
-        //    while (!orders.Any())
-        //    {
-        //        Console.WriteLine("Invalid customer ID. Enter the ID of a customer");
-        //        Console.WriteLine("You may Press [enter] to exit");
-        //        str = Console.ReadLine();
-        //        if (string.IsNullOrEmpty(str))
-        //        {
-        //            isIn = false;
-        //            break;
-        //        }
-        //        id = int.Parse(str);
-        //        orders = this.repo.GetAllOrdersCust(id);
-        //    }
-        //    if (isIn == true)
-        //    {
-        //        foreach (Orders order in orders)
-        //        {
-        //            Console.WriteLine(order.GetOrderID() + "\t" + order.GetCustomerID() + "\t" + order.GetProductID()
-        //                     + "\t" + order.GetLocation() + "\t" + order.GetTime());
-        //        }
-        //    }
-        //}
+            } while (!isIn && (str != string.Empty));
+
+            if (isIn)
+            {
+                Console.WriteLine("Welcome to Best Technology Store");
+                product.toString();
+            }
+        }
+
+
+        // display all order history of a customer
+        public async Task displayOrder(string str1, string str2)
+        {
+            Console.WriteLine("\nDISPLAY ALL ORDER HISTORY OF A CUSTOMER");
+
+            bool isIn;
+            List<OrderDTO> orders;
+
+            Console.Write("Enter the ID of a customer =>  ");
+            string str = Console.ReadLine();
+            int id;
+
+            do {
+                
+
+                // input validation to check for numeric value
+                while (!int.TryParse(str, out id))
+                {
+                    Console.WriteLine("Invalid input.You should only enter a numeric.");
+                    Console.Write("Enter the ID of a customer =>  ");
+                    str = Console.ReadLine();
+                }
+
+                orders = await helperFuncCustomer(id);
+
+                if (orders.Count <= 0)
+                {
+                    isIn = false;
+                    Console.WriteLine("The customer with the id number " + id.ToString() + " did not make any purchase in any");
+                    Console.WriteLine("store locations. Enter another customer id, or press enter to exit");
+                    Console.Write("Enter the ID of a customer =>  ");
+                    str = Console.ReadLine();
+                }
+                else { 
+                    isIn = true;
+                    str = string.Empty;
+                }
+
+            } while (!isIn && (str != string.Empty));
+
+            if (isIn)
+            {
+                foreach (OrderDTO order in orders)
+                {
+                    Console.WriteLine(order.OrderID + "\t" + order.CustomerID + "\t" + order.ProductID
+                                + "\t" + order.Location + "\t" + order.Time);
+                }
+            }
+
+        }
 
 
         // display all orders history of a store location
@@ -155,7 +224,7 @@ namespace StoreApplication.UI
             Console.WriteLine("press [4] to display of the store located at 722 DaVinci Blvd Kirkland 98034");
             Console.WriteLine("press [5] to display of the store located at 50 Chiro Rd Portland 97219");
 
-            Console.Write("Enter the name the store =>  ");
+            Console.Write("Enter a number between [1], [2], [3], [4] and [5] to point to the name the store =>  ");
             int opt = int.Parse(Console.ReadLine());
             while (!Array.Exists(opts, x => x == opt))
             {
@@ -163,124 +232,26 @@ namespace StoreApplication.UI
                 opt = int.Parse(Console.ReadLine());
             }
 
-            //IEnumerable<OrdersDTO> orders = null; ;
-
             switch (opt)
             {
                 case 1:
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _uri.ToString() + "Orders/1");
-                    request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
-
-                    using (HttpResponseMessage response1 = await httpClient.SendAsync(request))
-                    {
-                        response1.EnsureSuccessStatusCode();
-
-                        if (response1.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
-                        {
-                            throw new ArrayTypeMismatchException();
-                        }
-                        if (response1.IsSuccessStatusCode)
-                            {
-                               var orders = await response1.Content.ReadFromJsonAsync<IEnumerable<OrderDTO>>();
-                                if (orders != null)
-                                {
-                                    Console.WriteLine("All order history at Orchestra Terrace Germantown 99362\n");
-                                    Console.WriteLine("Order ID \t Customer ID \t Product ID \t Location\t Time");
-                                    foreach (var order in orders)
-                                    {
-                                        Console.WriteLine(order.OrderID + "\t" + order.CustomerID + "\t" + order.ProductID
-                                                 + "\t" + order.Location + "\t" + order.Time);
-                                    }
-                                }
-                                else { Console.WriteLine("no orders found"); }
-                            }
-                    }
-                  // HttpResponseMessage response1 = await httpClient.GetAsync("");
-                    
-
+                    await helperFuncLocation("12 Orchestra Terrace Germantown 99362");
                     break;
 
                 case 2:
-                    HttpResponseMessage response2 = await httpClient.GetAsync("89 Jefferson Way Portland 97201");
-                    response2.EnsureSuccessStatusCode();
-                    if (response2.IsSuccessStatusCode)
-                    {
-                        var orders = await response2.Content.ReadFromJsonAsync<IEnumerable<OrderDTO>>();
-
-                        if (orders != null)
-                        {
-                            Console.WriteLine("All order history at 89 Jefferson Way Portland 97201\n");
-                            Console.WriteLine("Order ID \t Customer ID \t Product ID \t Location\t Time");
-                            foreach (var order in orders)
-                            {
-                                Console.WriteLine(order.OrderID + "\t" + order.CustomerID + "\t" + order.ProductID
-                                         + "\t" + order.Location + "\t" + order.Time);
-                            }
-                        }
-                        else { Console.WriteLine("no orders found"); }
-                    }
+                    await helperFuncLocation("89 Jefferson Way Portland 97201");
                     break;
 
                 case 3:
-                    HttpResponseMessage response3 = await httpClient.GetAsync("87 Polk St San Francisco 94117");
-                    response3.EnsureSuccessStatusCode();
-                    if (response3.IsSuccessStatusCode)
-                    {
-                        var orders = await response3.Content.ReadFromJsonAsync<IEnumerable<OrderDTO>>();
-
-                        if (orders != null)
-                        {
-                            Console.WriteLine("All order history at 87 Polk St San Francisco 94117\n");
-                            Console.WriteLine("Order ID \t Customer ID \t Product ID \t Location\t Time");
-                            foreach (var order in orders)
-                            {
-                                Console.WriteLine(order.OrderID + "\t" + order.CustomerID + "\t" + order.ProductID
-                                         + "\t" + order.Location + "\t" + order.Time);
-                            }
-                        }
-                        else { Console.WriteLine("no orders found"); }
-                    }
+                    await helperFuncLocation("87 Polk St San Francisco 94117");
                     break;
 
                 case 4:
-                    HttpResponseMessage response4 = await httpClient.GetAsync("722 DaVinci Blvd Kirkland 98034");
-                    response4.EnsureSuccessStatusCode();
-                    if (response4.IsSuccessStatusCode)
-                    {
-                        var orders = await response4.Content.ReadFromJsonAsync<IEnumerable<OrderDTO>>();
-
-                        if (orders != null)
-                        {
-                            Console.WriteLine("All order history at 722 DaVinci Blvd Kirkland 98034\n");
-                            Console.WriteLine("Order ID \t Customer ID \t Product ID \t Location\t Time");
-                            foreach (var order in orders)
-                            {
-                                Console.WriteLine(order.OrderID + "\t" + order.CustomerID + "\t" + order.ProductID
-                                         + "\t" + order.Location + "\t" + order.Time);
-                            }
-                        }
-                        else { Console.WriteLine("no orders found"); }
-                    }
+                    await helperFuncLocation("722 DaVinci Blvd Kirkland 98034");
                     break;
 
                 case 5:
-                    HttpResponseMessage response5 = await httpClient.GetAsync("50 Chiro Rd Portland 97219");
-                    response5.EnsureSuccessStatusCode();
-                    if (response5.IsSuccessStatusCode)
-                    {
-                        var orders = await response5.Content.ReadFromJsonAsync<IEnumerable<OrderDTO>>();
-                        if (orders != null)
-                        {
-                            Console.WriteLine("All order history at 50 Chiro Rd Portland 97219\n");
-                            Console.WriteLine("Order ID \t Customer ID \t Product ID \t Location\t Time");
-                            foreach (var order in orders)
-                            {
-                                Console.WriteLine(order.OrderID + "\t" + order.CustomerID + "\t" + order.ProductID
-                                         + "\t" + order.Location + "\t" + order.Time);
-                            }
-                        }
-                        else { Console.WriteLine("no orders found"); }
-                    }
+                    await helperFuncLocation("50 Chiro Rd Portland 97219");
                     break;
             }
         }
@@ -298,8 +269,9 @@ namespace StoreApplication.UI
                 {
                     throw new ArrayTypeMismatchException();
                 }
+                // marker
 
-                var products = await response.Content.ReadFromJsonAsync<IEnumerable<ProductDTO>>();
+               var products = await response.Content.ReadFromJsonAsync<IEnumerable<ProductDTO>>();
 
                 if (products != null)
                 {
@@ -318,11 +290,87 @@ namespace StoreApplication.UI
             }
         }
 
-        //public void displaySubOrder()
-        //{
-        //    Product product = new Product();
-        //    string str = "";
-        //    //str += 
-        //}
+
+        /********************* Helper Functions **********************************/
+
+        // This is a helper function for displayOrder.
+        // Display all orders history of a store location.
+        private async Task helperFuncLocation (string str)
+        {
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _uri.ToString() + $"Order/byCustomer/{str}");
+            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
+            using (HttpResponseMessage response = await httpClient.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+
+                if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+                {
+                    throw new ArrayTypeMismatchException();
+                }
+                if (response.IsSuccessStatusCode)
+                {
+                    var orders = await response.Content.ReadFromJsonAsync<IEnumerable<OrderDTO>>();
+                    if (orders != null)
+                    {
+                        Console.WriteLine("All order history at " + str.ToString() + ".\n");
+                        Console.WriteLine("Order ID \t Customer ID \t Product ID \t Location\t Time");
+                        foreach (var order in orders)
+                        {
+                            Console.WriteLine(order.OrderID + "\t" + order.CustomerID + "\t" + order.ProductID
+                                     + "\t" + order.Location + "\t" + order.Time);
+                        }
+                    }
+                    else { Console.WriteLine("no orders found"); }
+                }
+            }
+        }
+
+        // This is a helper function for displayOrder.
+        // Display all orders history of a store customer.
+        private async Task<List<OrderDTO>> helperFuncCustomer(int id)
+        {
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _uri.ToString() + $"Order/byCustomer/{id}");
+            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
+            List<OrderDTO>? orderss = null;
+            using (HttpResponseMessage response = await httpClient.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+
+                if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+                {
+                    throw new ArrayTypeMismatchException();
+                }
+                if (response.IsSuccessStatusCode)
+                {
+                    var orders = await response.Content.ReadFromJsonAsync<IEnumerable<OrderDTO>>();
+                    orderss = orders.ToList();
+                }
+            }
+            return orderss;
+        }
+
+
+        // This is a helper function for displayOrder.
+        // Display an order details of a customer.
+        private async Task<ProductDTO> helperFuncOrderDetails(int id)
+        {
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _uri.ToString() + $"Order/{id}");
+            request.Headers.Accept.Add(new(MediaTypeNames.Application.Json));
+            ProductDTO? product = null;
+            using (HttpResponseMessage response = await httpClient.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+
+                if (response.Content.Headers.ContentType?.MediaType != MediaTypeNames.Application.Json)
+                {
+                    throw new ArrayTypeMismatchException();
+                }
+                if (response.IsSuccessStatusCode)
+                {
+                    product = await response.Content.ReadFromJsonAsync<ProductDTO>();
+                }
+            }
+            return product;
+        }
     }
 }

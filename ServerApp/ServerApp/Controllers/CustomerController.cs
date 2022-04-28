@@ -4,44 +4,40 @@ using StoreApplication.DataLogic;
 using System.Data.SqlClient;
 using System.Text.Json;
 
-namespace Server.Controllers
+namespace ServerApp.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class CustomerController : ControllerBase
     {
         private readonly InterfaceRepo _repository;
-        private readonly ILogger<OrderController> _logger;
+        private readonly ILogger<CustomerController> _logger;
 
-
-        public ProductController(InterfaceRepo repository, ILogger<OrderController> logger)
+        public CustomerController(InterfaceRepo repository, ILogger<CustomerController> logger)
         {
             this._repository = repository;
             this._logger = logger;
         }
 
-
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetAllProducts()
+        [HttpGet("getCustomer/{fname}/{lname}")]
+        public async Task<ActionResult<Customer>> GetCustomer(string fname, string lname)
         {
-            IEnumerable<Product> products;
             ContentResult result;
+            Customer customer;
             try
             {
-                products = await _repository.GetAllProducts();
-                string json = JsonSerializer.Serialize(products);
-                //return Ok(json);
+                customer = await _repository.GetCustomer(fname, lname);
+                string json = JsonSerializer.Serialize(customer);
                 result = new ContentResult()
                 {
-                    StatusCode = 200,
+                    StatusCode = 201,
                     ContentType = "application/json",
                     Content = json
                 };
             }
             catch (SqlException ex)
             {
-                
-                _logger.LogError(ex, "SQL error while getting all products");
+                _logger.LogError(ex, $"SQL error while getting customer information {fname} {lname}");
                 return StatusCode(500);
             }
             _logger.LogCritical("Critical Event");
@@ -49,5 +45,5 @@ namespace Server.Controllers
             _logger.LogTrace("Trace Event");
             return result;
         }
-    }   
+    }
 }

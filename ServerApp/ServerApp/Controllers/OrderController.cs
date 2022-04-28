@@ -8,12 +8,12 @@ namespace Server.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class OrdersController : ControllerBase
+    public class OrderController : ControllerBase
     {
         private readonly InterfaceRepo _repository;
-        private readonly ILogger<OrdersController> _logger;
+        private readonly ILogger<OrderController> _logger;
 
-        public OrdersController(InterfaceRepo repository, ILogger<OrdersController> logger)
+        public OrderController(InterfaceRepo repository, ILogger<OrderController> logger)
         {
             this._repository = repository;
             this._logger = logger;
@@ -48,12 +48,12 @@ namespace Server.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetOrder(int CustomerID) {
+        public async Task<ActionResult<Product>> GetOrder(int id) {
             Product order;
             ContentResult result;
             try
             {
-                order = await _repository.GetOrderDetails(CustomerID);
+                order = await _repository.GetOrderDetails(id);
                 string json = JsonSerializer.Serialize(order);
                 result = new ContentResult()
                 {
@@ -74,7 +74,7 @@ namespace Server.Controllers
             return result;
         }
 
-        [HttpGet("{Location}")]
+        [HttpGet("/byLocation/{Location}")]
         public async Task<ActionResult<IEnumerable<Orders>>> GetOrdersbyLocation(string Location)
         {
             ContentResult result;
@@ -103,7 +103,7 @@ namespace Server.Controllers
 
 
 
-        [HttpGet]
+        [HttpGet("/byCustomer/{CustomerID}")]
         public async Task<ActionResult<IEnumerable<Orders>>> GetOrdersbyCustomer(int CustomerID)
         {
             ContentResult result;
@@ -114,7 +114,7 @@ namespace Server.Controllers
                 string json = JsonSerializer.Serialize(orders);
                 result = new ContentResult()
                 {
-                    StatusCode = 201,
+                    StatusCode = 200,
                     ContentType = "application/json",
                     Content = json
                 };
@@ -127,7 +127,7 @@ namespace Server.Controllers
             _logger.LogCritical("Critical Event");
             _logger.LogInformation("Information Event");
             _logger.LogTrace("Trace Event");
-            return orders.ToList();
+            return result;
         }
     }
 }
