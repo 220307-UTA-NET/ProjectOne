@@ -301,7 +301,7 @@ namespace EmployeeApp.DataLogic
             }
             reader.Close();
 
-            // SQL Command to UPDATE an Employee's department and title
+            // SQL Command to DELETE an Employee's department and title
             string cmdString2 =
                 "DELETE FROM p1.Employee WHERE Id = @Id;";
 

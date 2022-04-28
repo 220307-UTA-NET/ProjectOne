@@ -1,13 +1,25 @@
 # Project 1: Web Application
 220307 UTA .NET / Richard Hawkins
 
+This project is about performing CRUD operations on an employee database that is hosted in Azure Web Service. The user can interact through a console app, communicating to the web API, which will then connect to the SQL Server database to make the changes. Console app is pushed to DockerHub repo: https://hub.docker.com/repository/docker/aek94/p1
+
+## Technologies Used
+* dotnet 6.0.2
+* Visual Studio 
+* Azure Data Studio 
+* Docker
+
+## To-do List:
+* Unit Testing
+* CI/CD Pipeline
+
 ## Functionality
 * interactive console application with a REST HTTP API backend
 * input validation (in the console app and also in the server)
 * exception handling, including foreseen SQL and HTTP errors
 * persistent data
 * (recommended: asynchronous network & other I/O, at least on the REST API)
-* (optional: logging of exceptions and other events
+* (optional: logging of exceptions and other events)
 
 
 ## Design

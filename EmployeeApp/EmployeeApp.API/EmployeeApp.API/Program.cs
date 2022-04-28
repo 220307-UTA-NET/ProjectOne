@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Connection String
 //string connectionString = builder.Configuration["ConnectionString"];
-string connectionString = builder.Configuration.GetConnectionString("ConnectionSt ring");
+string connectionString = builder.Configuration.GetConnectionString("ConnectionString");
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
