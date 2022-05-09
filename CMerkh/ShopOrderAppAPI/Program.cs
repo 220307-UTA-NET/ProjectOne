@@ -89,7 +89,7 @@ public class Maincode
 
 	public static async Task<string[,]> ReadInfo()
 {
-	string connectionString = "Server=tcp:firsttryserver.database.windows.net,1433;Initial Catalog=FirstTryResourceGroupDatabase;Persist Security Info=False;User ID=Mechsrule1;Password=ed3MxmE23EKEsed;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+	string connectionString = "[Connection String]";
 		string[,] temp = new string[9, 20];
 	SqlConnection connection = new SqlConnection(connectionString);
 	connection.Open();
