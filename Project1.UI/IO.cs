@@ -245,7 +245,7 @@ namespace Project1.UI
                         break;
 
                     case 2:
-                        await NewAccount(new AccountDTO() { bankAccountBalance = 6000, bankUserId = 5 });
+                        await NewAccount(new AccountDTO() { bankAccountBalance = 5000, bankUserId = 6 });
                         break;
 
                     default:
@@ -338,7 +338,7 @@ namespace Project1.UI
                         break;
 
                     case 2:
-                        await UpdateAccount(new AccountDTO() { bankAccountBalance = 9500, bankUserId = 5 });
+                        await UpdateAccount(new AccountDTO() { bankAccountBalance = 7500, bankUserId = 5 });
                         break;
 
                     default:
