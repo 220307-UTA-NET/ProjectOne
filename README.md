@@ -37,8 +37,5 @@ REST API
 Tests
 * The program tested six methods utlizing Moq.
 
-CI/CD
-* The program has a CI pipeline to analyze with SonarCloud and perform any unit tests you have written. -- to do still
-* The program has a CD pipeline to build, publish, and create a Docker image of the app, and pushed to the DockerHub repo. -- to do still
-* The program includes a CI pipeline to analyze with SonarCloud and perform any unit tests you have written.
-* The program includes a CD pipeline to build, publish, and deploy your app to Azure App Service for deployment.
+Azure
+* The program is live on Azure Wepp Service.
