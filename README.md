@@ -1,67 +1,42 @@
 # Project 1: Web Application
-220307 UTA .NET / Richard Hawkins
 
 This project is about performing CRUD operations on an employee database that is hosted in Azure Web Service. The user can interact through a console app, communicating to the web API, which will then connect to the SQL Server database to make the changes. Console app is pushed to DockerHub repo: https://hub.docker.com/repository/docker/aek94/p1
 
 ## Technologies Used
 * dotnet 6.0.2
-* Visual Studio 
+* Visual Studio 2022
 * Azure Data Studio 
 * Docker
 
-## To-do List:
-* Unit Testing
-* CI/CD Pipeline
-
-## Functionality
+## Features
 * interactive console application with a REST HTTP API backend
 * input validation (in the console app and also in the server)
 * exception handling, including foreseen SQL and HTTP errors
 * persistent data
-* (recommended: asynchronous network & other I/O, at least on the REST API)
-* (optional: logging of exceptions and other events)
+* asynchronous network & other I/O
 
-
-## Design
-* use ADO.NET (not Entity Framework)
-* use ASP.NET Core Web API
-* use an Azure SQL DB in third normal form
-* have a SQL script that can set up the database from scratch
-* don't use public fields
-* define and use at least one interface
-* best practices: separation of concerns, OOP principles, SOLID, REST, HTTP
-* XML documentation
-
-
-### REST API
-* the API should own the business logic of the application, not just the data access logic
-* it shouldn't trust that the console app hasn't been tampered with
-* should be able to handle multiple instances of the console app connecting to it at the same time
-* use dependency injection for controller dependencies
-* separate different concerns into different classes
-* use repository pattern for data access
-* recommended to keep the Web API project for only HTTP input/output concerns
-* recommended to use separate classes to help validate/format the HTTP message bodies (DTOs for model binding and action results)
-* recommended to separate business logic into a separate project from the Web API project and any HTTP or ADO.NET concerns
-* recommended to separate the data access into a separate project too
-
-
-### Console App
-* the console app provides a UI, interprets user input, uses the REST API over HTTP, and formats output
-* should gracefully handle HTTP error codes from the server, as well as connection errors
-* separate different concerns into different classes
-* recommended to separate the connection to the API into a separate project
-* recommended to keep the console app project for only console interface concerns, not HTTP concerns
-
-
-### Tests
-* at least 10 test methods
-* at least 1 test should use Moq
-* no tests should connect to the app's actual database
-
+## To-do List:
+### Test
+* at least 10 test methods, some using Moq
 
 ### CI/CD
-* your console app should include a CI pipeline to analyze with SonarCloud and perform any unit tests you have written
-* your console app should include a CD pipeline to build, publish, and create a Docker image of your app, and push it to your DockerHub repo
-* your API should include a CI pipeline to analyze with SonarCloud and perform any unit tests you have written
-* your API should include a CD pipeline to build, publish, and deploy your app to Azure App Service for deployment
+* Include a CI pipeline to analyze with SonarCloud and perform any unit tests
+* Include a CD pipeline to build, publish, and create a Docker image of the app, and push it to DockerHub repo
+* Include a CI pipeline to analyze with SonarCloud and perform any unit tests
+* Include a CD pipeline to build, publish, and deploy the app to Azure App Service for deployment
+
+## Getting started
+### Clone the repo
+git clone https://github.com/220307-UTA-NET/ProjectOne.git
+
+### Environment Set up Steps
+* Open project in dotnet IDE, preferrably Visual Studio
+* Run the API //Should connect to the database server
+* Run the console app //Should open console user interface
+
+### Using Docker
+* Pull from dockerhub: docker pull aek/p1:production
+* Run image: docker run -i aek/p1:production
+
+### Disclaimer
+The app contains bugs. Future implementations needed for better functionality.
