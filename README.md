@@ -53,3 +53,23 @@
 * your console app should include a CD pipeline to build, publish, and create a Docker image of your app, and push it to your DockerHub repo
 * your API should include a CI pipeline to analyze with SonarCloud and perform any unit tests you have written
 * your API should include a CD pipeline to build, publish, and deploy your app to Azure App Service for deployment
+
+### POST PROJECT1 README UPDATE
+The goal was to set up an application where users can log in, read about their current Horoscope reading based off each users birthday month + day, and saved past horoscope readings. Users who are interested in reading their Horoscope can use this application to find what their readings would have been today, tomorrow and yesterday. Users are presented a menu  with zodiac names, a zodiac dates chart, and a create user account method. All Http Requests are to a 3rd party API that generates Horoscopes. 
+
+User is looking to read their Horoscope prediction
+
+(Core) User can see their Horoscope reading for the current day.
+
+(Core) User can create a new client account. (Stretch) User can save their Horoscope Readings
+
+(Core) User can select their Zodiac reading based off Zodiac Name.
+
+(Core) User is presented with a Menu.
+
+(Core) User has access to Menu, only after creating a Client Account.
+
+(Stretch) User has the option of exploring additional Horoscope Readings based on a specific day.
+
+
+Members/Authors: Aure
