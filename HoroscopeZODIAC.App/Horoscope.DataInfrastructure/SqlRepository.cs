@@ -17,7 +17,7 @@ namespace Horoscope.DataInfrastructure
         }
 
         // Methods
-        public Client CreateNewClient(string ZODIAC_SIGN, string FIRST_NAME, string LAST_NAME, string BIRTH_DATE, string PHONE_NUMBER)
+        public Client CreateNewClient(string ZODIAC_SIGN, string FIRST_NAME, string LAST_NAME, string BIRTH_DATE, string PHONE_NUMBER) //Creating a New Client method
         {
             using SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
@@ -59,8 +59,8 @@ namespace Horoscope.DataInfrastructure
             return noClient;
         }
 
-
-        public string GetUserZodiac(int USER_ID) 
+//There are 2 SQL database tables Horoscope.UserZodiac and Horoscope.Client
+        public string GetUserZodiac(int USER_ID) //method for Case 2
         {
             string? ZODIAC_SIGN = "";
             
