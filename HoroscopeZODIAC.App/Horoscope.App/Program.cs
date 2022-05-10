@@ -11,12 +11,12 @@ namespace Horoscope.App
 
             string connectionString = 
 
-            IRepository repo = new SqlRepository(connectionString);
+            IRepository repo = new SqlRepository(connectionString); //connection string to SQL database goes here
 
             Horoscope myHoroscope = new Horoscope(repo);
 
 
-
+                //Case Switch Menu UI
             {
                 Console.WriteLine("Welcome to The Zodiac App!");
 
@@ -112,7 +112,7 @@ namespace Horoscope.App
                     }
                 }
             }
-            void CreateNewClient()
+            void CreateNewClient() //Complete
             {
 
                 Console.WriteLine("Enter customer's Zodiac Sign.");
@@ -139,7 +139,7 @@ namespace Horoscope.App
                 Console.ReadKey();
                 Console.Clear();
             }
-            void Zodiac()
+            void Zodiac() //Incomplete
             {
                 int ID;
                 Console.WriteLine("Enter User's ID ex: 1, 2, 3,,,,,10");
@@ -170,7 +170,7 @@ namespace Horoscope.App
                 Console.ReadKey();
                 Console.Clear();
             }
-               
+               //All Http Requests below, communicate to a 3rd party API that generates Horoscopes
             async Task Capricorn()
             { 
                 var client = new HttpClient();
