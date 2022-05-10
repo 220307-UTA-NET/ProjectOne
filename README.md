@@ -1,7 +1,8 @@
 # Project 1: Very Local Library Management Tool - Web Application
 220307 UTA .NET / Tryggve Rogness
 
-I created a library management tool
+This is a library management tool that mainly consists of three parts. The front end is a .NET console app that sends HTTP requests to an API. The API in turn sends queries to an SQL database. This interaction allows a user to perform some CRUD functions.
+
 ## Functionality
 * interactive console application with a REST HTTP API backend
 * input validation (in the console app and also in the server)
