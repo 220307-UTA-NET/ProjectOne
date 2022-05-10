@@ -15,7 +15,7 @@ namespace Horoscope.Logic
         public string TOMORROWS_READING;
         public string YESTERDAYS_READING;
         public string SAVED_READINGS;
-
+//Initially Wanted a Saved Log of past readings
         // Constructor
         public UserZodiac() { }
         public UserZodiac(int USER_ID,string ZODIAC_SIGN, string TODAYS_READING, string TOMORROWS_READING, string YESTERDAYS_READING, string SAVED_READINGS)
