@@ -1,6 +1,6 @@
 # Project 1: Olympic Games Web Application
 
-##Project Description
+## Project Description
 This is a web application that allows requests to and from an SQL database via a REST API to retrieve different Olympic Games statistics and other CRUD functions. Users can choose which option they want on a console application and perform various HTTP calls.
 
 ## Technologies Used
