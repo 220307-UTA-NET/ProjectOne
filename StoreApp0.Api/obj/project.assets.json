@@ -674,20 +674,6 @@
           }
         }
       },
-      "StorApp0.DataLogic/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "Microsoft.Data.SqlClient": "4.1.0",
-          "StoreApp0.BusinessLogic": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/StorApp0.DataLogic.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/StorApp0.DataLogic.dll": {}
-        }
-      },
       "StoreApp0.BusinessLogic/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -699,6 +685,20 @@
         },
         "runtime": {
           "bin/placeholder/StoreApp0.BusinessLogic.dll": {}
+        }
+      },
+      "StoreApp0.DataLogic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.Data.SqlClient": "4.1.0",
+          "StoreApp0.BusinessLogic": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/StoreApp0.DataLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/StoreApp0.DataLogic.dll": {}
         }
       }
     }
@@ -2530,22 +2530,22 @@
         "version.txt"
       ]
     },
-    "StorApp0.DataLogic/1.0.0": {
-      "type": "project",
-      "path": "../StorAppo.Data/StorApp0.DataLogic.csproj",
-      "msbuildProject": "../StorAppo.Data/StorApp0.DataLogic.csproj"
-    },
     "StoreApp0.BusinessLogic/1.0.0": {
       "type": "project",
       "path": "../StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj",
       "msbuildProject": "../StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj"
+    },
+    "StoreApp0.DataLogic/1.0.0": {
+      "type": "project",
+      "path": "../StoreApp0.DataLogic/StoreApp0.DataLogic.csproj",
+      "msbuildProject": "../StoreApp0.DataLogic/StoreApp0.DataLogic.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.Data.SqlClient >= 4.1.0",
-      "StorApp0.DataLogic >= 1.0.0",
       "StoreApp0.BusinessLogic >= 1.0.0",
+      "StoreApp0.DataLogic >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.3.1"
     ]
   },
@@ -2555,11 +2555,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.Api/StoreApp0.Api.csproj",
+      "projectUniqueName": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Api/StoreApp0.Api.csproj",
       "projectName": "StoreApp0.Api",
-      "projectPath": "/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.Api/StoreApp0.Api.csproj",
+      "projectPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Api/StoreApp0.Api.csproj",
       "packagesPath": "/Users/brukgella/.nuget/packages/",
-      "outputPath": "/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.Api/obj/",
+      "outputPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/brukgella/.nuget/NuGet/NuGet.Config"
@@ -2574,11 +2574,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/brukgella/Projects/StoreApp0.Api/StorAppo.Data/StorApp0.DataLogic.csproj": {
-              "projectPath": "/Users/brukgella/Projects/StoreApp0.Api/StorAppo.Data/StorApp0.DataLogic.csproj"
+            "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj": {
+              "projectPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj"
             },
-            "/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj": {
-              "projectPath": "/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj"
+            "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/StoreApp0.DataLogic.csproj": {
+              "projectPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/StoreApp0.DataLogic.csproj"
             }
           }
         }
@@ -2620,7 +2620,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,0 +1,15 @@
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/bin/Debug/net6.0/StoreApp0.DataLogic.deps.json
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/bin/Debug/net6.0/StoreApp0.DataLogic.dll
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/bin/Debug/net6.0/StoreApp0.DataLogic.pdb
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/bin/Debug/net6.0/StoreApp0.BusinessLogic.dll
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/bin/Debug/net6.0/StoreApp0.BusinessLogic.pdb
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/obj/Debug/net6.0/StoreApp0.DataLogic.csproj.AssemblyReference.cache
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/obj/Debug/net6.0/StoreApp0.DataLogic.GeneratedMSBuildEditorConfig.editorconfig
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/obj/Debug/net6.0/StoreApp0.DataLogic.AssemblyInfoInputs.cache
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/obj/Debug/net6.0/StoreApp0.DataLogic.AssemblyInfo.cs
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/obj/Debug/net6.0/StoreApp0.DataLogic.csproj.CoreCompileInputs.cache
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/obj/Debug/net6.0/StoreApp0.DataLogic.csproj.CopyComplete
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/obj/Debug/net6.0/StoreApp0.DataLogic.dll
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/obj/Debug/net6.0/refint/StoreApp0.DataLogic.dll
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/obj/Debug/net6.0/StoreApp0.DataLogic.pdb
+/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/obj/Debug/net6.0/ref/StoreApp0.DataLogic.dll

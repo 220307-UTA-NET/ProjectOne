@@ -2319,11 +2319,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj",
+      "projectUniqueName": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj",
       "projectName": "StoreApp0.BusinessLogic",
-      "projectPath": "/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj",
+      "projectPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj",
       "packagesPath": "/Users/brukgella/.nuget/packages/",
-      "outputPath": "/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.BusinessLogic/obj/",
+      "outputPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.BusinessLogic/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/brukgella/.nuget/NuGet/NuGet.Config"
@@ -2370,7 +2370,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }

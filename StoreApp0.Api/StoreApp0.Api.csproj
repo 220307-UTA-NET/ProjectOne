@@ -27,6 +27,9 @@
     <ProjectReference Include="..\StoreApp0.BusinessLogic\StoreApp0.BusinessLogic.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\StoreApp0.DataLogic\StoreApp0.DataLogic.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Condition="'$(ExcludeConfigFilesFromBuildOutput)'!='true'" Update="appsettings.json">

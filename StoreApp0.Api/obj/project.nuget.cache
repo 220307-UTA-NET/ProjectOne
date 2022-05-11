@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DGI1fLe8/4xf9HLQw54Sx2qyuSOfA6WzlI8wTDPYXr61Oi/ewfOIRzU3SPnCSTuLhZV2i/rXcJsFMufVFhRmBQ==",
+  "dgSpecHash": "fFYwGD5a75gPmBS0sZ9VRV3KnDjhI0X/Lni5skct8bkeH1XvdxNXq8p92pj+F8Gw1O+FPSskViqh9tXPGEme1A==",
   "success": true,
-  "projectFilePath": "/Users/brukgella/Projects/StoreApp0.Api/StoreApp0.Api/StoreApp0.Api.csproj",
+  "projectFilePath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Api/StoreApp0.Api.csproj",
   "expectedPackageFiles": [
     "/Users/brukgella/.nuget/packages/azure.core/1.6.0/azure.core.1.6.0.nupkg.sha512",
     "/Users/brukgella/.nuget/packages/azure.identity/1.3.0/azure.identity.1.3.0.nupkg.sha512",

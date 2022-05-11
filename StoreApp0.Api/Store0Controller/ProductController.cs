@@ -44,12 +44,12 @@ namespace StoreApp0.Api.Controllers
             {
                 var product = await _repository.GetProductById(id);
                 if (product == null)
-                    return NotFound($"CProduct with Id={id} doesn't exists");
+                    return NotFound($"Product with Id={id} doesn't exists");
                 productDTO = new ProductDTO()
                 {
                     Id = product.ProductId,
                     ProductName = product.ProductName,
-                    ProductCatagory= product.productCatagory
+                    ProductCatagory= product.ProductCatagory
                 };
 
             }

@@ -37,7 +37,7 @@ namespace StoreApp0.Api.Controllers
         }
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<CustomerDTO>> GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
             CustomerDTO customerDTO;
             try
@@ -82,7 +82,7 @@ namespace StoreApp0.Api.Controllers
             }
             catch (SqlException ex)
             {
-                _logger.LogError(ex, "SQL error while getting devices.");
+                _logger.LogError(ex, "SQL error while getting Customers.");
                 return StatusCode(500);
             }
             return Ok(customerDTOs);

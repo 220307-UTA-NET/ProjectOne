@@ -7,12 +7,13 @@ namespace StoreApp0.BusinessLogic
 		public int ProductId { get; set; }
 		public String? ProductName { get; set; }
 		public String? productCatagory { get; set; }
+        public string ProductCatagory { get; set; }
 
-		public Product(int id, String productName, String productCatagory)
+        public Product(int id, String productName, String productCatagory)
 		{
 			this.ProductId = id;
 			this.ProductName = productName;
-			this.productCatagory = productCatagory;
+			this.ProductCatagory = productCatagory;
 		}
 
 		public Product()

@@ -1,0 +1,278 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Tests/StoreApp0.Tests.csproj": {}
+  },
+  "projects": {
+    "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Api/StoreApp0.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Api/StoreApp0.Api.csproj",
+        "projectName": "StoreApp0.Api",
+        "projectPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Api/StoreApp0.Api.csproj",
+        "packagesPath": "/Users/brukgella/.nuget/packages/",
+        "outputPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Api/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/brukgella/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj": {
+                "projectPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj"
+              },
+              "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/StoreApp0.DataLogic.csproj": {
+                "projectPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/StoreApp0.DataLogic.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.203/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj",
+        "projectName": "StoreApp0.BusinessLogic",
+        "projectPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj",
+        "packagesPath": "/Users/brukgella/.nuget/packages/",
+        "outputPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.BusinessLogic/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/brukgella/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.203/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/StoreApp0.DataLogic.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/StoreApp0.DataLogic.csproj",
+        "projectName": "StoreApp0.DataLogic",
+        "projectPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/StoreApp0.DataLogic.csproj",
+        "packagesPath": "/Users/brukgella/.nuget/packages/",
+        "outputPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.DataLogic/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/brukgella/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj": {
+                "projectPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.BusinessLogic/StoreApp0.BusinessLogic.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.203/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Tests/StoreApp0.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Tests/StoreApp0.Tests.csproj",
+        "projectName": "StoreApp0.Tests",
+        "projectPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Tests/StoreApp0.Tests.csproj",
+        "packagesPath": "/Users/brukgella/.nuget/packages/",
+        "outputPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/brukgella/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Api/StoreApp0.Api.csproj": {
+                "projectPath": "/Users/brukgella/Desktop/StoreApp0.Api /StoreApp0.Api/StoreApp0.Api.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.11.0, )"
+            },
+            "NSubstitute": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.203/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
