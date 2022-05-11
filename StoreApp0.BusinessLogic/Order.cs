@@ -10,9 +10,9 @@
         //public List<Order> cart = new List<Order>();
 
         public Order()
-        { }
+        {}
 
-        public Order(int OrderID, int CustomerId, int LocationId, DateTime Date)
+        public Order(int OrderID, int CustomerId, DateTime Date)
         {
             this.orderId = OrderID;
             this.customerId = CustomerId;
