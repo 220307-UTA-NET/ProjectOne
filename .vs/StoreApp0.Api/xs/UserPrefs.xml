@@ -1,15 +1,24 @@
 ﻿<Properties StartupConfiguration="{BD069D90-3792-4C2B-838E-BDCD52D6C194}|Default">
-  <MonoDevelop.Ide.ItemProperties.StoreApp0.Api PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="StoreApp0.DataLogic/SqlRepository..cs">
+    <Files>
+      <File FileName="StoreApp0.Tests/IntegrationTests/ProductsControllerTests.cs" Line="1" Column="1" />
+      <File FileName="StoreApp0.Tests/IntegrationTests/CustomersControllerTests.cs" Line="26" Column="1" />
+      <File FileName="StoreApp0.Api/Program.cs" Line="38" Column="1" />
+      <File FileName="StoreApp0.Api/appsettings.json" Line="1" Column="1" />
+      <File FileName="StoreApp0.Api/Store0Controller/ProductController.cs" Line="1" Column="1" />
+      <File FileName="StoreApp0.Api/Store0Controller/CustomersController.cs" Line="1" Column="1" />
+      <File FileName="StoreApp0.DataLogic/SqlRepository..cs" Line="197" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="StoreApp0.Api" expanded="True" selected="True">
+          <Node name="StoreApp0.Api" expanded="True">
+            <Node name="StoreApp0.Api" expanded="True">
+              <Node name="Store0Controller" expanded="True" />
+            </Node>
+            <Node name="StoreApp0.DataLogic" expanded="True" />
             <Node name="StoreApp0.Tests" expanded="True">
               <Node name="IntegrationTests" expanded="True" />
             </Node>
@@ -27,4 +36,8 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.StoreApp0.Api PreferredExecutionTarget="/Applications/Safari.app" />
 </Properties>
