@@ -5,8 +5,8 @@ This is a web application that allows requests to and from an SQL database via a
 
 ## Technologies Used
 * ADO.NET
-* ASP.NET Core Web API
-* Azure SQL Database
+* Swagger
+* SQL Database hosted on Azure
 * REST HTTP API backend
 
 ## Features
