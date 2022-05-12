@@ -14,7 +14,7 @@ This is a web application that allows requests to and from an SQL database via a
 * Exception Handling
 * Docker file
 * Console Application utilizing basic CRUD commands
-* Persistant history
+* Persistent history
 
 To-Do List
 * Refactor CRUD commands
