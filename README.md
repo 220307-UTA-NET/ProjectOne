@@ -1,7 +1,7 @@
-# project 1: store web application
-Arlington .NET / Richard Hawkins
+ project 1: store web application
 
-## functionality
+
+functionality
 * interactive console application with a REST HTTP API backend
 * input validation (in the console app and also in the server)
 * exception handling, including foreseen SQL and HTTP errors
@@ -10,7 +10,7 @@ Arlington .NET / Richard Hawkins
 * (optional: logging of exceptions and other events
 
 
-## design
+ design
 * use ADO.NET (not Entity Framework)
 * use ASP.NET Core Web API
 * use an Azure SQL DB in third normal form
@@ -34,7 +34,7 @@ Arlington .NET / Richard Hawkins
 * recommended to separate the data access into a separate project too
 
 
-### console app
+ console app
 * the console app provides a UI, interprets user input, uses the REST API over HTTP, and formats output
 * should gracefully handle HTTP error codes from the server, as well as connection errors
 * separate different concerns into different classes
@@ -42,13 +42,13 @@ Arlington .NET / Richard Hawkins
 * recommended to keep the console app project for only console interface concerns, not HTTP concerns
 
 
-### tests
+tests
 * at least 10 test methods
 * at least 1 test should use Moq
 * no tests should connect to the app's actual database
 
 
-### CI/CD
+ CI/CD
 * your console app should include a CI pipeline to analyze with SonarCloud and perform any unit tests you have written
 * your console app should include a CD pipeline to build, publish, and create a Docker image of your app, and push it to your DockerHub repo
 * your API should include a CI pipeline to analyze with SonarCloud and perform any unit tests you have written
