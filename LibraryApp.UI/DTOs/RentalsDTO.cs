@@ -1,5 +1,6 @@
 ﻿namespace LibraryApp.UI.DTOs
 {
+    //defines properties of rentals data transfer objects
     public class RentalsDTO
     {
         public int rentalID { get; set; }

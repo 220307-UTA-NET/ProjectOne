@@ -1,15 +1,22 @@
---View all tables
-
-SELECT * FROM VLLibrary.Books;
-SELECT * FROM VLLibrary.Rentals;
-SELECT * FROM VLLibrary.Accounts;
+--Connect to a database server, then run this whole file to create an example database
+--Create Schema
+CREATE SCHEMA VLLibrary;
 GO
 
---Drop all tables
-DROP TABLE VLLibrary.Books;
-DROP TABLE VLLibrary.Accounts;
-DROP TABLE VLLibrary.Rentals;
-GO
+--View all tables (uncomment, highlight, and run to use)
+--SELECT * FROM VLLibrary.Books;
+--SELECT * FROM VLLibrary.Rentals;
+--SELECT * FROM VLLibrary.Accounts;
+--GO
+
+
+--Drop all tables and schema (uncomment, highlight, and run to use)
+--DROP TABLE VLLibrary.Books;
+--DROP TABLE VLLibrary.Accounts;
+--DROP TABLE VLLibrary.Rentals;
+--GO
+--DROP SCHEMA VLLibrary
+--GO
 
 --Create and populate tables
 CREATE TABLE VLLibrary.Books (
@@ -29,13 +36,15 @@ CREATE TABLE VLLibrary.Accounts (
 
 CREATE TABLE VLLibrary.Rentals (
     RentalID INT IDENTITY (1000,1) NOT NULL PRIMARY KEY,
-    MemberID INT NOT NULL FOREIGN KEY REFERENCES VLLibrary.Accounts (MemberID),
-    BookID INT NOT NULL FOREIGN KEY REFERENCES VLLibrary.Books (BookID),
+    MemberID INT NOT NULL FOREIGN KEY REFERENCES VLLibrary.Accounts (MemberID) ON DELETE CASCADE,
+    BookID INT NOT NULL FOREIGN KEY REFERENCES VLLibrary.Books (BookID) ON DELETE CASCADE,
     --OutDate DATETIME NOT NULL DEFAULT GETDATE(), 
     --InDate DATETIME NULL
+    --These were being used in tests for future function
 );
+GO
 
-
+--Put example values into the tables we created
 INSERT INTO VLLibrary.Accounts ( FirstName, LastName, Phone )
     VALUES ('David', 'Davidson', '9995551405'),
     ('Thomas', 'Thompson', '9995551212'),

@@ -23,6 +23,7 @@ namespace LibraryApp.UI
             bool running = true;
             do
             {
+                //capture user input, use relevant methods from below to make http requests
                 int menuOpt = Menu();
                 switch (menuOpt)
                 {
@@ -81,6 +82,7 @@ namespace LibraryApp.UI
         {
             Console.Clear();
             int menuOpt = -1;
+            //All the menu options
             Console.WriteLine("Welcome to the Very Local Library Management Tool\nWhat would you like to do" +
                 " (select option by entering option number and pressing enter)?\nChoices include:\n1) Create" +
                 " new member\n2) Look up member's rentals by ID# (work in progress)\n3) Retrieve information of all me" +

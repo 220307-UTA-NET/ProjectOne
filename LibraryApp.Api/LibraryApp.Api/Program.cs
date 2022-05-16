@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Connection String
+//Connection String - if you want to run this locally, comment out and uncomment out the next two lines, repsectively
 var connectionString = builder.Configuration.GetConnectionString("connectionString");
 //var connectionString = builder.Configuration["connectionString"];
 

@@ -1,5 +1,6 @@
 ﻿namespace LibraryApp.UI.DTOs
 {
+    //defines properties of books data transfer objects
     public class BooksDTO
     {
         public int bookID { get; set; }

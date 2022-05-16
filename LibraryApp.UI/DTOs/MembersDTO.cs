@@ -1,5 +1,6 @@
 ﻿namespace LibraryApp.UI.DTOs
 {
+    //defines properties of members data transfer objects
     public class MembersDTO
     {
         public int memberID { get; set; }
