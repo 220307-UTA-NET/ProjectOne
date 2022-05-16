@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 # Project 1: VLLM - Very Local Library Management Tool - Web Application
 220307 UTA .NET / Tryggve Rogness
-=======
->>>>>>> 3514c6e291e77d02886c1e61921ac7633940d018
 
 This is a library management tool that mainly consists of three parts. The front end is a .NET console app that sends HTTP requests to an API. The API in turn sends queries to an SQL database. This interaction allows a user to perform some CRUD functions.
 
