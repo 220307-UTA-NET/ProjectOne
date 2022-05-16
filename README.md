@@ -1,7 +1,7 @@
 # Project 1: VLLM - Very Local Library Management Tool - Web Application
 220307 UTA .NET / Tryggve Rogness
 
-This is a library management tool that mainly consists of three parts. The front end is a .NET console app that sends HTTP requests to an API. The API in turn sends queries to an SQL database. This interaction allows a user to perform some CRUD functions.
+This is a library management tool that mainly consists of three parts. The front end is a .NET console app that sends HTTP requests to an API. The API in turn sends queries to an SQL database. This interaction allows a user to perform some CRUD functions. It allows users to access information about users accounts and books in the library inventory. It is designed to also facilitate changing the status of a book as being rented by a user and being returned.
 
 To get started configuring the tool, first create the database. Open the VLLstart.sql file in the root folder with your SQL management studio of choice. Connect to a database server and run the file (it will create the schema, tables, and insert example data into the db). Using a brand new Azure account will use the intro credit to pay for this database subscription cost.
 
