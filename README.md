@@ -1,57 +1,11 @@
-# Project 1: Very Local Library Management Tool - Web Application
+# Project 1: VLLM - Very Local Library Management Tool - Web Application
 220307 UTA .NET / Tryggve Rogness
+=======
 
 This is a library management tool that mainly consists of three parts. The front end is a .NET console app that sends HTTP requests to an API. The API in turn sends queries to an SQL database. This interaction allows a user to perform some CRUD functions.
 
-## Functionality
-* interactive console application with a REST HTTP API backend
-* input validation (in the console app and also in the server)
-* exception handling, including foreseen SQL and HTTP errors
-* persistent data
-* (recommended: asynchronous network & other I/O, at least on the REST API)
-* (optional: logging of exceptions and other events
+To get started configuring the tool, first create the database. Open the VLLstart.sql file in the root folder with your SQL management studio of choice. Connect to a database server and run the file (it will create the schema, tables, and insert example data into the db). Using a brand new Azure account will use the intro credit to pay for this database subscription cost.
 
+Moving over to the API. The API needs to be deployed, this can be done by opening the solution in visual studio and using the publish option under the Build menu. Using a newer Azure account will allow for deploying this resource for free. Your SQL database connectionstring (found in the database overview under Settings>Connection Strings, make sure to replace the password placeholder with your password) can be added in the API's Setting>Configuration menu. You will also want to okay your API's outgoing IP addresses (found in API's Settings>Networking in Azure) with the server your database is on. Copy them and paste them into the server's firewall (from the server Security>Netwworking, add a rule for each of the API's outgoing IP addresses)
 
-## Design
-* use ADO.NET (not Entity Framework)
-* use ASP.NET Core Web API
-* use an Azure SQL DB in third normal form
-* have a SQL script that can set up the database from scratch
-* don't use public fields
-* define and use at least one interface
-* best practices: separation of concerns, OOP principles, SOLID, REST, HTTP
-* XML documentation
-
-
-### REST API
-* the API should own the business logic of the application, not just the data access logic
-* it shouldn't trust that the console app hasn't been tampered with
-* should be able to handle multiple instances of the console app connecting to it at the same time
-* use dependency injection for controller dependencies
-* separate different concerns into different classes
-* use repository pattern for data access
-* recommended to keep the Web API project for only HTTP input/output concerns
-* recommended to use separate classes to help validate/format the HTTP message bodies (DTOs for model binding and action results)
-* recommended to separate business logic into a separate project from the Web API project and any HTTP or ADO.NET concerns
-* recommended to separate the data access into a separate project too
-
-
-### Console App
-* the console app provides a UI, interprets user input, uses the REST API over HTTP, and formats output
-* should gracefully handle HTTP error codes from the server, as well as connection errors
-* separate different concerns into different classes
-* recommended to separate the connection to the API into a separate project
-* recommended to keep the console app project for only console interface concerns, not HTTP concerns
-
-
-### Tests
-* at least 10 test methods
-* at least 1 test should use Moq
-* no tests should connect to the app's actual database
-
-
-### CI/CD
-* your console app should include a CI pipeline to analyze with SonarCloud and perform any unit tests you have written
-* your console app should include a CD pipeline to build, publish, and create a Docker image of your app, and push it to your DockerHub repo
-* your API should include a CI pipeline to analyze with SonarCloud and perform any unit tests you have written
-* your API should include a CD pipeline to build, publish, and deploy your app to Azure App Service for deployment
+The user interface console will need to be updated with the location of where your deployed API is located. Then run the UI from Visual Studio, the console app will ask for inputs and give back the requested information.
